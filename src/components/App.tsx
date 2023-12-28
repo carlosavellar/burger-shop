@@ -1,8 +1,21 @@
-import React from "react";
-
-const nove: number = 9;
-const nove3: number = 9;
+import { RootState } from "@/store";
+import { fetchData } from "@/utils/api";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function App() {
-  return <div>App -{nove}</div>;
+  const dispatch = useDispatch();
+  const { sections, loading, error } = useSelector(
+    (state: RootState) => state.menuItems
+  );
+
+  const menuItems = useSelector((state: RootState) => state.menuItems);
+
+  useEffect(() => {
+    dispatch(fetchData() as any);
+  }, [dispatch]);
+
+  console.log(menuItems);
+
+  return <div>App</div>;
 }

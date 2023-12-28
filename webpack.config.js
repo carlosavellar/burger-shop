@@ -22,7 +22,12 @@ module.exports = {
       },
     ],
   },
-  resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
+  resolve: {
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
   mode: "development",
   plugins: [
     new HtmlWebpackPlugin({
