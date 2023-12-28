@@ -5,22 +5,22 @@ import IBurgerSection from "@/interfaces/IBurger";
 import IDrinksSection from "@/interfaces/IDrink";
 import IDessertsSection from "@/interfaces/IDessert";
 
-interface IMenuItems {
+export interface IMenuItems {
   id: number;
   name: string;
   type: string;
   collapse: number;
-  sections: IBurgerSection[] | IDrinksSection[] | IDessertsSection[];
+  sections: [IBurgerSection[], IDrinksSection[], IBurgerSection[]];
   loading: boolean;
   error: string | null;
 }
 
-const initialState: IMenuItems = {
+export const initialState: IMenuItems = {
   id: 0,
   name: "",
   type: "",
   collapse: 0,
-  sections: [],
+  sections: [[], [], []],
   loading: false,
   error: null,
 };
@@ -44,9 +44,7 @@ const menuSlice = createSlice({
   },
 });
 
-export const loadAllFoods = (
-  state: IBurgerSection | IDrinksSection | IDessertsSection
-) => state;
+export const loadAllFoods = (state: IMenuItems) => state;
 
 export const { fetchDataStart, fetchDataSuccess, fetchDataFailure } =
   menuSlice.actions;
