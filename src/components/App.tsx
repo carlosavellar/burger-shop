@@ -1,8 +1,13 @@
+import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Col, Container, Row } from "reactstrap";
+
 import { RootState } from "@/store";
 import { IMenuItems, initialState } from "@/store/slices/menuSlice";
 import { fetchData } from "@/utils/api";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import NavMenu from "./ui/NavMenu";
+
+import "./App.scss";
 
 export default function App() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
@@ -28,5 +33,21 @@ export default function App() {
     }
   }, [loadedMenu]);
 
-  return <div style={{ background: "red" }}>{loadedMenu?.id}</div>;
+  return (
+    <Fragment>
+      <NavMenu />
+      <Container fluid>
+        <div style={{ background: "red" }}>
+          {loadedMenu?.id}
+          <Row sm={"3"}>
+            <Col sm="3" className="bg-light border media-test">
+              .col
+            </Col>
+            <Col className="bg-light border media-test">.col</Col>
+            <Col className="bg-light border media-test">.col</Col>
+          </Row>
+        </div>
+      </Container>
+    </Fragment>
+  );
 }
