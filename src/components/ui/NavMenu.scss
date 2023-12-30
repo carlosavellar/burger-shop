@@ -1,10 +1,24 @@
 @import "./../../styles/colors";
+@import "./../../styles/fonts";
 
 .navbar {
   background: $brown;
   color: $white;
+  @include base-font;
+  min-height: 64px;
 }
 
-.navbar-toggler-icon {
+.navbar-text,
+.nav-link:hover,
+.nav-link:focus,
+.nav-link {
   color: $white;
+}
+
+svg {
+  color: $white;
+}
+
+.title-app {
+  margin-left: 37px;
 }

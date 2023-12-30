@@ -1,0 +1,9 @@
+$font-family: "Roboto";
+$font-size: 1rem;
+$font-style-normal: "normal";
+
+@mixin base-font {
+  font-family: $font-family, sans-serif;
+  font-size: $font-size;
+  font-style: $font-style-normal;
+}

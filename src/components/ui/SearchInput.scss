@@ -1,0 +1,20 @@
+@import "./../../styles/colors";
+
+.wrap-form {
+  border-left: 0px;
+  border: 2px solid $grey;
+  border-left: none;
+  border-radius: 8px;
+}
+.form-control {
+  background-color: transparent;
+  border: 0px;
+}
+.input-group-text {
+  background-color: transparent;
+  border-right: 0px;
+}
+
+#basic-addon1 {
+  background-color: transparent;
+}

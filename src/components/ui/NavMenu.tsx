@@ -15,10 +15,9 @@ import {
   NavbarText,
   NavbarProps,
 } from "reactstrap";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { RiMenuLine } from "react-icons/ri";
 
 import "./NavMenu.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function NavMenu(args: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,9 +28,9 @@ function NavMenu(args: NavbarProps) {
     <div>
       <Navbar {...args} className="">
         <span></span>
-        <div>Menu</div>
+        <div className="title-app">Menu</div>
         <NavbarToggler onClick={toggle} className="custom-toggler">
-          <FontAwesomeIcon icon={faGithub} />
+          <RiMenuLine />
         </NavbarToggler>
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
@@ -49,9 +48,6 @@ function NavMenu(args: NavbarProps) {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

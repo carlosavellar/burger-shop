@@ -6,8 +6,10 @@ import { RootState } from "@/store";
 import { IMenuItems, initialState } from "@/store/slices/menuSlice";
 import { fetchData } from "@/utils/api";
 import NavMenu from "./ui/NavMenu";
+import SearchInput from "./ui/SearchInput";
 
 import "./App.scss";
+import Header from "./ui/Header";
 
 export default function App() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
@@ -36,6 +38,8 @@ export default function App() {
   return (
     <Fragment>
       <NavMenu />
+      <Header />
+      <SearchInput />
       <Container fluid>
         <div style={{ background: "red" }}>
           {loadedMenu?.id}
