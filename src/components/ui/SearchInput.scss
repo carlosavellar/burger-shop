@@ -1,6 +1,7 @@
 @import "./../../styles/colors";
 
 .wrap-form {
+  margin-top: 10px;
   border-left: 0px;
   border: 2px solid $grey;
 
@@ -9,6 +10,7 @@
 }
 .form-control {
   background-color: transparent;
+  border-left: 0px;
 }
 .input-group-text {
   background-color: transparent;
@@ -17,4 +19,5 @@
 
 #basic-addon1 {
   background-color: transparent;
+  border-right: 0px;
 }
