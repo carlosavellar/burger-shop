@@ -7,6 +7,7 @@ import { IMenuItems, initialState } from "@/store/slices/menuSlice";
 import { fetchData } from "@/utils/api";
 import NavMenu from "./ui/NavMenu";
 import SearchInput from "./ui/SearchInput";
+import { loadAllFoods } from "@/store/slices/menuSlice";
 
 import "./App.scss";
 import Header from "./ui/Header";
@@ -30,25 +31,27 @@ export default function App() {
   }, [sections]);
 
   useEffect(() => {
-    if (loadedMenu) {
-      console.log(loadedMenu.id, "!Loaded");
-    }
-  }, [loadedMenu]);
+    console.log(loadedMenu.id, "Menu");
+  }, [loadedMenu.id]);
 
   return (
     <Fragment>
       <NavMenu />
       <Header />
       <SearchInput />
-      <Container fluid>
+      <Container>
         <div style={{ background: "red" }}>
-          {loadedMenu?.id}
-          <Row sm={"3"}>
-            <Col sm="3" className="bg-light border media-test">
+          <Row sm={"12"}>
+            <Col sm="4" className="bg-light border media-test">
+              <div>---</div>
               .col
             </Col>
-            <Col className="bg-light border media-test">.col</Col>
-            <Col className="bg-light border media-test">.col</Col>
+            <Col sm="4" className="bg-light border media-test">
+              .col
+            </Col>
+            <Col sm="4" className="bg-light border media-test">
+              .col
+            </Col>
           </Row>
         </div>
       </Container>
