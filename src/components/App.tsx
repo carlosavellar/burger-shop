@@ -1,37 +1,19 @@
-import React, { Fragment, ReactNode, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ListGroup, ListGroupItem } from "reactstrap";
-import {
-  Button,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-  Col,
-  Container,
-  Row,
-} from "reactstrap";
-import { Card, CardImg, CardBody } from "reactstrap";
-import Image from "react-bootstrap/Image";
-import tempImage from "./../assets/temp.png";
-import { IBurger } from "@/interfaces/IBurger";
+import { Col, Container, Row } from "reactstrap";
 
-import {
-  Accordion,
-  AccordionBody,
-  AccordionHeader,
-  AccordionItem,
-} from "reactstrap";
+import { Accordion, AccordionHeader, AccordionItem } from "reactstrap";
 
 import { RootState } from "@/store";
 import { IMenuItems, initialState } from "@/store/slices/menuSlice";
 import { fetchData } from "@/utils/api";
 import NavMenu from "./ui/NavMenu";
 import SearchInput from "./ui/SearchInput";
-import { loadAllFoods } from "@/store/slices/menuSlice";
 
 import "./App.scss";
 import Header from "./ui/Header";
 import { Avatar } from "@mui/material";
+import ProductImageList from "./ProductImageList";
 
 export default function App() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
@@ -59,45 +41,10 @@ export default function App() {
     }
   }, [sections]);
 
-  const filterSection = (sectionId: number) => {
-    for (let key = 0; key < loadedMenu.sections?.length; key++) {
-      let sectionItem = loadedMenu.sections[key];
-      if (sectionItem.id === sectionId) {
-        return sectionItem;
-      }
-    }
-  };
-
-  interface RenderSectionProps {}
-  const RenderSectionList: React.FC<RenderSectionProps> = (
-    props: RenderSectionProps
-  ) => {
-    const arrayList = filterSection(242403);
-    console.log(arrayList?.images[0]?.image !== undefined);
-    return arrayList?.items.map((item) => {
-      return (
-        <AccordionBody accordionId="1">
-          <Card className="d-flex flex-row">
-            <CardBody>
-              <CardTitle tag="h6">{item.name}</CardTitle>
-              <data className="amount" value="18000.00">
-                R${item.price}
-              </data>
-            </CardBody>
-            {/* // description */}
-            {arrayList?.images[0]?.image !== undefined && (
-              <CardImg
-                top
-                width="100px"
-                src={item.images[0].image}
-                alt="Card image cap"
-              />
-            )}
-          </Card>
-        </AccordionBody>
-      );
-    });
-  };
+  interface RenderSectionProps {
+    sectionId: number;
+    menuItems: IMenuItems;
+  }
 
   return (
     <Fragment>
@@ -137,7 +84,7 @@ export default function App() {
                 <AccordionHeader targetId="1">
                   <h3>Burgers</h3>
                 </AccordionHeader>
-                <RenderSectionList />
+                <ProductImageList sectionId={242403} menuItems={loadedMenu} />
               </AccordionItem>
             </Accordion>
           </Col>

@@ -21,11 +21,17 @@ plugins:
   - typescript-eslint
   - prettier
 rules:
-  eqeqeq: off
   curly": error
   no-console: 1
   no-unused-vars:
+    # Possible values: "off", "warn", "error"
     - error
+    # Additional options for the rule can be specified here
+    - vars: all
+    - args: after-used
+    - ignoreRestSiblings: true
+  eqeqeq: off
+
   prettier/prettier: 2
   quotes:
     - error
