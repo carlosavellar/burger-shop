@@ -10,7 +10,7 @@ export interface IMenuItems {
   name: string;
   type: string;
   collapse: number;
-  sections: [IBurgerSection[], IDrinksSection[], IBurgerSection[]];
+  sections: Array<IBurgerSection | IDessertsSection | IDrinksSection>;
   loading: boolean;
   error: string | null;
 }
@@ -20,7 +20,7 @@ export const initialState: IMenuItems = {
   name: "",
   type: "",
   collapse: 0,
-  sections: [[], [], []],
+  sections: [],
   loading: false,
   error: null,
 };

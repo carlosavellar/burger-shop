@@ -1,5 +1,6 @@
 import React, { Fragment, ReactNode, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ListGroup, ListGroupItem } from "reactstrap";
 import {
   Button,
   CardSubtitle,
@@ -11,6 +12,7 @@ import {
 } from "reactstrap";
 import { Card, CardImg, CardBody } from "reactstrap";
 import Image from "react-bootstrap/Image";
+import tempImage from "./../assets/temp.png";
 
 import { RootState } from "@/store";
 import { IMenuItems, initialState } from "@/store/slices/menuSlice";
@@ -57,29 +59,50 @@ export default function App() {
             return (
               <>
                 <Col
-                  className="bg-white media-test d-flex align-items-center justify-content-center vh-50"
+                  id="section-button"
+                  className="bg-white media-test  align-items-center justify-content-center vh-50"
                   key={section.id}
                 >
-                  <Avatar alt="Remy Sharp" src={section.images[0].image} />
-                  {/* <Card
-                    style={{
-                      width: "18rem",
-                    }}
-                    className="bg-white media-test d-flex align-items-center justify-content-center vh-50"
-                  >
-                    <Avatar alt="Remy Sharp" src={section.images[0].image} />
-                    <CardBody>
-                      <CardTitle tag="h5">{section.name}</CardTitle>
-                      <CardSubtitle
-                        className="mb-2 text-muted align-items-center justify-content-center"
-                        tag="h6"
-                      ></CardSubtitle>
-                    </CardBody>
-                  </Card> */}
+                  <div className="bg-white media-test d-flex align-items-center justify-content-center">
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={section.images[0].image}
+                      style={{ width: "75px", height: "75px" }}
+                      className="bg-white media-test d-flex align-items-center justify-content-center vh-50"
+                    />
+                  </div>
+                  <div className="bg-white media-test d-flex align-items-center justify-content-center section-name">
+                    {section.name}
+                  </div>
                 </Col>
               </>
             );
           })}
+        </Row>
+        <Row className="burger-list">
+          <Col>
+            <h3>Burgers</h3>
+            {/* <Row>
+              <Col>
+                <h4>Hardcore</h4>
+                <p>180g angus beef burger, plus ribs, gruyere cheese...</p>
+                <data className="amount" value="18000.00">
+                  R$33,00
+                </data>
+              </Col>
+              <Col>e</Col>
+            </Row> */}
+            <Card className="d-flex flex-row">
+              <CardBody>
+                <CardTitle tag="h6">Hardcore</CardTitle>
+                <p>180g angus beef burger, plus ribs, gruyere cheese...</p>
+                <data className="amount" value="18000.00">
+                  R$33,00
+                </data>
+              </CardBody>
+              <CardImg top width="100px" src={tempImage} alt="Card image cap" />
+            </Card>
+          </Col>
         </Row>
       </Container>
     </Fragment>

@@ -1,9 +1,14 @@
 @import "./styles/master";
+@import "./styles/fonts";
 
 .navbar {
   padding-top: 0;
   padding-bottom: 0;
   font-style: "normal";
+}
+
+* {
+  @include base-font;
 }
 
 /* Add additional styling as needed */
