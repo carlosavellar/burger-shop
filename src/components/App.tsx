@@ -84,7 +84,7 @@ export default function App() {
                 R${item.price}
               </data>
             </CardBody>
-
+            {/* // description */}
             {arrayList?.images[0]?.image !== undefined && (
               <CardImg
                 top
