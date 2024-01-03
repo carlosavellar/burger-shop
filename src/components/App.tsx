@@ -14,6 +14,13 @@ import { Card, CardImg, CardBody } from "reactstrap";
 import Image from "react-bootstrap/Image";
 import tempImage from "./../assets/temp.png";
 
+import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+} from "reactstrap";
+
 import { RootState } from "@/store";
 import { IMenuItems, initialState } from "@/store/slices/menuSlice";
 import { fetchData } from "@/utils/api";
@@ -31,6 +38,15 @@ export default function App() {
   const { sections, loading, error } = useSelector(
     (state: RootState) => state.menuItems
   );
+
+  const [open, setOpen] = useState("");
+  const toggle = (id: any) => {
+    if (open === id) {
+      setOpen("");
+    } else {
+      setOpen(id);
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchData() as any);
@@ -81,27 +97,34 @@ export default function App() {
         </Row>
         <Row className="burger-list">
           <Col>
-            <h3>Burgers</h3>
-            {/* <Row>
-              <Col>
-                <h4>Hardcore</h4>
-                <p>180g angus beef burger, plus ribs, gruyere cheese...</p>
-                <data className="amount" value="18000.00">
-                  R$33,00
-                </data>
-              </Col>
-              <Col>e</Col>
-            </Row> */}
-            <Card className="d-flex flex-row">
-              <CardBody>
-                <CardTitle tag="h6">Hardcore</CardTitle>
-                <p>180g angus beef burger, plus ribs, gruyere cheese...</p>
-                <data className="amount" value="18000.00">
-                  R$33,00
-                </data>
-              </CardBody>
-              <CardImg top width="100px" src={tempImage} alt="Card image cap" />
-            </Card>
+            <div>
+              <Accordion flush open={open} toggle={toggle}>
+                <AccordionItem>
+                  <AccordionHeader targetId="1">
+                    <h3>Burgers</h3>
+                  </AccordionHeader>
+                  <AccordionBody accordionId="1">
+                    <Card className="d-flex flex-row">
+                      <CardBody>
+                        <CardTitle tag="h6">Hardcore</CardTitle>
+                        <p>
+                          180g angus beef burger, plus ribs, gruyere cheese...
+                        </p>
+                        <data className="amount" value="18000.00">
+                          R$33,00
+                        </data>
+                      </CardBody>
+                      <CardImg
+                        top
+                        width="100px"
+                        src={tempImage}
+                        alt="Card image cap"
+                      />
+                    </Card>
+                  </AccordionBody>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </Col>
         </Row>
       </Container>
