@@ -10,6 +10,7 @@ type IDrink = {
   price: number;
   position: number;
   visible: number;
+  images: IImage[];
   availabilityType: string;
   sku: string;
   available: boolean;

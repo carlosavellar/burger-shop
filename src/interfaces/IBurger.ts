@@ -22,7 +22,7 @@ type ModifiersType = {
   items: ModItemsType[];
 };
 
-interface IBurger {
+export interface IBurger {
   id: number;
   name: string;
   description: string;

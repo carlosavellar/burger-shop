@@ -13,6 +13,7 @@ import {
 import { Card, CardImg, CardBody } from "reactstrap";
 import Image from "react-bootstrap/Image";
 import tempImage from "./../assets/temp.png";
+import { IBurger } from "@/interfaces/IBurger";
 
 import {
   Accordion,
@@ -58,25 +59,45 @@ export default function App() {
     }
   }, [sections]);
 
-  useEffect(() => {
+  const filterSection = (sectionId: number) => {
     for (let key = 0; key < loadedMenu.sections?.length; key++) {
-      console.log(key);
       let sectionItem = loadedMenu.sections[key];
-      console.log(sectionItem.items);
-      if (sectionItem.id === 242403) {
-        console.log(sectionItem.items);
-        sectionItem.items.map((item) => {
-          console.log(item.name);
-        });
-      }
-      if (loadedMenu.sections.hasOwnProperty(key)) {
-        let value = loadedMenu.sections[key].items;
-        for (let itemSection in value[key]) {
-          console.log(typeof itemSection, "!!");
-        }
+      if (sectionItem.id === sectionId) {
+        return sectionItem;
       }
     }
-  }, [loadedMenu]);
+  };
+
+  interface RenderSectionProps {}
+  const RenderSectionList: React.FC<RenderSectionProps> = (
+    props: RenderSectionProps
+  ) => {
+    const arrayList = filterSection(242403);
+    console.log(arrayList?.images[0]?.image !== undefined);
+    return arrayList?.items.map((item) => {
+      return (
+        <AccordionBody accordionId="1">
+          <Card className="d-flex flex-row">
+            <CardBody>
+              <CardTitle tag="h6">{item.name}</CardTitle>
+              <data className="amount" value="18000.00">
+                R${item.price}
+              </data>
+            </CardBody>
+
+            {arrayList?.images[0]?.image !== undefined && (
+              <CardImg
+                top
+                width="100px"
+                src={item.images[0].image}
+                alt="Card image cap"
+              />
+            )}
+          </Card>
+        </AccordionBody>
+      );
+    });
+  };
 
   return (
     <Fragment>
@@ -111,34 +132,14 @@ export default function App() {
         </Row>
         <Row className="burger-list">
           <Col>
-            <div>
-              <Accordion flush open={open} toggle={toggle}>
-                <AccordionItem>
-                  <AccordionHeader targetId="1">
-                    <h3>Burgers</h3>
-                  </AccordionHeader>
-                  <AccordionBody accordionId="1">
-                    <Card className="d-flex flex-row">
-                      <CardBody>
-                        <CardTitle tag="h6">Hardcore</CardTitle>
-                        <p>
-                          180g angus beef burger, plus ribs, gruyere cheese...
-                        </p>
-                        <data className="amount" value="18000.00">
-                          R$33,00
-                        </data>
-                      </CardBody>
-                      <CardImg
-                        top
-                        width="100px"
-                        src={tempImage}
-                        alt="Card image cap"
-                      />
-                    </Card>
-                  </AccordionBody>
-                </AccordionItem>
-              </Accordion>
-            </div>
+            <Accordion flush open={open} toggle={toggle}>
+              <AccordionItem key={1}>
+                <AccordionHeader targetId="1">
+                  <h3>Burgers</h3>
+                </AccordionHeader>
+                <RenderSectionList />
+              </AccordionItem>
+            </Accordion>
           </Col>
         </Row>
       </Container>
