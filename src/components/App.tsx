@@ -54,19 +54,26 @@ export default function App() {
 
   useEffect(() => {
     if (sections || sections === null) {
-      console.log(sections, "!");
       setLoadedMenu(sections as any);
     }
   }, [sections]);
-  ("");
 
   useEffect(() => {
-    console.log(loadedMenu, "Menu");
-
-    for (let key in loadedMenu.sections) {
+    for (let key = 0; key < loadedMenu.sections?.length; key++) {
+      console.log(key);
+      let sectionItem = loadedMenu.sections[key];
+      console.log(sectionItem.items);
+      if (sectionItem.id === 242403) {
+        console.log(sectionItem.items);
+        sectionItem.items.map((item) => {
+          console.log(item.name);
+        });
+      }
       if (loadedMenu.sections.hasOwnProperty(key)) {
-        let value = loadedMenu.sections[key].id;
-        console.log(`${key}: ${value}`);
+        let value = loadedMenu.sections[key].items;
+        for (let itemSection in value[key]) {
+          console.log(typeof itemSection, "!!");
+        }
       }
     }
   }, [loadedMenu]);
