@@ -61,7 +61,14 @@ export default function App() {
   ("");
 
   useEffect(() => {
-    console.log(loadedMenu.id, "Menu");
+    console.log(loadedMenu, "Menu");
+
+    for (let key in loadedMenu.sections) {
+      if (loadedMenu.sections.hasOwnProperty(key)) {
+        let value = loadedMenu.sections[key].id;
+        console.log(`${key}: ${value}`);
+      }
+    }
   }, [loadedMenu]);
 
   return (
