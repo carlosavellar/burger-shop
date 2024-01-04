@@ -19,7 +19,7 @@
   }
   &:hover {
     .section-name {
-      border-bottom: 2px solid $brown;
+      border-bottom: 2.5px solid $brown;
     }
   }
 }
@@ -71,3 +71,7 @@
 }
 
 // End Burger List
+
+.accordion {
+  margin-top: 20px;
+}
