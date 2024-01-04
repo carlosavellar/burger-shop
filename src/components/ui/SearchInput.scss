@@ -11,9 +11,9 @@
 .form-control {
   background-color: transparent;
   border-left: 0px;
-  ::placeholder {
-    color: red;
-  }
+}
+.form-control::placeholder {
+  color: $grey;
 }
 .input-group-text {
   background-color: transparent;
@@ -23,4 +23,9 @@
 #basic-addon1 {
   background-color: transparent;
   border-right: 0px;
+  color: $grey;
+}
+
+.input-group-text {
+  padding-right: 1px;
 }

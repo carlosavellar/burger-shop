@@ -14,8 +14,8 @@ function SearchInput() {
           <InputGroup className="mb-3 wrap-form">
             <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
             <Form.Control
-              placeholder="Username"
-              aria-label="Username"
+              placeholder="Search menu items"
+              aria-label="Search menu items"
               aria-describedby="basic-addon1"
             />
           </InputGroup>
