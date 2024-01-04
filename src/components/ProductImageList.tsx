@@ -5,11 +5,12 @@ import { AccordionBody, Card, CardBody, CardImg, CardTitle } from "reactstrap";
 interface RenderSectionProps {
   sectionId: number;
   menuItems: IMenuItems;
+  isSectionImage?: boolean;
 }
 const ProductImageList: React.FC<RenderSectionProps> = (
   props: RenderSectionProps
 ) => {
-  const { menuItems } = props;
+  const { menuItems, isSectionImage } = props;
   const filterSection = (sectionId: number) => {
     for (let key = 0; key < menuItems.sections?.length; key++) {
       let sectionItem = menuItems.sections[key];
@@ -30,7 +31,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
               R${item.price}
             </data>
           </CardBody>
-          {arrayList?.images[0]?.image !== undefined && (
+          {isSectionImage && arrayList?.images[0]?.image !== undefined && (
             <CardImg
               top
               width="100px"
