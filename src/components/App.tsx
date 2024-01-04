@@ -14,6 +14,7 @@ import "./App.scss";
 import Header from "./ui/Header";
 import { Avatar } from "@mui/material";
 import ProductImageList from "./ProductImageList";
+import SectionList from "./SectionList";
 
 export default function App() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
@@ -41,10 +42,38 @@ export default function App() {
     }
   }, [sections]);
 
-  interface RenderSectionProps {
-    sectionId: number;
+  interface RenderSectionsProps {
     menuItems: IMenuItems;
   }
+
+  const RenderSections: React.FC<RenderSectionsProps> = (
+    props: RenderSectionsProps
+  ) => {
+    const { menuItems } = props;
+    return menuItems.sections?.map((section) => {
+      return (
+        <>
+          <Col
+            id="section-button"
+            className="bg-white media-test  align-items-center justify-content-center vh-50"
+            key={section.id}
+          >
+            <div className="bg-white media-test d-flex align-items-center justify-content-center">
+              <Avatar
+                alt="Remy Sharp"
+                src={section.images[0].image}
+                style={{ width: "75px", height: "75px" }}
+                className="bg-white media-test d-flex align-items-center justify-content-center vh-50"
+              />
+            </div>
+            <div className="bg-white media-test d-flex align-items-center justify-content-center section-name">
+              {section.name}
+            </div>
+          </Col>
+        </>
+      );
+    });
+  };
 
   return (
     <Fragment>
@@ -53,29 +82,7 @@ export default function App() {
       <SearchInput />
       <Container className="">
         <Row>
-          {loadedMenu.sections?.map((section) => {
-            return (
-              <>
-                <Col
-                  id="section-button"
-                  className="bg-white media-test  align-items-center justify-content-center vh-50"
-                  key={section.id}
-                >
-                  <div className="bg-white media-test d-flex align-items-center justify-content-center">
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={section.images[0].image}
-                      style={{ width: "75px", height: "75px" }}
-                      className="bg-white media-test d-flex align-items-center justify-content-center vh-50"
-                    />
-                  </div>
-                  <div className="bg-white media-test d-flex align-items-center justify-content-center section-name">
-                    {section.name}
-                  </div>
-                </Col>
-              </>
-            );
-          })}
+          <SectionList menuItems={loadedMenu} />
         </Row>
         <Row className="burger-list">
           <Col>

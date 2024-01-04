@@ -1,13 +1,6 @@
 import { IMenuItems } from "@/store/slices/menuSlice";
 import React from "react";
-import {
-  AccordionBody,
-  AccordionHeader,
-  Card,
-  CardBody,
-  CardImg,
-  CardTitle,
-} from "reactstrap";
+import { AccordionBody, Card, CardBody, CardImg, CardTitle } from "reactstrap";
 
 interface RenderSectionProps {
   sectionId: number;
@@ -16,7 +9,7 @@ interface RenderSectionProps {
 const ProductImageList: React.FC<RenderSectionProps> = (
   props: RenderSectionProps
 ) => {
-  const { menuItems, sectionId } = props;
+  const { menuItems } = props;
   const filterSection = (sectionId: number) => {
     for (let key = 0; key < menuItems.sections?.length; key++) {
       let sectionItem = menuItems.sections[key];
