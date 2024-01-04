@@ -1,16 +1,20 @@
 import { IMenuItems } from "@/store/slices/menuSlice";
+import useToggle from "@/utils/toggleHook";
 import { Avatar } from "@mui/material";
 import React from "react";
 import { Col } from "reactstrap";
+import "./SectionList";
 
 interface RenderSectionsProps {
   menuItems: IMenuItems;
+  onToggleBurger: (id: any) => void;
+  onToggleDrinks: (id: any) => void;
 }
 
 const SectionList: React.FC<RenderSectionsProps> = (
   props: RenderSectionsProps
 ) => {
-  const { menuItems } = props;
+  const { menuItems, onToggleBurger, onToggleDrinks } = props;
   return menuItems.sections?.map((section) => {
     return (
       <>
@@ -18,6 +22,15 @@ const SectionList: React.FC<RenderSectionsProps> = (
           id="section-button"
           className="bg-white media-test  align-items-center justify-content-center vh-50"
           key={section.id}
+          onClick={() => {
+            if (section.id === 242403) {
+              console.log("Burgers");
+              onToggleBurger(1);
+            } else if (section.id === 242404) {
+              console.log("Drinks");
+              onToggleDrinks(1);
+            }
+          }}
         >
           <div className="bg-white media-test d-flex align-items-center justify-content-center">
             <Avatar

@@ -1,7 +1,7 @@
 {
   "workbench.colorTheme": "Dracula",
   "tabnine.experimentalAutoImports": true,
-  "workbench.iconTheme": "eq-material-theme-icons",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "right",
   "editor.formatOnPaste": true,
   "editor.fontFamily": "Fira Code",

@@ -11,6 +11,9 @@
 .form-control {
   background-color: transparent;
   border-left: 0px;
+  ::placeholder {
+    color: red;
+  }
 }
 .input-group-text {
   background-color: transparent;
