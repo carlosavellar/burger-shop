@@ -1,0 +1,15 @@
+@media (max-width: 576px) {
+  .modal-dialog {
+    /* Your styles for small screens go here */
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    border-radius: 0%;
+  }
+  .modal-content {
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    border-radius: 0%;
+  }
+}
