@@ -23,24 +23,26 @@ const ProductImageList: React.FC<RenderSectionProps> = (
   const arrayList = filterSection(props.sectionId);
   return arrayList?.items.map((item) => {
     return (
-      <AccordionBody accordionId="1">
-        <Card className="d-flex flex-row">
-          <CardBody>
-            <CardTitle tag="h6">{item.name}</CardTitle>
-            <data className="amount" value="18000.00">
-              R${item.price}
-            </data>
-          </CardBody>
-          {isSectionImage && arrayList?.images[0]?.image !== undefined && (
-            <CardImg
-              top
-              width="100px"
-              src={item.images[0].image}
-              alt="Card image cap"
-            />
-          )}
-        </Card>
-      </AccordionBody>
+      <React.Fragment key={item.id}>
+        <AccordionBody accordionId="1">
+          <Card className="d-flex flex-row">
+            <CardBody onClick={() => console.log("Empty")}>
+              <CardTitle tag="h6">{item.name}</CardTitle>
+              <data className="amount" value="18000.00">
+                R${item.price}
+              </data>
+            </CardBody>
+            {isSectionImage && arrayList?.images[0]?.image !== undefined && (
+              <CardImg
+                top
+                width="100px"
+                src={item.images[0].image}
+                alt="Card image cap"
+              />
+            )}
+          </Card>
+        </AccordionBody>
+      </React.Fragment>
     );
   });
 };

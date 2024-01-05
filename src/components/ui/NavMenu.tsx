@@ -16,37 +16,33 @@ import {
   NavbarProps,
 } from "reactstrap";
 import { RiMenuLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 import "./NavMenu.scss";
 
 function NavMenu(args: NavbarProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar {...args} className="">
-        <span></span>
-        <div className="title-app">Menu</div>
-        <NavbarToggler onClick={toggle} className="custom-toggler">
-          <RiMenuLine />
-        </NavbarToggler>
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="me-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <NavbarText>Simple Text</NavbarText>
-        </Collapse>
-      </Navbar>
-    </div>
+    <Navbar {...args} className="">
+      <span></span>
+      <div className="title-app">Menu</div>
+      <NavbarToggler onClick={toggle} className="custom-toggler">
+        <RiMenuLine />
+      </NavbarToggler>
+      <Collapse isOpen={isOpen} navbar>
+        <NavbarText className="me-auto" navbar>
+          <NavLink href="/components/">Components</NavLink>
+
+          <Link to="/allergy-information" className="nav-link">
+            Allergy Information
+          </Link>
+        </NavbarText>
+        <NavbarText>Simple Text</NavbarText>
+      </Collapse>
+    </Navbar>
   );
 }
 

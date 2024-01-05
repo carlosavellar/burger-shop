@@ -7,14 +7,15 @@ import { Accordion, AccordionHeader, AccordionItem } from "reactstrap";
 import { RootState } from "@/store";
 import { IMenuItems, initialState } from "@/store/slices/menuSlice";
 import { fetchData } from "@/utils/api";
-import NavMenu from "./ui/NavMenu";
-import SearchInput from "./ui/SearchInput";
+import NavMenu from "../components/ui/NavMenu";
+import SearchInput from "../components/ui/SearchInput";
 
 import "./App.scss";
-import Header from "./ui/Header";
-import ProductImageList from "./ProductImageList";
-import SectionList from "./SectionList";
+import Header from "../components/ui/Header";
+import ProductImageList from "../components/ProductImageList";
+import SectionList from "../components/SectionList";
 import useToggle from "@/utils/toggleHook";
+import { Link } from "react-router-dom";
 
 export default function App() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
@@ -35,13 +36,15 @@ export default function App() {
     } else {
       setSectionToggle((prevState) => (prevState = ""));
     }
+  }, [openBurger, openDrinks]);
 
+  useEffect(() => {
     if (openDrinks) {
       setSectionToggleDrink((prevState) => (prevState = "1"));
     } else {
       setSectionToggleDrink((prevState) => (prevState = ""));
     }
-  }, [openBurger, openDrinks]);
+  }, [openDrinks]);
 
   useEffect(() => {
     dispatch(fetchData() as any);
@@ -52,10 +55,6 @@ export default function App() {
       setLoadedMenu(sections as any);
     }
   }, [sections]);
-
-  interface RenderSectionsProps {
-    menuItems: IMenuItems;
-  }
 
   return (
     <Fragment>
@@ -100,7 +99,9 @@ export default function App() {
         </Row>
         <Row className="info">
           <Col fluid>
-            <Badge color="white">View allergy information</Badge>
+            <Link to="/allergy-information" className="nav-link">
+              <Badge color="white">View allergy information</Badge>
+            </Link>
           </Col>
         </Row>
       </Container>

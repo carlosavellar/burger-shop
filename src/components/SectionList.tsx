@@ -17,7 +17,7 @@ const SectionList: React.FC<RenderSectionsProps> = (
   const { menuItems, onToggleBurger, onToggleDrinks } = props;
   return menuItems.sections?.map((section) => {
     return (
-      <>
+      <React.Fragment key={section.id}>
         <Col
           id="section-button"
           className="bg-white media-test  align-items-center justify-content-center vh-50"
@@ -44,7 +44,7 @@ const SectionList: React.FC<RenderSectionsProps> = (
             {section.name}
           </div>
         </Col>
-      </>
+      </React.Fragment>
     );
   });
 };
