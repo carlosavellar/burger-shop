@@ -2,6 +2,7 @@ import { IMenuItems } from "@/store/slices/menuSlice";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { AccordionBody, Card, CardBody, CardImg, CardTitle } from "reactstrap";
+import FoodItem from "./ui/FoodItem";
 
 interface RenderSectionProps {
   sectionId: number;
@@ -23,7 +24,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
     }
   };
 
-  const handlerFootItem = (getItemId: number) => {
+  const navigateFoodParam = (getItemId: number) => {
     arrayList?.items
       .map((item) => {
         return item;
@@ -43,7 +44,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
           <Card className="d-flex flex-row">
             <CardBody
               onClick={() => {
-                handlerFootItem(item.id);
+                navigateFoodParam(item.id);
               }}
             >
               <CardTitle tag="h6">{item.name}</CardTitle>
@@ -53,7 +54,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
             </CardBody>
             {isSectionImage && arrayList?.images[0]?.image !== undefined && (
               <CardImg
-                onClick={() => handlerFootItem(item.id)}
+                onClick={() => navigateFoodParam(item.id)}
                 top
                 width="100px"
                 src={item.images[0].image}
@@ -61,6 +62,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
               />
             )}
           </Card>
+          <FoodItem item={item} />
         </AccordionBody>
       </React.Fragment>
     );

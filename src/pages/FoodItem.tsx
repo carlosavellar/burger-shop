@@ -29,6 +29,7 @@ interface FoodItemProps {
 
 export default function FoodItem() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
+  const [foodItem, setFodItem] = useState<{}>({});
 
   const { id } = useParams();
   const { sections, loading, error } = useSelector(
@@ -42,7 +43,13 @@ export default function FoodItem() {
   }, [sections]);
 
   useEffect(() => {
-    console.log(loadedMenu, "___");
+    if (loadedMenu) {
+      for (let i in loadedMenu.sections) {
+        console.log(loadedMenu.sections);
+        console.log(loadedMenu.sections[i].id, id);
+        console.log(loadedMenu.sections[i].id.toString() === id);
+      }
+    }
   }, [loadedMenu]);
 
   return (

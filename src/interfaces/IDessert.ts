@@ -3,7 +3,7 @@ type IImage = {
   image: string;
 };
 
-type IDessert = {
+export type IDessert = {
   id: number;
   name: string;
   alcoholic: number;
