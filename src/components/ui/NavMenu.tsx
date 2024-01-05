@@ -34,10 +34,17 @@ function NavMenu(args: NavbarProps) {
       </NavbarToggler>
       <Collapse isOpen={isOpen} navbar>
         <NavbarText className="me-auto" navbar>
-          <NavLink href="/components/">Components</NavLink>
-
           <Link to="/allergy-information" className="nav-link">
-            Allergy Information
+            Entrar
+          </Link>
+          <Link to="/allergy-information" className="nav-link">
+            Menu
+          </Link>
+          <Link to="/allergy-information" className="nav-link">
+            Contato
+          </Link>
+          <Link to={`/foods/${242403}`} className="nav-link">
+            Burgers
           </Link>
         </NavbarText>
         <NavbarText>Simple Text</NavbarText>

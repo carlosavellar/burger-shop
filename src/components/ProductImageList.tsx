@@ -1,5 +1,6 @@
 import { IMenuItems } from "@/store/slices/menuSlice";
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { AccordionBody, Card, CardBody, CardImg, CardTitle } from "reactstrap";
 
 interface RenderSectionProps {
@@ -11,6 +12,8 @@ const ProductImageList: React.FC<RenderSectionProps> = (
   props: RenderSectionProps
 ) => {
   const { menuItems, isSectionImage } = props;
+  const navigate = useNavigate();
+
   const filterSection = (sectionId: number) => {
     for (let key = 0; key < menuItems.sections?.length; key++) {
       let sectionItem = menuItems.sections[key];
@@ -20,13 +23,29 @@ const ProductImageList: React.FC<RenderSectionProps> = (
     }
   };
 
+  const handlerFootItem = (getItemId: number) => {
+    arrayList?.items
+      .map((item) => {
+        return item;
+      })
+      .find((item) => {
+        if (item.id === getItemId) {
+          navigate(`/foods/${item.id}`);
+        }
+      });
+  };
+
   const arrayList = filterSection(props.sectionId);
   return arrayList?.items.map((item) => {
     return (
       <React.Fragment key={item.id}>
         <AccordionBody accordionId="1">
           <Card className="d-flex flex-row">
-            <CardBody onClick={() => console.log("Empty")}>
+            <CardBody
+              onClick={() => {
+                handlerFootItem(item.id);
+              }}
+            >
               <CardTitle tag="h6">{item.name}</CardTitle>
               <data className="amount" value="18000.00">
                 R${item.price}
@@ -34,6 +53,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
             </CardBody>
             {isSectionImage && arrayList?.images[0]?.image !== undefined && (
               <CardImg
+                onClick={() => handlerFootItem(item.id)}
                 top
                 width="100px"
                 src={item.images[0].image}

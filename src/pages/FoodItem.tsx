@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Badge,
   Card,
@@ -20,14 +20,30 @@ import SearchInput from "../components/ui/SearchInput";
 import "./Information.scss";
 import Header from "../components/ui/Header";
 import useToggle from "@/utils/toggleHook";
+import { useSelector } from "react-redux";
+interface FoodItemProps {
+  sectionId: number;
+  menuItems: IMenuItems;
+  isSectionImage?: boolean;
+}
 
-export default function Information() {
-  interface RenderSectionsProps {
-    menuItems: IMenuItems;
-  }
+export default function FoodItem() {
+  const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
 
-  const params = useParams();
-  console.log(params);
+  const { id } = useParams();
+  const { sections, loading, error } = useSelector(
+    (state: RootState) => state.menuItems
+  );
+
+  useEffect(() => {
+    if (sections || sections === null) {
+      setLoadedMenu(sections as any);
+    }
+  }, [sections]);
+
+  useEffect(() => {
+    console.log(loadedMenu, "___");
+  }, [loadedMenu]);
 
   return (
     <Fragment>
@@ -37,29 +53,8 @@ export default function Information() {
         <Row>
           <Card>
             <CardBody>
-              <CardTitle tag="h5">Your Title Here</CardTitle>
-              <CardText>
-                Nunc non mollis sapien. Cras molestie ipsum justo, vel feugiat
-                neque pharetra nec. Vivamus eleifend vitae tortor sed dictum.
-                Cras vel luctus lectus. Ut molestie, ipsum in venenatis rhoncus,
-                dui odio aliquam mi, vel ultricies metus turpis vel velit.
-                Aenean vel varius ex. Nulla vitae condimentum mi, a sodales ex.
-                Nulla vestibulum, tellus eu maximus varius, dui ante porta arcu,
-                nec condimentum ex enim sit amet nibh. Sed et orci nisi. Donec
-                quis lectus metus. Vestibulum nec libero mi. Ut libero metus,
-                rutrum sed placerat imperdiet, pretium ut est. Aliquam sodales
-                tincidunt dui, vel bibendum quam ornare sed.
-              </CardText>
-              <CardText>
-                Vivamus bibendum, sapien tempus mollis imperdiet, sem enim
-                eleifend neque, eget feugiat orci purus eget ex. Duis eget
-                gravida augue. Sed tempus consequat magna, in lacinia eros
-                fringilla vitae. In ultrices nunc vel lectus tempor
-                pellentesque. Praesent blandit laoreet nisi. Pellentesque eu
-                pellentesque tortor, vitae viverra tellus. In eu aliquet enim.
-                Curabitur luctus est porta tincidunt hendrerit. Aenean
-                ullamcorper dictum laoreet.{" "}
-              </CardText>
+              <CardTitle tag="h5">{id}Your Title Here</CardTitle>
+              <CardText></CardText>
             </CardBody>
           </Card>
         </Row>
