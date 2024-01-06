@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Modal,
@@ -34,13 +34,22 @@ const FoodItem: React.FC<IFoodItem> = (props: IFoodItem) => {
     </button>
   );
 
+  useEffect(() => {
+    if (item) {
+      console.log(item.hasOwnProperty("description"));
+    }
+  }, []);
+
   return (
     <div>
       <Button color="danger" onClick={toggle}>
         Click Me
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <img alt="Sample" src="https://picsum.photos/300/200" />
+        <img
+          alt="Sample"
+          src={item?.images ? item.images[0].image : "No image"}
+        />
 
         <ModalHeader toggle={toggle} close={closeBtn}>
           {item.name}
@@ -50,18 +59,15 @@ const FoodItem: React.FC<IFoodItem> = (props: IFoodItem) => {
             width: "18rem",
           }}
         >
-          <CardImg
+          {/* <CardImg
             top
             width="100%"
-            src="your-image-url.jpg"
+            src={item?.images ? item.images[0].image : "No image"}
             alt="Card image cap"
-          />
+          /> */}
           <CardBody>
-            <CardTitle tag="h5">{item.name}</CardTitle>
-            <CardText>
-              Some quick example text to build on the card title and make up the
-              bulk of the card‘s content.
-            </CardText>
+            {/* <CardTitle tag="h5">{item.name}</CardTitle> */}
+            <CardText>{item.description}</CardText>
             <Button>Button</Button>
           </CardBody>
         </Card>

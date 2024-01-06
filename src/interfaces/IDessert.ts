@@ -12,6 +12,7 @@ export type IDessert = {
   visible: number;
   availabilityType: string;
   images: IImage[];
+  description?: string;
   available: true;
 };
 

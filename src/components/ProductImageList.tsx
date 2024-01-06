@@ -19,6 +19,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
     for (let key = 0; key < menuItems.sections?.length; key++) {
       let sectionItem = menuItems.sections[key];
       if (sectionItem.id === sectionId) {
+        console.log(sectionItem.id);
         return sectionItem;
       }
     }
@@ -52,6 +53,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
                 R${item.price}
               </data>
             </CardBody>
+
             {isSectionImage && arrayList?.images[0]?.image !== undefined && (
               <CardImg
                 onClick={() => navigateFoodParam(item.id)}

@@ -11,6 +11,7 @@ export type IDrink = {
   position: number;
   visible: number;
   images: IImage[];
+  description?: string;
   availabilityType: string;
   sku: string;
   available: boolean;
