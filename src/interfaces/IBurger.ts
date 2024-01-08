@@ -25,7 +25,7 @@ type ModifiersType = {
 export interface IBurger {
   id: number;
   name: string;
-  description: string;
+  description?: string;
   alcoholic: number;
   price: number;
   position: number;
