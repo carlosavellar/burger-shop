@@ -48,8 +48,8 @@ const ModalMealItem: React.FC<IFoodItem> = (props: IFoodItem) => {
       <Modal isOpen={modal} toggle={toggle}>
         {item?.images && (
           <img
-            alt={item?.images ? item.images[0].image : "No image"}
-            src={item?.images ? item.images[0].image : "No image"}
+            alt={item?.images ? item.name : "No image"}
+            src={item.images[0].image}
           />
         )}
 
@@ -61,12 +61,6 @@ const ModalMealItem: React.FC<IFoodItem> = (props: IFoodItem) => {
             width: "18rem",
           }}
         >
-          {/* <CardImg
-            top
-            width="100%"
-            src={item?.images ? item.images[0].image : "No image"}
-            alt="Card image cap"
-          /> */}
           <CardBody>
             {/* <CardTitle tag="h5">{item.name}</CardTitle> */}
             <CardText>{item.description}</CardText>
