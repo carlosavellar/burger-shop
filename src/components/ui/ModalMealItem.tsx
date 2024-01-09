@@ -17,12 +17,12 @@ import { IBurger } from "@/interfaces/IBurger";
 import { IDessert } from "@/interfaces/IDessert";
 import { IDrink } from "@/interfaces/IDrink";
 
-import "./FoodItem.scss";
+import "./ModalMealItem.scss";
 interface IFoodItem {
   item: IBurger | IDrink | IDessert;
 }
 
-const FoodItem: React.FC<IFoodItem> = (props: IFoodItem) => {
+const ModalMealItem: React.FC<IFoodItem> = (props: IFoodItem) => {
   const { item } = props;
 
   const [modal, setModal] = useState(false);
@@ -46,10 +46,12 @@ const FoodItem: React.FC<IFoodItem> = (props: IFoodItem) => {
         Click Me
       </Button>
       <Modal isOpen={modal} toggle={toggle}>
-        <img
-          alt="Sample"
-          src={item?.images ? item.images[0].image : "No image"}
-        />
+        {item?.images && (
+          <img
+            alt={item?.images ? item.images[0].image : "No image"}
+            src={item?.images ? item.images[0].image : "No image"}
+          />
+        )}
 
         <ModalHeader toggle={toggle} close={closeBtn}>
           {item.name}
@@ -75,4 +77,4 @@ const FoodItem: React.FC<IFoodItem> = (props: IFoodItem) => {
     </div>
   );
 };
-export default FoodItem;
+export default ModalMealItem;

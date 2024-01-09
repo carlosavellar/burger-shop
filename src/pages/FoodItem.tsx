@@ -37,20 +37,20 @@ export default function FoodItem() {
   );
 
   useEffect(() => {
-    if (sections || sections === null) {
+    if (!sections || sections === null) {
       setLoadedMenu(sections as any);
     }
   }, [sections]);
 
-  useEffect(() => {
-    if (loadedMenu) {
-      for (let i in loadedMenu.sections) {
-        console.log(loadedMenu.sections);
-        console.log(loadedMenu.sections[i].id, id);
-        console.log(loadedMenu.sections[i].id.toString() === id);
-      }
-    }
-  }, [loadedMenu]);
+  // useEffect(() => {
+  //   if (loadedMenu) {
+  //     for (let i in loadedMenu.sections) {
+  //       console.log(loadedMenu.sections);
+  //       console.log(loadedMenu.sections[i].id, id);
+  //       console.log(loadedMenu.sections[i].id.toString() === id);
+  //     }
+  //   }
+  // }, [loadedMenu]);
 
   return (
     <Fragment>

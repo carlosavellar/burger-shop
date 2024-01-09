@@ -2,7 +2,7 @@ import { IMenuItems } from "@/store/slices/menuSlice";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { AccordionBody, Card, CardBody, CardImg, CardTitle } from "reactstrap";
-import FoodItem from "./ui/FoodItem";
+import ModalMealItem from "./ui/ModalMealItem";
 
 interface RenderSectionProps {
   sectionId: number;
@@ -64,7 +64,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
               />
             )}
           </Card>
-          <FoodItem item={item} />
+          <ModalMealItem item={item} />
         </AccordionBody>
       </React.Fragment>
     );
