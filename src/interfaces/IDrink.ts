@@ -2,7 +2,7 @@ type IImage = {
   id: number;
   image: string;
 };
-type ModItemsType = {
+export type ModItemsType = {
   id: number;
   name: string;
   price: number;
@@ -11,6 +11,7 @@ type ModItemsType = {
   visible: number;
   availabilityType: string;
   available: boolean;
+  qty?: number;
 };
 
 type ModifiersType = {

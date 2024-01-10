@@ -47,3 +47,26 @@
   @include btn-border-radius;
   background-color: $brown;
 }
+
+.form-check {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mod-form {
+  margin-top: 25px;
+  font-weight: 900;
+  span {
+    font-weight: normal;
+    display: block;
+  }
+}
+
+.button-buy {
+  width: 100%;
+}
