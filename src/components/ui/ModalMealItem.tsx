@@ -21,6 +21,7 @@ import { IDessert } from "@/interfaces/IDessert";
 import { IDrink } from "@/interfaces/IDrink";
 
 import "./ModalMealItem.scss";
+import Increment from "./Increment";
 
 type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {
@@ -121,6 +122,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
                 </Container>
               </>
             )}
+            <Increment />
             <Button className="btn-round button-buy">Add to Order ● </Button>
           </CardBody>
         </Card>

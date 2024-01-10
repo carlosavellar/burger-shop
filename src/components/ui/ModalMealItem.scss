@@ -70,3 +70,7 @@
 .button-buy {
   width: 100%;
 }
+
+input[type="radio"] {
+  border: 2px solid red; /* Hide the default radio button */
+}
