@@ -32,6 +32,7 @@ export interface IBurger {
   visible: number;
   availabilityType: string;
   sku: string;
+  // modifiers?: ModifiersType[];
   modifiers?: ModifiersType[];
   images: ImageType[];
   available: true;

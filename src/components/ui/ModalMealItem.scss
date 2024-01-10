@@ -1,3 +1,6 @@
+@import "./../../styles/_mixins.scss";
+@import "./../../styles/_colors.scss";
+
 @media (max-width: 576px) {
   .modal-dialog {
     /* Your styles for small screens go here */
@@ -12,4 +15,35 @@
     border: none;
     border-radius: 0%;
   }
+}
+.cardSubTitle {
+  font-weight: 600;
+}
+.header-title {
+  .close {
+    display: none;
+  }
+}
+
+.header-close-button {
+  position: absolute;
+  top: 30px;
+  right: 5px;
+  border: none;
+  .close {
+    border: none;
+    @include round;
+    // width: 20px;
+    // height: 20px;
+    padding-bottom: 3px;
+    position: relative;
+    left: 1px;
+    font-size: 1.7rem !important;
+    font-weight: 300;
+    line-height: 80%;
+  }
+}
+.btn-round {
+  @include btn-border-radius;
+  background-color: $brown;
 }
