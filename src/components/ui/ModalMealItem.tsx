@@ -26,12 +26,14 @@ import Increment from "./Increment";
 type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {
   item: MealTypes;
+  itemId: number;
+  closeModal: () => void;
 }
 
 const ModalMealItem: React.FC<IModalMealItemProps> = (
   props: IModalMealItemProps
 ) => {
-  const { item } = props;
+  const { item, itemId, closeModal } = props;
   const [modal, setModal] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const toggle = () => setModal(!modal);
@@ -79,11 +81,14 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   return (
     <div>
       <Button color="danger" onClick={toggle}>
-        Click Me
+        Click
       </Button>
-      <Modal isOpen={modal} toggle={toggle}>
+      <Modal
+        isOpen={itemId !== null && itemId === item.id ? true : false}
+        toggle={toggle}
+      >
         <ModalHeader
-          toggle={toggle}
+          onClick={closeModal}
           close={closeBtn}
           className="header-close-button"
         ></ModalHeader>

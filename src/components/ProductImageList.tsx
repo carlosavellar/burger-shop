@@ -14,6 +14,16 @@ const ProductImageList: React.FC<RenderSectionProps> = (
 ) => {
   const { menuItems, isSectionImage } = props;
   const navigate = useNavigate();
+  const [itemId, setItemId] = useState<number | null>(null);
+
+  const handleSetId = (idNum: number) => {
+    console.log(idNum, "〽️");
+    setItemId(idNum);
+  };
+
+  const handleCloseModal = () => {
+    setItemId(null);
+  };
 
   const filterSection = (sectionId: number) => {
     for (let key = 0; key < menuItems.sections?.length; key++) {
@@ -54,7 +64,9 @@ const ProductImageList: React.FC<RenderSectionProps> = (
             </CardBody>
             {isSectionImage && arrayList?.images[0]?.image !== undefined && (
               <CardImg
-                onClick={() => navigateFoodParam(item.id)}
+                onClick={() => {
+                  handleSetId(item.id);
+                }}
                 top
                 width="100px"
                 src={item.images[0].image}
@@ -62,7 +74,13 @@ const ProductImageList: React.FC<RenderSectionProps> = (
               />
             )}
           </Card>
-          <ModalMealItem item={item} />
+          {itemId !== null && (
+            <ModalMealItem
+              item={item}
+              closeModal={handleCloseModal}
+              itemId={itemId}
+            />
+          )}
         </AccordionBody>
       </React.Fragment>
     );
