@@ -21,6 +21,7 @@ import { IDessert } from "@/interfaces/IDessert";
 import { IDrink } from "@/interfaces/IDrink";
 
 import "./ModalMealItem.scss";
+import Basket from "./Basket";
 
 type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {
@@ -48,18 +49,16 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
         className="header-close-button"
       ></ModalHeader>
 
-      <ModalHeader
-        toggle={toggle}
-        close={closeBtn}
-        className="header-title"
-      ></ModalHeader>
+      <ModalHeader toggle={toggle} close={closeBtn} className="header-title">
+        Basket
+      </ModalHeader>
       <Card
         style={{
           width: "18rem",
         }}
       >
         <CardBody>
-          <CardText></CardText>
+          <Basket />
           <Button className="btn-round button-buy">Checkout now</Button>
         </CardBody>
       </Card>
