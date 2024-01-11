@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { AccordionBody, Card, CardBody, CardImg, CardTitle } from "reactstrap";
 import ModalMealItem from "./ui/ModalMealItem";
+import ModalCart from "./ui/ModalCart";
 
 interface RenderSectionProps {
   sectionId: number;
@@ -15,14 +16,17 @@ const ProductImageList: React.FC<RenderSectionProps> = (
   const { menuItems, isSectionImage } = props;
   const navigate = useNavigate();
   const [itemId, setItemId] = useState<number | null>(null);
+  const [cart, setCart] = useState<boolean | null>(false);
 
   const handleSetId = (idNum: number) => {
-    console.log(idNum, "〽️");
     setItemId(idNum);
   };
 
   const handleCloseModal = () => {
     setItemId(null);
+  };
+  const handleCloseModalCart = () => {
+    setCart(false);
   };
 
   const filterSection = (sectionId: number) => {
@@ -32,6 +36,11 @@ const ProductImageList: React.FC<RenderSectionProps> = (
         return sectionItem;
       }
     }
+  };
+
+  const handleOpenCart = () => {
+    setCart(!cart);
+    setItemId(null);
   };
 
   const navigateFoodParam = (getItemId: number) => {
@@ -54,7 +63,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
           <Card className="d-flex flex-row">
             <CardBody
               onClick={() => {
-                navigateFoodParam(item.id);
+                handleSetId(item.id);
               }}
             >
               <CardTitle tag="h6">{item.name}</CardTitle>
@@ -79,7 +88,11 @@ const ProductImageList: React.FC<RenderSectionProps> = (
               item={item}
               closeModal={handleCloseModal}
               itemId={itemId}
+              onOpenCart={handleOpenCart}
             />
+          )}
+          {cart && (
+            <ModalCart isCart={cart} closeModal={handleCloseModalCart} />
           )}
         </AccordionBody>
       </React.Fragment>

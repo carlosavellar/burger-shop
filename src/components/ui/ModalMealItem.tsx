@@ -28,15 +28,16 @@ interface IModalMealItemProps {
   item: MealTypes;
   itemId: number;
   closeModal: () => void;
+  onOpenCart: () => void;
 }
 
 const ModalMealItem: React.FC<IModalMealItemProps> = (
   props: IModalMealItemProps
 ) => {
-  const { item, itemId, closeModal } = props;
+  const { item, itemId, closeModal, onOpenCart } = props;
   const [modal, setModal] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
-  const toggle = () => setModal(!modal);
+  const toggle = () => closeModal();
 
   const closeBtn = (
     <button className="close" onClick={toggle} type="button">
@@ -79,60 +80,57 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   });
 
   return (
-    <div>
-      <Button color="danger" onClick={toggle}>
-        Click
-      </Button>
-      <Modal
-        isOpen={itemId !== null && itemId === item.id ? true : false}
-        toggle={toggle}
+    <Modal
+      isOpen={itemId !== null && itemId === item.id ? true : false}
+      toggle={toggle}
+    >
+      <ModalHeader
+        onClick={closeModal}
+        close={closeBtn}
+        className="header-close-button"
+      ></ModalHeader>
+      {item?.images && (
+        <img
+          alt={item?.images ? item.name : "No image"}
+          src={item.images[0].image}
+        />
+      )}
+
+      <ModalHeader toggle={toggle} close={closeBtn} className="header-title">
+        {item.name}
+      </ModalHeader>
+      <Card
+        style={{
+          width: "18rem",
+        }}
       >
-        <ModalHeader
-          onClick={closeModal}
-          close={closeBtn}
-          className="header-close-button"
-        ></ModalHeader>
-        {item?.images && (
-          <img
-            alt={item?.images ? item.name : "No image"}
-            src={item.images[0].image}
-          />
-        )}
+        <CardBody>
+          <CardText>{item.description}</CardText>
 
-        <ModalHeader toggle={toggle} close={closeBtn} className="header-title">
-          {item.name}
-        </ModalHeader>
-        <Card
-          style={{
-            width: "18rem",
-          }}
-        >
-          <CardBody>
-            <CardText>{item.description}</CardText>
-
-            {item.hasOwnProperty("modifiers") && (
-              <>
-                <CardSubtitle className="cardSubTitle">
-                  Choose your size
-                </CardSubtitle>
-                <CardSubtitle> Select 1 option</CardSubtitle>
-                <Container fluid>
-                  <Row>
-                    <Col md="12 p-0">
-                      <Form className="mod-form">
-                        <HandlerModifiers />
-                      </Form>
-                    </Col>
-                  </Row>
-                </Container>
-              </>
-            )}
-            <Increment />
-            <Button className="btn-round button-buy">Add to Order ● </Button>
-          </CardBody>
-        </Card>
-      </Modal>
-    </div>
+          {item.hasOwnProperty("modifiers") && (
+            <>
+              <CardSubtitle className="cardSubTitle">
+                Choose your size
+              </CardSubtitle>
+              <CardSubtitle> Select 1 option</CardSubtitle>
+              <Container fluid>
+                <Row>
+                  <Col md="12 p-0">
+                    <Form className="mod-form">
+                      <HandlerModifiers />
+                    </Form>
+                  </Col>
+                </Row>
+              </Container>
+            </>
+          )}
+          <Increment />
+          <Button className="btn-round button-buy" onClick={onOpenCart}>
+            Add to Order ●{" "}
+          </Button>
+        </CardBody>
+      </Card>
+    </Modal>
   );
 };
 export default ModalMealItem;
