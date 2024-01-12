@@ -2,15 +2,21 @@ import React, { useState } from "react";
 
 import "./Increment.scss";
 
-const Increment = () => {
+interface IIncrement {
+  onIncrement: (value: number) => void;
+  incNum: number;
+}
+
+const Increment = (props: IIncrement) => {
+  const { onIncrement, incNum } = props;
   const [countValue, setCountValue] = useState(0);
 
   const handleIncrement = () => {
-    setCountValue(countValue + 1);
+    onIncrement(incNum + 1);
   };
 
   const handleDecrement = () => {
-    setCountValue(countValue > 0 ? countValue - 1 : 0);
+    onIncrement(incNum > 0 ? incNum - 1 : 0);
   };
 
   return (
@@ -18,7 +24,7 @@ const Increment = () => {
       <button onClick={handleDecrement} className="dec">
         <span>_</span>
       </button>
-      <p className="count-number">{countValue}</p>
+      <p className="count-number">{incNum}</p>
       <button onClick={handleIncrement} className="inc">
         <span>+</span>+
       </button>

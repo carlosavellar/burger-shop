@@ -22,6 +22,9 @@ import { IDrink } from "@/interfaces/IDrink";
 
 import "./ModalMealItem.scss";
 import Basket from "./Basket";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchBasketSuccess } from "@/store/slices/basketSlice";
+import { RootState } from "@/store";
 
 type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {
@@ -34,12 +37,24 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
 ) => {
   const { closeModal, isCart: cartIsOpen } = props;
   const toggle = () => closeModal();
+  const dispatch = useDispatch();
+  const { basketItems, loading, error } = useSelector(
+    (state: RootState) => state.basket
+  );
 
   const closeBtn = (
     <button className="close" onClick={toggle} type="button">
       &times;
     </button>
   );
+
+  useEffect(() => {
+    console.log(basketItems);
+  }, [basketItems]);
+
+  const handleAddToBasket = () => {
+    // dispatch(fetchBasketSuccess());
+  };
 
   return (
     <Modal isOpen={cartIsOpen} toggle={toggle}>

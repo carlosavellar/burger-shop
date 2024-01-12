@@ -8,7 +8,7 @@ type IItemBasket = {
 };
 export interface IBasket {
   id: string;
-  items: IItemBasket[];
+  basketItems: IItemBasket[];
   total: number;
   loading: boolean;
   error: string | null;
@@ -16,23 +16,23 @@ export interface IBasket {
 
 export const initialState: IBasket = {
   id: " ",
-  items: [],
+  basketItems: [],
   total: 0,
   loading: false,
   error: null,
 };
 
 const basketSlice = createSlice({
-  name: "menu",
+  name: "basket",
   initialState,
   reducers: {
     fetchDataStart: (state) => {
       state.loading = true;
       state.error = null;
     },
-    fetchDataSuccess: (state, action) => {
+    fetchBasketSuccess: (state, action) => {
       state.loading = false;
-      state.items = action.payload;
+      state.basketItems = action.payload;
     },
     fetchDataFailure: (state, action) => {
       state.loading = false;
@@ -43,7 +43,7 @@ const basketSlice = createSlice({
 
 export const loadAllFoods = (state: IBasket) => state;
 
-export const { fetchDataStart, fetchDataSuccess, fetchDataFailure } =
+export const { fetchDataStart, fetchBasketSuccess, fetchDataFailure } =
   basketSlice.actions;
 
 export default basketSlice.reducer;

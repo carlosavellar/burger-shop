@@ -35,15 +35,21 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   props: IModalMealItemProps
 ) => {
   const { item, itemId, closeModal, onOpenCart } = props;
-  const [modal, setModal] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
   const toggle = () => closeModal();
+
+  const [incrementNum, setIncrementNum] = useState<number>(0);
+
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const closeBtn = (
     <button className="close" onClick={toggle} type="button">
       &times;
     </button>
   );
+
+  const handleIncrement = (numVal: number) => {
+    setIncrementNum(numVal);
+  };
 
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value as any);
@@ -78,6 +84,10 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       });
     }
   });
+
+  // const handleIncrement = () => {
+  //   incrementNum
+  // };
 
   return (
     <Modal
@@ -124,7 +134,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               </Container>
             </>
           )}
-          <Increment />
+          <Increment onIncrement={handleIncrement} incNum={incrementNum} />
           <Button className="btn-round button-buy" onClick={onOpenCart}>
             Add to Order ●{" "}
           </Button>
