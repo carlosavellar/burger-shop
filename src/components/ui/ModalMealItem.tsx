@@ -22,6 +22,8 @@ import { IDrink } from "@/interfaces/IDrink";
 
 import "./ModalMealItem.scss";
 import Increment from "./Increment";
+import { addToBasket, addTotal } from "@/store/slices/basketSlice";
+import { useDispatch } from "react-redux";
 
 type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {
@@ -34,6 +36,7 @@ interface IModalMealItemProps {
 const ModalMealItem: React.FC<IModalMealItemProps> = (
   props: IModalMealItemProps
 ) => {
+  const dispatch = useDispatch();
   const { item, itemId, closeModal, onOpenCart } = props;
   const toggle = () => closeModal();
 
@@ -54,6 +57,32 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedOption(event.target.value as any);
   };
+  const handlerAddToBasket = () => {
+    dispatch(
+      addToBasket({
+        id: "myId",
+        basketItems: [
+          {
+            id: "",
+            name: "Hamburger Michelle Pffeifer",
+            quantity: 2,
+            price: 20,
+          },
+        ],
+        total: 19,
+      })
+    );
+  };
+  const handlerIncrementProduct = ({}) => {
+    dispatch(
+      addTotal({
+        id: item.id,
+        name: item.name,
+        quantity: incrementNum,
+        price: item.price * incrementNum,
+      })
+    );
+  };
 
   const HandlerModifiers = React.memo(() => {
     if (item && item.modifiers) {
@@ -68,7 +97,6 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       return mod2Item.map((mod: any) => {
         return (
           <FormGroup className="container-flex radio-form">
-             
             <label className="label-modifier" htmlFor={mod.id}>
               {mod.name}
               <span>R$ {mod.price.toFixed(2)}</span>
@@ -135,7 +163,13 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
             </>
           )}
           <Increment onIncrement={handleIncrement} incNum={incrementNum} />
-          <Button className="btn-round button-buy" onClick={onOpenCart}>
+          <Button
+            className="btn-round button-buy"
+            onClick={() => {
+              onOpenCart();
+              handlerIncrementProduct(item);
+            }}
+          >
             Add to Order ●{" "}
           </Button>
         </CardBody>

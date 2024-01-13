@@ -38,9 +38,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   const { closeModal, isCart: cartIsOpen } = props;
   const toggle = () => closeModal();
   const dispatch = useDispatch();
-  const { basketItems, loading, error } = useSelector(
-    (state: RootState) => state.basket
-  );
+  const { basketItems } = useSelector((state: RootState) => state.basket);
 
   const closeBtn = (
     <button className="close" onClick={toggle} type="button">

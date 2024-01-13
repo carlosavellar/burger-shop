@@ -34,6 +34,15 @@ const basketSlice = createSlice({
       state.loading = false;
       state.basketItems = action.payload;
     },
+    addToBasket: (state, action) => {
+      state.loading = false;
+      state.basketItems.concat(action.payload);
+    },
+    addTotal: (state, action) => {
+      debugger;
+      state.loading = false;
+      state.total = action.payload;
+    },
     fetchDataFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
@@ -43,7 +52,12 @@ const basketSlice = createSlice({
 
 export const loadAllFoods = (state: IBasket) => state;
 
-export const { fetchDataStart, fetchBasketSuccess, fetchDataFailure } =
-  basketSlice.actions;
+export const {
+  fetchDataStart,
+  fetchBasketSuccess,
+  fetchDataFailure,
+  addToBasket,
+  addTotal,
+} = basketSlice.actions;
 
 export default basketSlice.reducer;
