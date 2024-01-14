@@ -19,6 +19,7 @@ import {
 import { IBurger } from "@/interfaces/IBurger";
 import { IDessert } from "@/interfaces/IDessert";
 import { IDrink } from "@/interfaces/IDrink";
+import { IItemBasket } from "@/store/slices/basketSlice";
 
 import "./ModalMealItem.scss";
 import Increment from "./Increment";
@@ -40,10 +41,13 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   const { item, itemId, closeModal, onOpenCart } = props;
   const toggle = () => closeModal();
 
+  const [productState, setProductState] = useState<IItemBasket>({
+    id: 0,
+    name: "",
+    quantity: 0,
+    price: 0,
+  });
   const [incrementNum, setIncrementNum] = useState<number>(0);
-
-  const [selectedOption, setSelectedOption] = useState(null);
-
   const [priceState, setPriceState] = useState<number>(0);
 
   const [selectedModValue, setSelectedModValue] = useState<number>(0);
@@ -56,51 +60,37 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
 
   const handleIncrement = (numVal: number) => {
     setIncrementNum(numVal);
+    handlerAddItemProduct();
   };
 
   useEffect(() => {
     setPriceState(incrementNum * item.price);
   }, [item, incrementNum]);
 
-  useEffect(() => {
-    console.log(priceState);
-  }, [priceState]);
-
-  // const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setSelectedOption(event.target.value as any);
-  // };
-  const handlerAddToBasket = () => {
-    dispatch(
-      addToBasket({
-        id: item.id,
-        name: item.name,
-        quantity: incrementNum,
-        price: incrementNum * item.price,
-      })
-    );
+  const handlerAddItemProduct = () => {
+    setProductState({
+      id: item.id,
+      name: item.name,
+      quantity: incrementNum,
+      price: incrementNum * item.price,
+    });
   };
-  // const handlerIncrementProduct = ({}) => {
-  //   debugger;
-  //   dispatch(
-  //     addToBasket({
-  //       id: item.id,
-  //       name: item.name,
-  //       quantity: incrementNum,
-  //       price: incrementNum * item.price,
-  //     })
-  //   );
-  // };
+
+  useEffect(() => {
+    handlerAddItemProduct();
+  }, [incrementNum]);
+
+  const handleAddToCart = () => {
+    dispatch(addToBasket(productState));
+  };
 
   const HandlerModifiers = React.memo(() => {
     if (item && item.modifiers) {
       const modifiersArr: Array<object[]> = [];
-      for (let mod of item.modifiers) {
-        modifiersArr.push(mod.items as any);
-      }
+      for (let mod of item.modifiers) modifiersArr.push(mod.items as any);
       let mod2Item: any = [];
-      for (let modItem of modifiersArr) {
-        mod2Item = modItem;
-      }
+      for (let modItem of modifiersArr) mod2Item = modItem;
+
       return mod2Item.map((mod: any) => {
         return (
           <FormGroup className="container-flex radio-form">
@@ -176,10 +166,10 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
             disabled={!incrementNum}
             onClick={() => {
               onOpenCart();
-              handlerAddToBasket();
+              handleAddToCart();
             }}
           >
-            Add to Order ● R$ {incrementNum && incrementNum * item.price},00
+            Add to Order ● R$ {priceState && priceState},00
           </Button>
         </CardBody>
       </Card>
