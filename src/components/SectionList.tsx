@@ -24,10 +24,8 @@ const SectionList: React.FC<RenderSectionsProps> = (
           key={section.id}
           onClick={() => {
             if (section.id === 242403) {
-              console.log("Burgers");
               onToggleBurger(1);
             } else if (section.id === 242404) {
-              console.log("Drinks");
               onToggleDrinks(1);
             }
           }}

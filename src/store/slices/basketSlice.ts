@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type IItemBasket = {
-  id: string;
+  id: string | number;
   name: string;
   quantity: number;
   price: number;
@@ -34,14 +34,12 @@ const basketSlice = createSlice({
       state.loading = false;
       state.basketItems = action.payload;
     },
-    addToBasket: (state, action) => {
-      state.loading = false;
-      state.basketItems.concat(action.payload);
+    addToBasket: (state, action: PayloadAction<IItemBasket>) => {
+      state.basketItems.push(action.payload);
     },
     addTotal: (state, action) => {
-      debugger;
       state.loading = false;
-      state.total = action.payload;
+      state.total = action.payload?.price;
     },
     fetchDataFailure: (state, action) => {
       state.loading = false;

@@ -23,6 +23,7 @@ export default function App() {
   const { sections, loading, error } = useSelector(
     (state: RootState) => state.menuItems
   );
+  const { basketItems } = useSelector((state: RootState) => state.basket);
 
   const { open: openBurger, toggle: toggleBurger } = useToggle("");
   const { open: openDrinks, toggle: toggleDrinks } = useToggle("");
@@ -55,6 +56,10 @@ export default function App() {
       setLoadedMenu(sections as any);
     }
   }, [sections]);
+
+  useEffect(() => {
+    console.log(basketItems, " ⤵️");
+  }, [basketItems]);
 
   return (
     <Fragment>

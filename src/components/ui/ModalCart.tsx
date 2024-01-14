@@ -39,6 +39,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   const toggle = () => closeModal();
   const dispatch = useDispatch();
   const { basketItems } = useSelector((state: RootState) => state.basket);
+  const { basket } = useSelector((state: RootState) => state);
 
   const closeBtn = (
     <button className="close" onClick={toggle} type="button">
@@ -48,7 +49,8 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
 
   useEffect(() => {
     console.log(basketItems);
-  }, [basketItems]);
+    console.log(basket);
+  }, [basketItems, basket]);
 
   const handleAddToBasket = () => {
     // dispatch(fetchBasketSuccess());

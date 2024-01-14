@@ -44,6 +44,10 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
 
   const [selectedOption, setSelectedOption] = useState(null);
 
+  const [priceState, setPriceState] = useState<number>(0);
+
+  const [selectedModValue, setSelectedModValue] = useState<number>(0);
+
   const closeBtn = (
     <button className="close" onClick={toggle} type="button">
       &times;
@@ -54,35 +58,38 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     setIncrementNum(numVal);
   };
 
-  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(event.target.value as any);
-  };
+  useEffect(() => {
+    setPriceState(incrementNum * item.price);
+  }, [item, incrementNum]);
+
+  useEffect(() => {
+    console.log(priceState);
+  }, [priceState]);
+
+  // const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setSelectedOption(event.target.value as any);
+  // };
   const handlerAddToBasket = () => {
     dispatch(
       addToBasket({
-        id: "myId",
-        basketItems: [
-          {
-            id: "",
-            name: "Hamburger Michelle Pffeifer",
-            quantity: 2,
-            price: 20,
-          },
-        ],
-        total: 19,
-      })
-    );
-  };
-  const handlerIncrementProduct = ({}) => {
-    dispatch(
-      addTotal({
         id: item.id,
         name: item.name,
         quantity: incrementNum,
-        price: item.price * incrementNum,
+        price: incrementNum * item.price,
       })
     );
   };
+  // const handlerIncrementProduct = ({}) => {
+  //   debugger;
+  //   dispatch(
+  //     addToBasket({
+  //       id: item.id,
+  //       name: item.name,
+  //       quantity: incrementNum,
+  //       price: incrementNum * item.price,
+  //     })
+  //   );
+  // };
 
   const HandlerModifiers = React.memo(() => {
     if (item && item.modifiers) {
@@ -106,6 +113,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               id={mod.id}
               name="modifier"
               value={mod.name.trim()}
+              onChange={(e) => setSelectedModValue(e.target.value as any)}
             />
           </FormGroup>
         );
@@ -113,9 +121,9 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     }
   });
 
-  // const handleIncrement = () => {
-  //   incrementNum
-  // };
+  const handleSetModifier = (modVal: number) => {
+    setSelectedModValue(modVal);
+  };
 
   return (
     <Modal
@@ -165,12 +173,13 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
           <Increment onIncrement={handleIncrement} incNum={incrementNum} />
           <Button
             className="btn-round button-buy"
+            disabled={!incrementNum}
             onClick={() => {
               onOpenCart();
-              handlerIncrementProduct(item);
+              handlerAddToBasket();
             }}
           >
-            Add to Order ●{" "}
+            Add to Order ● R$ {incrementNum && incrementNum * item.price},00
           </Button>
         </CardBody>
       </Card>
