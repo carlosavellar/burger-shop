@@ -8,8 +8,10 @@ function Basket() {
   const basketItems = useSelector(
     (state: RootState) => state.basket.basketItems
   );
+  const basket = useSelector((state: RootState) => state.basket);
   const calcTotal = (items: IItemBasket[]) => {
-    // return items.reduce((acc, val) => {
+    // return items.reduce((acc: any, val: IItemBasket) => {
+    //   debugger;
     //   console.log(acc.price, val.price);
     // }, 0);
   };
@@ -21,7 +23,7 @@ function Basket() {
       <tbody>
         {basketItems.map((basketItem) => {
           return (
-            <tr>
+            <tr key={basketItem.id}>
               <td>{basketItem.name}</td>
               <td>{basketItem.price}.00</td>
             </tr>
@@ -29,11 +31,11 @@ function Basket() {
         })}
         <tr>
           <td>Subtotal</td>
-          <td>00</td>
+          <td>{basket.total},00</td>
         </tr>
         <tr>
           <td>Total</td>
-          <td>00</td>
+          <td>{basket.total},00</td>
         </tr>
       </tbody>
     </Table>

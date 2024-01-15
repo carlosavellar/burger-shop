@@ -1,25 +1,8 @@
+import { ModifiersType } from "./ModifierType";
+
 type IImage = {
   id: number;
   image: string;
-};
-export type ModItemsType = {
-  id: number;
-  name: string;
-  price: number;
-  maxChoices: number;
-  position: number;
-  visible: number;
-  availabilityType: string;
-  available: boolean;
-  qty?: number;
-};
-
-type ModifiersType = {
-  id: number;
-  name: string;
-  minChoices: number;
-  maxChoices: number;
-  items: ModItemsType[];
 };
 
 export type IDrink = {

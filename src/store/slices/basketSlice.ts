@@ -35,8 +35,22 @@ const basketSlice = createSlice({
       state.basketItems = action.payload;
     },
     addToBasket: (state, action: PayloadAction<IItemBasket>) => {
-      state.basketItems.push(action.payload);
-      state.total = 3000;
+      const itemIndex = state.basketItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (itemIndex !== -1) {
+        state.basketItems[itemIndex] = action.payload;
+      } else {
+        state.basketItems.push(action.payload);
+      }
+      const totalSum = state.basketItems.reduce((acc, item) => {
+        if (item.price !== undefined && typeof item.price === "number") {
+          return acc + item.price;
+        } else {
+          return acc;
+        }
+      }, 0);
+      state.total = totalSum;
       state.id = "11aas";
     },
     addTotal: (state, action) => {

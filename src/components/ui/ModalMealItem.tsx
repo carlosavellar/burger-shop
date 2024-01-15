@@ -25,6 +25,7 @@ import "./ModalMealItem.scss";
 import Increment from "./Increment";
 import { addToBasket, addTotal } from "@/store/slices/basketSlice";
 import { useDispatch } from "react-redux";
+import { ModifiersType } from "@/interfaces/ModifierType";
 
 type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {
@@ -118,8 +119,42 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     }
   });
 
-  const handleSetModifier = (modVal: number) => {
-    setSelectedModValue(modVal);
+  const handleAddToCardButton = (modifier: ModifiersType | undefined) => {
+    if (modifier) {
+      return (
+        <>
+          {selectedModValue > 0 && (
+            <Increment onIncrement={handleIncrement} incNum={incrementNum} />
+          )}
+          <Button
+            className="btn-round button-buy"
+            disabled={!incrementNum}
+            onClick={() => {
+              onOpenCart();
+              handleAddToCart();
+            }}
+          >
+            Add to Order ● R$ {priceState && priceState},00
+          </Button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Increment onIncrement={handleIncrement} incNum={incrementNum} />
+          <Button
+            className="btn-round button-buy"
+            disabled={!incrementNum}
+            onClick={() => {
+              onOpenCart();
+              handleAddToCart();
+            }}
+          >
+            ✊Add to Order ● R$ {priceState && priceState},00
+          </Button>
+        </>
+      );
+    }
   };
 
   return (
@@ -167,17 +202,8 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               </Container>
             </>
           )}
-          <Increment onIncrement={handleIncrement} incNum={incrementNum} />
-          <Button
-            className="btn-round button-buy"
-            disabled={!incrementNum}
-            onClick={() => {
-              onOpenCart();
-              handleAddToCart();
-            }}
-          >
-            Add to Order ● R$ {priceState && priceState},00
-          </Button>
+
+          {handleAddToCardButton(item.modifiers as ModifiersType | undefined)}
         </CardBody>
       </Card>
     </Modal>
