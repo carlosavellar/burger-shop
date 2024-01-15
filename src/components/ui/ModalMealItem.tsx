@@ -72,7 +72,9 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       id: item.id,
       name: item.name,
       quantity: incrementNum,
-      price: incrementNum * item.price,
+      price: selectedModValue
+        ? incrementNum * selectedModValue
+        : incrementNum * item.price,
     });
   };
 
@@ -84,6 +86,10 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     dispatch(addToBasket(productState));
   };
 
+  useEffect(() => {
+    console.log(selectedModValue);
+  }, [selectedModValue]);
+
   const HandlerModifiers = React.memo(() => {
     if (item && item.modifiers) {
       const modifiersArr: Array<object[]> = [];
@@ -91,9 +97,8 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       let mod2Item: any = [];
       for (let modItem of modifiersArr) mod2Item = modItem;
       return mod2Item.map((mod: any) => {
-        console.log(Array.isArray(mod));
         return (
-          <FormGroup className="container-flex radio-form">
+          <FormGroup className="container-flex radio-form" key={mod.id}>
             <label className="label-modifier" htmlFor={mod.id}>
               {mod.name}
               <span>R$ {mod.price.toFixed(2)}</span>
@@ -104,7 +109,6 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               name="modifier"
               value={mod.price}
               onChange={(e) => {
-                console.log(mod.name.trim());
                 setSelectedModValue(e.target.value as any);
               }}
             />

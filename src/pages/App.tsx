@@ -103,7 +103,7 @@ export default function App() {
           </Col>
         </Row>
         <Row className="info">
-          <Col fluid>
+          <Col>
             <Link to="/allergy-information" className="nav-link">
               <Badge color="white">View allergy information</Badge>
             </Link>
