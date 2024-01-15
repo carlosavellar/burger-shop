@@ -67,8 +67,8 @@ const ProductImageList: React.FC<RenderSectionProps> = (
               }}
             >
               <CardTitle tag="h6">{item.name}</CardTitle>
-              <data className="amount" value="18000.00">
-                R${item.price}
+              <data className="amount" value={`{item.price},00`}>
+                R$ {item.price},00
               </data>
             </CardBody>
             {isSectionImage && arrayList?.images[0]?.image !== undefined && (

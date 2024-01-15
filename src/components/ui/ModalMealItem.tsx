@@ -90,8 +90,8 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       for (let mod of item.modifiers) modifiersArr.push(mod.items as any);
       let mod2Item: any = [];
       for (let modItem of modifiersArr) mod2Item = modItem;
-
       return mod2Item.map((mod: any) => {
+        console.log(Array.isArray(mod));
         return (
           <FormGroup className="container-flex radio-form">
             <label className="label-modifier" htmlFor={mod.id}>
@@ -102,8 +102,11 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               type="radio"
               id={mod.id}
               name="modifier"
-              value={mod.name.trim()}
-              onChange={(e) => setSelectedModValue(e.target.value as any)}
+              value={mod.price}
+              onChange={(e) => {
+                console.log(mod.name.trim());
+                setSelectedModValue(e.target.value as any);
+              }}
             />
           </FormGroup>
         );

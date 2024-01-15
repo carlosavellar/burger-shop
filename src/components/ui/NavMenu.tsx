@@ -33,7 +33,7 @@ function NavMenu(args: NavbarProps) {
         <RiMenuLine />
       </NavbarToggler>
       <Collapse isOpen={isOpen} navbar>
-        <NavbarText className="me-auto" navbar>
+        <NavbarText className="me-auto">
           <Link to="/allergy-information" className="nav-link">
             Entrar
           </Link>

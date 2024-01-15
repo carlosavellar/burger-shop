@@ -37,10 +37,12 @@ const basketSlice = createSlice({
     addToBasket: (state, action: PayloadAction<IItemBasket>) => {
       state.basketItems.push(action.payload);
       state.total = 3000;
+      state.id = "11aas";
     },
     addTotal: (state, action) => {
       state.loading = false;
       state.total = action.payload?.price;
+      state.id = "11aas";
     },
     fetchDataFailure: (state, action) => {
       state.loading = false;

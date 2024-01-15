@@ -32,7 +32,7 @@ interface IModalMealItemProps {
   isCart: boolean;
 }
 
-const ModalMealItem: React.FC<IModalMealItemProps> = (
+const ModalCart: React.FC<IModalMealItemProps> = (
   props: IModalMealItemProps
 ) => {
   const { closeModal, isCart: cartIsOpen } = props;
@@ -48,8 +48,8 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   );
 
   useEffect(() => {
-    console.log(basketItems);
-    console.log(basket);
+    // console.log(basketItems);
+    // console.log(basket, "__+_");
   }, [basketItems, basket]);
 
   const handleAddToBasket = () => {
@@ -80,4 +80,4 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     </Modal>
   );
 };
-export default ModalMealItem;
+export default ModalCart;
