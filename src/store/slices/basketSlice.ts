@@ -4,6 +4,8 @@ export type IItemBasket = {
   id: number;
   name: string;
   quantity: number;
+  modifierName: string;
+  modifierQta: number;
   price: number;
 };
 export interface IBasket {

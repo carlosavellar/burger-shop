@@ -3,20 +3,16 @@ import { Table } from "reactstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { IItemBasket } from "@/store/slices/basketSlice";
+import Increment from "./Increment";
+import { useIncrement } from "@/context/IncrementContext";
 
 function Basket() {
   const basketItems = useSelector(
     (state: RootState) => state.basket.basketItems
   );
   const basket = useSelector((state: RootState) => state.basket);
-  const calcTotal = (items: IItemBasket[]) => {
-    // return items.reduce((acc: any, val: IItemBasket) => {
-    //   debugger;
-    //   console.log(acc.price, val.price);
-    // }, 0);
-  };
 
-  calcTotal(basketItems);
+  // const basketSlice =
 
   return (
     <Table>
@@ -24,7 +20,14 @@ function Basket() {
         {basketItems.map((basketItem) => {
           return (
             <tr key={basketItem.id}>
-              <td>{basketItem.name}</td>
+              <td>
+                {basketItem.name}
+                <div>
+                  {basketItem.modifierName} ({basketItem.modifierQta} *{" "}
+                  {basketItem.price}.00)
+                </div>
+                {/* <Increment incNum={basketItem.quantity} /> */}
+              </td>
               <td>{basketItem.price}.00</td>
             </tr>
           );

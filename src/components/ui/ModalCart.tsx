@@ -47,15 +47,6 @@ const ModalCart: React.FC<IModalMealItemProps> = (
     </button>
   );
 
-  useEffect(() => {
-    // console.log(basketItems);
-    // console.log(basket, "__+_");
-  }, [basketItems, basket]);
-
-  const handleAddToBasket = () => {
-    // dispatch(fetchBasketSuccess());
-  };
-
   return (
     <Modal isOpen={cartIsOpen} toggle={toggle}>
       <ModalHeader

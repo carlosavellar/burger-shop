@@ -42,9 +42,14 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   const { item, itemId, closeModal, onOpenCart } = props;
   const toggle = () => closeModal();
 
+  const [modifierName, setModifierName] = useState<string>("");
+  const [modifierQta, setModifierQta] = useState<number>(1);
+
   const [productState, setProductState] = useState<IItemBasket>({
     id: 0,
     name: "",
+    modifierName: "",
+    modifierQta: 0,
     quantity: 0,
     price: 0,
   });
@@ -73,6 +78,8 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       id: item.id,
       name: item.name,
       quantity: incrementNum,
+      modifierName: modifierName,
+      modifierQta: modifierQta,
       price: selectedModValue
         ? incrementNum * selectedModValue
         : incrementNum * item.price,
@@ -111,6 +118,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               value={mod.price}
               onChange={(e) => {
                 setSelectedModValue(e.target.value as any);
+                setModifierName(mod.name);
               }}
             />
           </FormGroup>

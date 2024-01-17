@@ -17,6 +17,8 @@ import SectionList from "../components/SectionList";
 import useToggle from "@/utils/toggleHook";
 import { Link } from "react-router-dom";
 
+import { IncrementProvider } from "@/context/IncrementContext";
+
 export default function App() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
   const dispatch = useDispatch();
@@ -62,54 +64,56 @@ export default function App() {
   }, [basketItems]);
 
   return (
-    <Fragment>
-      <NavMenu />
-      <Header />
-      <SearchInput />
-      <Container className="">
-        <Row>
-          <SectionList
-            menuItems={loadedMenu}
-            onToggleBurger={toggleBurger}
-            onToggleDrinks={toggleDrinks}
-          />
-        </Row>
-        <Row className="burger-list">
-          <Col>
-            <Accordion flush open={sectionToggle} toggle={toggleBurger}>
-              <AccordionItem key={1}>
-                <AccordionHeader targetId="1">
-                  <h3>Burgers</h3>
-                </AccordionHeader>
-                <ProductImageList
-                  sectionId={242403}
-                  menuItems={loadedMenu}
-                  isSectionImage={true}
-                />
-              </AccordionItem>
-            </Accordion>
-          </Col>
-        </Row>
-        <Row className="drink-list">
-          <Col>
-            <Accordion flush open={sectionToggleDrink} toggle={toggleDrinks}>
-              <AccordionItem key={1}>
-                <AccordionHeader targetId="1">
-                  <h3>Drinks</h3>
-                </AccordionHeader>
-                <ProductImageList sectionId={242404} menuItems={loadedMenu} />
-              </AccordionItem>
-            </Accordion>
-          </Col>
-        </Row>
-        <Row className="info">
-          <Col>
-            <Link to="/allergy-information" className="nav-link">
-              <Badge color="white">View allergy information</Badge>
-            </Link>
-          </Col>
-        </Row>
-      </Container>
-    </Fragment>
+    <IncrementProvider>
+      <Fragment>
+        <NavMenu />
+        <Header />
+        <SearchInput />
+        <Container className="">
+          <Row>
+            <SectionList
+              menuItems={loadedMenu}
+              onToggleBurger={toggleBurger}
+              onToggleDrinks={toggleDrinks}
+            />
+          </Row>
+          <Row className="burger-list">
+            <Col>
+              <Accordion flush open={sectionToggle} toggle={toggleBurger}>
+                <AccordionItem key={1}>
+                  <AccordionHeader targetId="1">
+                    <h3>Burgers</h3>
+                  </AccordionHeader>
+                  <ProductImageList
+                    sectionId={242403}
+                    menuItems={loadedMenu}
+                    isSectionImage={true}
+                  />
+                </AccordionItem>
+              </Accordion>
+            </Col>
+          </Row>
+          <Row className="drink-list">
+            <Col>
+              <Accordion flush open={sectionToggleDrink} toggle={toggleDrinks}>
+                <AccordionItem key={1}>
+                  <AccordionHeader targetId="1">
+                    <h3>Drinks</h3>
+                  </AccordionHeader>
+                  <ProductImageList sectionId={242404} menuItems={loadedMenu} />
+                </AccordionItem>
+              </Accordion>
+            </Col>
+          </Row>
+          <Row className="info">
+            <Col>
+              <Link to="/allergy-information" className="nav-link">
+                <Badge color="white">View allergy information</Badge>
+              </Link>
+            </Col>
+          </Row>
+        </Container>
+      </Fragment>
+    </IncrementProvider>
   );
 }
