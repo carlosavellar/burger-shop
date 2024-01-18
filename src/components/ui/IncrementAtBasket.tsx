@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Increment.scss";
 
@@ -11,12 +11,17 @@ const Increment: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
   const { onIncrement, incNum } = props;
   const [countValue, setCountValue] = useState(0);
 
+  useEffect(() => {
+    setCountValue(incNum);
+  }, [incNum]);
+
   const handleIncrement = () => {
-    onIncrement(incNum + 1);
+    debugger;
+    onIncrement(countValue + 1);
   };
 
   const handleDecrement = () => {
-    onIncrement(incNum > 0 ? incNum - 1 : 0);
+    onIncrement(countValue > 0 ? incNum - 1 : 0);
   };
 
   return (
@@ -24,7 +29,7 @@ const Increment: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
       <button onClick={handleDecrement} className="dec">
         <span>_</span>
       </button>
-      <p className="count-number">{incNum}</p>
+      <p className="count-number">{countValue}</p>
       <button onClick={handleIncrement} className="inc">
         <span>+</span>+
       </button>

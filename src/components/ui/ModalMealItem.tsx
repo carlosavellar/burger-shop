@@ -95,7 +95,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   };
 
   useEffect(() => {
-    console.log(selectedModValue);
+    console.log(selectedModValue, "Mod Value");
   }, [selectedModValue]);
 
   const HandlerModifiers = React.memo(() => {
@@ -142,7 +142,8 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               handleAddToCart();
             }}
           >
-            Add to Order ● R$ {priceState && priceState},00
+            Add to Order ● R$ {incrementNum * selectedModValue}
+            ,00
           </Button>
         </>
       );

@@ -24,6 +24,17 @@ export const initialState: IBasket = {
   error: null,
 };
 
+const findItemId = (itemState: any, actionItem: PayloadAction<IItemBasket>) => {
+  const itemIndex = itemState.findIndex(
+    (item: any) => item.id === actionItem.payload.id
+  );
+  if (itemIndex !== -1) {
+    return itemIndex;
+  } else {
+    return "No such item";
+  }
+};
+
 const basketSlice = createSlice({
   name: "basket",
   initialState,
@@ -55,6 +66,24 @@ const basketSlice = createSlice({
       state.total = totalSum;
       state.id = "11aas";
     },
+    // incrementItemBasket: (state, action: PayloadAction<IItemBasket>) => {
+    //   const itemIndex = state.basketItems.findIndex(
+    //     (item) => item.id === action.payload.id
+    //   );
+    //   if (itemIndex !== -1) {
+    //     state.basketItems[itemIndex] = action.payload;
+    //   } else {
+    //     state.basketItems.push(action.payload);
+    //   }
+    //   const totalSum = state.basketItems.reduce((acc, item) => {
+    //     if (item.price !== undefined && typeof item.price === "number") {
+    //       return acc + item.price;
+    //     } else {
+    //       return acc;
+    //     }
+    //   }, 0);
+    //   state.total = totalSum;
+    // },
     addTotal: (state, action) => {
       state.loading = false;
       state.total = action.payload?.price;
@@ -75,6 +104,7 @@ export const {
   fetchDataFailure,
   addToBasket,
   addTotal,
+  // incrementItemBasket,
 } = basketSlice.actions;
 
 export default basketSlice.reducer;

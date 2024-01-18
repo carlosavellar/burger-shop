@@ -5,14 +5,17 @@ import { RootState } from "@/store";
 import { IItemBasket } from "@/store/slices/basketSlice";
 import Increment from "./Increment";
 import { useIncrement } from "@/context/IncrementContext";
+import { useDispatch } from "react-redux";
+import IncrementAtBasket from "./IncrementAtBasket";
 
 function Basket() {
+  const dispatch = useDispatch();
   const basketItems = useSelector(
     (state: RootState) => state.basket.basketItems
   );
   const basket = useSelector((state: RootState) => state.basket);
 
-  // const basketSlice =
+  const handleIncrement = () => {};
 
   return (
     <Table>
@@ -26,7 +29,12 @@ function Basket() {
                   {basketItem.modifierName} ({basketItem.modifierQta} *{" "}
                   {basketItem.price}.00)
                 </div>
-                {/* <Increment incNum={basketItem.quantity} /> */}
+                <IncrementAtBasket
+                  incNum={basketItem.quantity}
+                  onIncrement={(value: number) =>
+                    console.log(value, "Pietra e Deus")
+                  }
+                />
               </td>
               <td>{basketItem.price}.00</td>
             </tr>
