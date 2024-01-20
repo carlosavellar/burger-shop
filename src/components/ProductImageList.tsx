@@ -92,7 +92,12 @@ const ProductImageList: React.FC<RenderSectionProps> = (
             />
           )}
           {cart && (
-            <ModalCart isCart={cart} closeModal={handleCloseModalCart} />
+            <ModalCart
+              item={item}
+              isCart={cart}
+              prodDefaultValue={item.price}
+              closeModal={handleCloseModalCart}
+            />
           )}
         </AccordionBody>
       </React.Fragment>

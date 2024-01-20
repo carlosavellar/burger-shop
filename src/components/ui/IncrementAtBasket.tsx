@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from "react";
-
+import { useDispatch } from "react-redux";
 import "./Increment.scss";
+import { updateBaskedProduct } from "@/store/slices/basketSlice";
 
 interface IIncrement<T> {
   onIncrement: (value: T) => void;
   incNum: T;
+  productId: number;
 }
 
 const Increment: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
-  const { onIncrement, incNum } = props;
-  const [countValue, setCountValue] = useState(0);
+  const dispatch = useDispatch();
+  const { onIncrement, incNum, productId } = props;
+  const [countValue, setCountValue] = useState<number>(0);
 
   useEffect(() => {
     setCountValue(incNum);
   }, [incNum]);
 
   const handleIncrement = () => {
-    debugger;
-    onIncrement(countValue + 1);
+    setCountValue((prevCount: number) => prevCount + 1);
   };
 
   const handleDecrement = () => {
-    onIncrement(countValue > 0 ? incNum - 1 : 0);
+    setCountValue(countValue > 0 ? (prevCount: number) => prevCount - 1 : 0);
   };
+
+  useEffect(() => {
+    onIncrement(countValue);
+  }, [countValue]);
 
   return (
     <div className="increment-controller">

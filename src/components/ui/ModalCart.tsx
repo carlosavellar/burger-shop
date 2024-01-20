@@ -30,12 +30,14 @@ type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {
   closeModal: () => void;
   isCart: boolean;
+  prodDefaultValue: number;
+  item: IBurger | IDrink | IDessert;
 }
 
 const ModalCart: React.FC<IModalMealItemProps> = (
   props: IModalMealItemProps
 ) => {
-  const { closeModal, isCart: cartIsOpen } = props;
+  const { closeModal, isCart: cartIsOpen, prodDefaultValue, item } = props;
   const toggle = () => closeModal();
   const dispatch = useDispatch();
   const { basketItems } = useSelector((state: RootState) => state.basket);
@@ -64,7 +66,7 @@ const ModalCart: React.FC<IModalMealItemProps> = (
         }}
       >
         <CardBody>
-          <Basket />
+          <Basket prodDefaultValue={prodDefaultValue} item={item} />
           <Button className="btn-round button-buy">Checkout now</Button>
         </CardBody>
       </Card>

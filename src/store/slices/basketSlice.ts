@@ -66,24 +66,19 @@ const basketSlice = createSlice({
       state.total = totalSum;
       state.id = "11aas";
     },
-    // incrementItemBasket: (state, action: PayloadAction<IItemBasket>) => {
-    //   const itemIndex = state.basketItems.findIndex(
-    //     (item) => item.id === action.payload.id
-    //   );
-    //   if (itemIndex !== -1) {
-    //     state.basketItems[itemIndex] = action.payload;
-    //   } else {
-    //     state.basketItems.push(action.payload);
-    //   }
-    //   const totalSum = state.basketItems.reduce((acc, item) => {
-    //     if (item.price !== undefined && typeof item.price === "number") {
-    //       return acc + item.price;
-    //     } else {
-    //       return acc;
-    //     }
-    //   }, 0);
-    //   state.total = totalSum;
-    // },
+    updateBaskedProduct: (
+      state,
+      action: PayloadAction<{ item: IItemBasket }>
+    ) => {
+      // state.basketItems = [...state.basketItems, ...action.payload.updatedItem];
+      // state.basketItems[currentProduct] = action.payload.id;
+      // console.log(currentProduct);
+      // console.log(action.payload.id);
+      // if (currentProduct) {
+      //   console.log(currentProduct);
+      //   currentProduct.price *= currentProduct.modifierQta;
+      // }
+    },
     addTotal: (state, action) => {
       state.loading = false;
       state.total = action.payload?.price;
@@ -104,7 +99,7 @@ export const {
   fetchDataFailure,
   addToBasket,
   addTotal,
-  // incrementItemBasket,
+  updateBaskedProduct,
 } = basketSlice.actions;
 
 export default basketSlice.reducer;
