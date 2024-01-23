@@ -22,37 +22,29 @@ const Basket = (props: Basket) => {
     (state: RootState) => state.basket.basketItems
   );
   const basket = useSelector((state: RootState) => state.basket);
-  const [updatedProd, setUpdateProd] = useState<number>(0);
-
-  const handleIncrement = () => {};
-
-  //  useEffect(() => {
-  //    handlerAddItemProduct();
-  //  }, [incrementNum]);
-
-  // const handlerAddItemProduct = () => {
-  //   setProductState({
-  //     id: item.id,
-  //     name: item.name,
-  //     quantity: incrementNum,
-  //     modifierName: modifierName,
-  //     modifierQta: modifierQta,
-  //     price: selectedModValue
-  //       ? incrementNum * selectedModValue
-  //       : incrementNum * item.price,
-  //   });
-  // };
-
-  const updateCartItem = () => {
-    const basketCurrentItem = basketItems.find(
-      (basketItem) => basketItem.id === item.id
-    );
-    return basketCurrentItem;
-  };
+  const [updatedProdPrice, setUpdatedProdPrice] = useState<number>(0);
+  const [updatedProduct, setUpdatedProduct] = useState<IItemBasket>({
+    id: 0,
+    name: "",
+    quantity: 0,
+    modifierName: "",
+    modifierQta: 0,
+    price: 0,
+  });
 
   useEffect(() => {
-    console.log(updateCartItem());
-  }, [updateCartItem]);
+    // const basketCurrentItem = basketItems.find((basketItem) => {
+    //   return basketItem.id === item.id;
+    // });
+    // if (basketCurrentItem?.price) {
+    //   console.log("No object property");
+    // }
+    // setUpdatedProduct(basketCurrentItem as IItemBasket);
+  }, [updatedProdPrice]);
+
+  // useEffect(() => {
+  //   dispatch(updateBaskedProduct(updatedProduct as IItemBasket));
+  // }, [updatedProduct]);
 
   return (
     <Table>
@@ -70,7 +62,7 @@ const Basket = (props: Basket) => {
                   productId={basketItem.id}
                   incNum={basketItem.quantity}
                   onIncrement={(value: number) => {
-                    setUpdateProd(value * prodDefaultValue);
+                    setUpdatedProdPrice(value * item.price);
                   }}
                 />
               </td>
@@ -98,7 +90,7 @@ const Basket = (props: Basket) => {
                     productId={basketItem.id}
                     incNum={basketItem.quantity}
                     onIncrement={(value: number) => {
-                      setUpdateProd(value * prodDefaultValue);
+                      setUpdatedProduct((value * item.price) as any);
                     }}
                   />
                 </div>

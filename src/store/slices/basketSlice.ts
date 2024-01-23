@@ -66,10 +66,19 @@ const basketSlice = createSlice({
       state.total = totalSum;
       state.id = "11aas";
     },
-    updateBaskedProduct: (
-      state,
-      action: PayloadAction<{ item: IItemBasket }>
-    ) => {
+    updateBaskedProduct: (state, action: PayloadAction<IItemBasket>) => {
+      const updatedItem = action.payload;
+      const index = state.basketItems.findIndex((loadedItem) => {
+        if (!updatedItem) {
+          console.log(updatedItem, "Nothing exist");
+          return false;
+        } else {
+          return loadedItem.id === updatedItem.id;
+        }
+      });
+      if (updatedItem) {
+        state.basketItems[index] = updatedItem;
+      }
       // state.basketItems = [...state.basketItems, ...action.payload.updatedItem];
       // state.basketItems[currentProduct] = action.payload.id;
       // console.log(currentProduct);

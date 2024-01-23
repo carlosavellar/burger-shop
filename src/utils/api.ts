@@ -19,6 +19,10 @@ export const fetchData = () => async (dispatch: AppDispatch) => {
         },
       }
     );
+    if (response.status === 429) {
+      alert(response.status);
+      return false;
+    }
     const data = await response.json();
     dispatch(fetchDataSuccess(data));
   } catch (error: any) {

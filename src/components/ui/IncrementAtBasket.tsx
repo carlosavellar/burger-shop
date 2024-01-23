@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import "./Increment.scss";
-import { updateBaskedProduct } from "@/store/slices/basketSlice";
 
 interface IIncrement<T> {
   onIncrement: (value: T) => void;
@@ -10,8 +8,7 @@ interface IIncrement<T> {
 }
 
 const Increment: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
-  const dispatch = useDispatch();
-  const { onIncrement, incNum, productId } = props;
+  const { onIncrement, incNum } = props;
   const [countValue, setCountValue] = useState<number>(0);
 
   useEffect(() => {
