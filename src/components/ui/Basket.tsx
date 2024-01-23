@@ -57,16 +57,15 @@ const Basket = (props: Basket) => {
   return (
     <Table>
       <tbody>
-        {basketItems.map((basketItem) => {
+        {/* {basketItems.map((basketItem) => {
           return (
-            <tr key={basketItem.id}>
+            <tr key={Math.random() * 0.3}>
               <td>
                 {basketItem.name}
                 <div>
                   {basketItem.modifierName} ({basketItem.quantity} *{" "}
-                  {prodDefaultValue}.00)
+                  {item.price}.00)
                 </div>
-
                 <IncrementAtBasket
                   productId={basketItem.id}
                   incNum={basketItem.quantity}
@@ -80,7 +79,35 @@ const Basket = (props: Basket) => {
                 <div>
                   {basketItem.quantity} {prodDefaultValue}
                 </div>
-                {basketItem.quantity * prodDefaultValue}.00-
+                {basketItem.quantity * item.price}.00
+              </td>
+            </tr>
+          );
+        })} */}
+        {basketItems.map((basketItem) => {
+          return (
+            <tr key={basketItem.id}>
+              <td>
+                <div>
+                  {basketItem.name}
+                  <div>
+                    {basketItem.modifierName} ({basketItem.quantity} *{" "}
+                    {item.price}.00)
+                  </div>
+                  <IncrementAtBasket
+                    productId={basketItem.id}
+                    incNum={basketItem.quantity}
+                    onIncrement={(value: number) => {
+                      setUpdateProd(value * prodDefaultValue);
+                    }}
+                  />
+                </div>
+              </td>
+              <td>
+                <div>{basketItem.price}.00</div>
+              </td>
+              <td>
+                <div>{basketItem.quantity}</div>
               </td>
             </tr>
           );
