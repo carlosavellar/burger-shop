@@ -67,6 +67,7 @@ const basketSlice = createSlice({
       state.id = "11aas";
     },
     updateBaskedProduct: (state, action: PayloadAction<IItemBasket>) => {
+      debugger;
       const updatedItem = action.payload;
       const index = state.basketItems.findIndex((loadedItem) => {
         if (!updatedItem) {

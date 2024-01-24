@@ -43,10 +43,20 @@ const Basket = (props: Basket) => {
   //   setUpdatedProduct(basketCurrentItem as IItemBasket);
   // }, [updatedProdPrice]);
 
+  const handleUpdatedProductQta = (id: number) => {
+    const updatedItem = basketItems.find((basket) => {
+      return basket.id === id;
+    });
+    if (updatedItem) {
+      let newP = { ...updatedItem, price: 100000 };
+      console.log(newP);
+      dispatch(updateBaskedProduct(newP));
+    }
+  };
+
   useEffect(() => {
-    // dispatch(updateBaskedProduct(updatedProduct as IItemBasket));
-    console.log(updatedProdPrice);
-  }, [updatedProdPrice]);
+    console.log(basketItems, updatedQuantity);
+  }, [basketItems, updatedQuantity]);
 
   return (
     <Table>
@@ -69,9 +79,7 @@ const Basket = (props: Basket) => {
                     }}
                   /> */}
                   <button
-                    onClick={() =>
-                      setUpdatedProdPrice((prevState) => prevState + 1)
-                    }
+                    onClick={() => handleUpdatedProductQta(basketItem.id)}
                   >
                     ➕
                   </button>
