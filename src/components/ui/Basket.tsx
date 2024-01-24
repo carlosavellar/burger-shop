@@ -84,7 +84,7 @@ const Basket = (props: Basket) => {
                   {basketItem.name}
                   <div>
                     {basketItem.modifierName} ({basketItem.quantity} *{" "}
-                    {item.price}.00)
+                    {basketItem.price / basketItem.quantity}.00)
                   </div>
                   <IncrementAtBasket
                     productId={basketItem.id}
