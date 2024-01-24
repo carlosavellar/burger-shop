@@ -71,11 +71,11 @@ const basketSlice = createSlice({
       const index = state.basketItems.findIndex((loadedItem) => {
         if (!updatedItem) {
           console.log(updatedItem, "Nothing exist");
-          return false;
         } else {
           return loadedItem.id === updatedItem.id;
         }
       });
+      console.log(updatedItem, "Nanci Trivellato");
       if (updatedItem) {
         state.basketItems[index] = updatedItem;
       }

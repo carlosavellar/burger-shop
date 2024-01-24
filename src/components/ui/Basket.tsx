@@ -23,6 +23,7 @@ const Basket = (props: Basket) => {
   );
   const basket = useSelector((state: RootState) => state.basket);
   const [updatedProdPrice, setUpdatedProdPrice] = useState<number>(0);
+  const [updatedQuantity, setupUpdatedQuantity] = useState<number>(0);
   const [updatedProduct, setUpdatedProduct] = useState<IItemBasket>({
     id: 0,
     name: "",
@@ -32,50 +33,24 @@ const Basket = (props: Basket) => {
     price: 0,
   });
 
-  useEffect(() => {
-    // const basketCurrentItem = basketItems.find((basketItem) => {
-    //   return basketItem.id === item.id;
-    // });
-    // if (basketCurrentItem?.price) {
-    //   console.log("No object property");
-    // }
-    // setUpdatedProduct(basketCurrentItem as IItemBasket);
-  }, [updatedProdPrice]);
-
   // useEffect(() => {
-  //   dispatch(updateBaskedProduct(updatedProduct as IItemBasket));
-  // }, [updatedProduct]);
+  //   const basketCurrentItem = basketItems.find((basketItem) => {
+  //     return basketItem.id === item.id;
+  //   });
+  //   if (basketCurrentItem?.price) {
+  //     console.log("No object property");
+  //   }
+  //   setUpdatedProduct(basketCurrentItem as IItemBasket);
+  // }, [updatedProdPrice]);
+
+  useEffect(() => {
+    // dispatch(updateBaskedProduct(updatedProduct as IItemBasket));
+    console.log(updatedProdPrice);
+  }, [updatedProdPrice]);
 
   return (
     <Table>
       <tbody>
-        {/* {basketItems.map((basketItem) => {
-          return (
-            <tr key={Math.random() * 0.3}>
-              <td>
-                {basketItem.name}
-                <div>
-                  {basketItem.modifierName} ({basketItem.quantity} *{" "}
-                  {item.price}.00)
-                </div>
-                <IncrementAtBasket
-                  productId={basketItem.id}
-                  incNum={basketItem.quantity}
-                  onIncrement={(value: number) => {
-                    setUpdatedProdPrice(value * item.price);
-                  }}
-                />
-              </td>
-
-              <td>
-                <div>
-                  {basketItem.quantity} {prodDefaultValue}
-                </div>
-                {basketItem.quantity * item.price}.00
-              </td>
-            </tr>
-          );
-        })} */}
         {basketItems.map((basketItem) => {
           return (
             <tr key={basketItem.id}>
@@ -86,13 +61,20 @@ const Basket = (props: Basket) => {
                     {basketItem.modifierName} ({basketItem.quantity} *{" "}
                     {basketItem.price / basketItem.quantity}.00)
                   </div>
-                  <IncrementAtBasket
+                  {/* <IncrementAtBasket
                     productId={basketItem.id}
                     incNum={basketItem.quantity}
                     onIncrement={(value: number) => {
                       setUpdatedProduct((value * item.price) as any);
                     }}
-                  />
+                  /> */}
+                  <button
+                    onClick={() =>
+                      setUpdatedProdPrice((prevState) => prevState + 1)
+                    }
+                  >
+                    ➕
+                  </button>
                 </div>
               </td>
               <td>
