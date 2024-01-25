@@ -7,6 +7,7 @@ export type IItemBasket = {
   modifierName: string;
   modifierQta: number;
   price: number;
+  updatedPrice: number;
 };
 export interface IBasket {
   id: string;
@@ -57,7 +58,10 @@ const basketSlice = createSlice({
         state.basketItems.push(action.payload);
       }
       const totalSum = state.basketItems.reduce((acc, item) => {
-        if (item.price !== undefined && typeof item.price === "number") {
+        if (
+          item.updatedPrice !== undefined &&
+          typeof item.updatedPrice === "number"
+        ) {
           return acc + item.price;
         } else {
           return acc;
@@ -67,7 +71,6 @@ const basketSlice = createSlice({
       state.id = "11aas";
     },
     updateBaskedProduct: (state, action: PayloadAction<IItemBasket>) => {
-      debugger;
       const updatedItem = action.payload;
       const index = state.basketItems.findIndex((loadedItem) => {
         if (!updatedItem) {
@@ -76,18 +79,9 @@ const basketSlice = createSlice({
           return loadedItem.id === updatedItem.id;
         }
       });
-      console.log(updatedItem, "Nanci Trivellato");
       if (updatedItem) {
         state.basketItems[index] = updatedItem;
       }
-      // state.basketItems = [...state.basketItems, ...action.payload.updatedItem];
-      // state.basketItems[currentProduct] = action.payload.id;
-      // console.log(currentProduct);
-      // console.log(action.payload.id);
-      // if (currentProduct) {
-      //   console.log(currentProduct);
-      //   currentProduct.price *= currentProduct.modifierQta;
-      // }
     },
     addTotal: (state, action) => {
       state.loading = false;

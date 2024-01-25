@@ -52,6 +52,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     modifierQta: 0,
     quantity: 0,
     price: 0,
+    updatedPrice: 0,
   });
   const [incrementNum, setIncrementNum] = useState<number>(0);
   const [priceState, setPriceState] = useState<number>(0);
@@ -80,7 +81,8 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       quantity: incrementNum,
       modifierName: modifierName,
       modifierQta: modifierQta,
-      price: selectedModValue
+      price: item.price,
+      updatedPrice: selectedModValue
         ? incrementNum * selectedModValue
         : incrementNum * item.price,
     });

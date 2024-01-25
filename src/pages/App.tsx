@@ -20,11 +20,11 @@ import { Link } from "react-router-dom";
 import { IncrementProvider } from "@/context/IncrementContext";
 
 export default function App() {
-  const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
   const dispatch = useDispatch();
   const { sections, loading, error } = useSelector(
     (state: RootState) => state.menuItems
   );
+  const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
   const { basketItems } = useSelector((state: RootState) => state.basket);
 
   const { open: openBurger, toggle: toggleBurger } = useToggle("");
@@ -58,10 +58,6 @@ export default function App() {
       setLoadedMenu(sections as any);
     }
   }, [sections]);
-
-  useEffect(() => {
-    console.log(basketItems, " ⤵️");
-  }, [basketItems]);
 
   return (
     <Fragment>

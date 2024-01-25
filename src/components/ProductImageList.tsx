@@ -43,17 +43,17 @@ const ProductImageList: React.FC<RenderSectionProps> = (
     setItemId(null);
   };
 
-  const navigateFoodParam = (getItemId: number) => {
-    arrayList?.items
-      .map((item) => {
-        return item;
-      })
-      .find((item) => {
-        if (item.id === getItemId) {
-          navigate(`/foods/${item.id}`);
-        }
-      });
-  };
+  // const navigateFoodParam = (getItemId: number) => {
+  //   arrayList?.items
+  //     .map((item) => {
+  //       return item;
+  //     })
+  //     .find((item) => {
+  //       if (item.id === getItemId) {
+  //         navigate(`/foods/${item.id}`);
+  //       }
+  //     });
+  // };
 
   const arrayList = filterSection(props.sectionId);
   return arrayList?.items.map((item) => {

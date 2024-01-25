@@ -3,13 +3,14 @@ import "./Increment.scss";
 
 interface IIncrement<T> {
   onIncrement: (value: T) => void;
+  onHandleUpdatedProductQta: (id: number, num: number) => void;
   incNum: T;
   productId: number;
 }
 
 const Increment: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
-  const { onIncrement, incNum } = props;
-  const [countValue, setCountValue] = useState<number>(0);
+  const { onIncrement, incNum, onHandleUpdatedProductQta, productId } = props;
+  const [countValue, setCountValue] = useState<number>(incNum);
 
   useEffect(() => {
     setCountValue(incNum);
@@ -24,7 +25,7 @@ const Increment: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
   };
 
   useEffect(() => {
-    onIncrement(countValue);
+    onHandleUpdatedProductQta(productId, countValue);
   }, [countValue]);
 
   return (

@@ -16,47 +16,35 @@ interface Basket {
 }
 
 const Basket = (props: Basket) => {
+  const { sections, loading, error } = useSelector(
+    (state: RootState) => state.menuItems
+  );
   const { prodDefaultValue, item } = props;
   const dispatch = useDispatch();
   const basketItems = useSelector(
     (state: RootState) => state.basket.basketItems
   );
   const basket = useSelector((state: RootState) => state.basket);
-  const [updatedProdPrice, setUpdatedProdPrice] = useState<number>(0);
-  const [updatedQuantity, setupUpdatedQuantity] = useState<number>(0);
-  const [updatedProduct, setUpdatedProduct] = useState<IItemBasket>({
-    id: 0,
-    name: "",
-    quantity: 0,
-    modifierName: "",
-    modifierQta: 0,
-    price: 0,
-  });
+  const [updatedQuantity, setupUpdatedQuantity] = useState<number>(1);
 
-  // useEffect(() => {
-  //   const basketCurrentItem = basketItems.find((basketItem) => {
-  //     return basketItem.id === item.id;
-  //   });
-  //   if (basketCurrentItem?.price) {
-  //     console.log("No object property");
-  //   }
-  //   setUpdatedProduct(basketCurrentItem as IItemBasket);
-  // }, [updatedProdPrice]);
-
-  const handleUpdatedProductQta = (id: number) => {
+  const handleUpdatedProductQta = (id: number, incrementNum: number) => {
     const updatedItem = basketItems.find((basket) => {
       return basket.id === id;
     });
+    setupUpdatedQuantity(incrementNum);
     if (updatedItem) {
-      let newP = { ...updatedItem, price: 100000 };
-      console.log(newP);
+      let newP = {
+        ...updatedItem,
+        updatedPrice: incrementNum * updatedItem.price,
+        quantity: incrementNum,
+      };
       dispatch(updateBaskedProduct(newP));
     }
   };
 
   useEffect(() => {
     console.log(basketItems, updatedQuantity);
-  }, [basketItems, updatedQuantity]);
+  }, [basketItems, updatedQuantity, item]);
 
   return (
     <Table>
@@ -69,24 +57,20 @@ const Basket = (props: Basket) => {
                   {basketItem.name}
                   <div>
                     {basketItem.modifierName} ({basketItem.quantity} *{" "}
-                    {basketItem.price / basketItem.quantity}.00)
+                    {basketItem.price}.00)
                   </div>
-                  {/* <IncrementAtBasket
+                  <IncrementAtBasket
                     productId={basketItem.id}
                     incNum={basketItem.quantity}
                     onIncrement={(value: number) => {
-                      setUpdatedProduct((value * item.price) as any);
+                      setupUpdatedQuantity((value * item.price) as any);
                     }}
-                  /> */}
-                  <button
-                    onClick={() => handleUpdatedProductQta(basketItem.id)}
-                  >
-                    ➕
-                  </button>
+                    onHandleUpdatedProductQta={handleUpdatedProductQta}
+                  />
                 </div>
               </td>
               <td>
-                <div>{basketItem.price}.00</div>
+                <div>{basketItem.updatedPrice}.00</div>
               </td>
               <td>
                 <div>{basketItem.quantity}</div>
