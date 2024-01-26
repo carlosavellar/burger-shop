@@ -1,21 +1,5 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  CardBody,
-  Card,
-  CardSubtitle,
-  CardText,
-  Table,
-  Input,
-  FormGroup,
-  Label,
-  Container,
-  Row,
-  Form,
-  Col,
-} from "reactstrap";
+import { Button, Modal, ModalHeader, CardBody, Card } from "reactstrap";
 import { IBurger } from "@/interfaces/IBurger";
 import { IDessert } from "@/interfaces/IDessert";
 import { IDrink } from "@/interfaces/IDrink";
@@ -23,7 +7,6 @@ import { IDrink } from "@/interfaces/IDrink";
 import "./ModalMealItem.scss";
 import Basket from "./Basket";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchBasketSuccess } from "@/store/slices/basketSlice";
 import { RootState } from "@/store";
 
 type MealTypes = IBurger | IDrink | IDessert;
@@ -31,7 +14,7 @@ interface IModalMealItemProps {
   closeModal: () => void;
   isCart: boolean;
   prodDefaultValue: number;
-  item: IBurger | IDrink | IDessert;
+  item: MealTypes;
 }
 
 const ModalCart: React.FC<IModalMealItemProps> = (
@@ -39,9 +22,6 @@ const ModalCart: React.FC<IModalMealItemProps> = (
 ) => {
   const { closeModal, isCart: cartIsOpen, prodDefaultValue, item } = props;
   const toggle = () => closeModal();
-  const dispatch = useDispatch();
-  const { basketItems } = useSelector((state: RootState) => state.basket);
-  const { basket } = useSelector((state: RootState) => state);
 
   const closeBtn = (
     <button className="close" onClick={toggle} type="button">

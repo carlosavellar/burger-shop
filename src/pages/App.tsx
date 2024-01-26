@@ -108,24 +108,6 @@ export default function App() {
           </Col>
         </Row>
       </Container>
-      <table>
-        {" "}
-        {basketItems.map((basketItem) => {
-          return (
-            <tr>
-              <td>
-                <div>{basketItem.name}</div>
-              </td>
-              <td>
-                <div>{basketItem.price}</div>
-              </td>
-              <td>
-                <div>{basketItem.quantity}</div>
-              </td>
-            </tr>
-          );
-        })}
-      </table>
     </Fragment>
   );
 }

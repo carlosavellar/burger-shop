@@ -3,8 +3,6 @@ import { Table } from "reactstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { IItemBasket, updateBaskedProduct } from "@/store/slices/basketSlice";
-import Increment from "./Increment";
-import { useIncrement } from "@/context/IncrementContext";
 import { useDispatch } from "react-redux";
 import IncrementAtBasket from "./IncrementAtBasket";
 import { MealTypes } from "@/interfaces/CardTypes";
@@ -16,16 +14,18 @@ interface Basket {
 }
 
 const Basket = (props: Basket) => {
-  const { sections, loading, error } = useSelector(
-    (state: RootState) => state.menuItems
-  );
-  const { prodDefaultValue, item } = props;
+  const { item } = props;
   const dispatch = useDispatch();
   const basketItems = useSelector(
     (state: RootState) => state.basket.basketItems
   );
   const basket = useSelector((state: RootState) => state.basket);
   const [updatedQuantity, setupUpdatedQuantity] = useState<number>(1);
+  const [basketLocalItems, setBasketLocalItems] = useState<IItemBasket[]>([]);
+
+  useEffect(() => {
+    setBasketLocalItems(basketItems);
+  }, [basketItems]);
 
   const handleUpdatedProductQta = (id: number, incrementNum: number) => {
     const updatedItem = basketItems.find((basket) => {
@@ -49,7 +49,7 @@ const Basket = (props: Basket) => {
   return (
     <Table>
       <tbody>
-        {basketItems.map((basketItem) => {
+        {basketLocalItems.map((basketItem) => {
           return (
             <tr key={basketItem.id}>
               <td>
