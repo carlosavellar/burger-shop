@@ -37,16 +37,16 @@ const ModalCart: React.FC<IModalMealItemProps> = (
         className="header-close-button"
       ></ModalHeader>
 
-      <ModalHeader toggle={toggle} close={closeBtn} className="header-title">
+      {/* <ModalHeader toggle={toggle} close={closeBtn} className="header-title">
         Basket
-      </ModalHeader>
+      </ModalHeader> */}
       <Card
         style={{
           width: "18rem",
         }}
       >
         <CardBody>
-          <Basket prodDefaultValue={prodDefaultValue} item={item} />
+          <Basket />
           <Button className="btn-round button-buy">Checkout now</Button>
         </CardBody>
       </Card>

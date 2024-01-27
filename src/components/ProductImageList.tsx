@@ -1,5 +1,5 @@
 import { IMenuItems } from "@/store/slices/menuSlice";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { AccordionBody, Card, CardBody, CardImg, CardTitle } from "reactstrap";
 import ModalMealItem from "./ui/ModalMealItem";
@@ -14,9 +14,13 @@ const ProductImageList: React.FC<RenderSectionProps> = (
   props: RenderSectionProps
 ) => {
   const { menuItems, isSectionImage } = props;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [itemId, setItemId] = useState<number | null>(null);
   const [cart, setCart] = useState<boolean | null>(false);
+  const [screenSize, setScreenSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const handleSetId = (idNum: number) => {
     setItemId(idNum);
@@ -39,7 +43,9 @@ const ProductImageList: React.FC<RenderSectionProps> = (
   };
 
   const handleOpenCart = () => {
-    setCart(!cart);
+    if (screenSize.width < 768) {
+      setCart(!cart);
+    }
     setItemId(null);
   };
 

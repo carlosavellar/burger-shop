@@ -5,16 +5,9 @@ import { RootState } from "@/store";
 import { IItemBasket, updateBaskedProduct } from "@/store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import IncrementAtBasket from "./IncrementAtBasket";
-import { MealTypes } from "@/interfaces/CardTypes";
-import IBurger from "@/interfaces/IBurger";
+import "./Basket.scss";
 
-interface Basket {
-  prodDefaultValue: number;
-  item: any;
-}
-
-const Basket = (props: Basket) => {
-  const { item } = props;
+const Basket = () => {
   const dispatch = useDispatch();
   const basketItems = useSelector(
     (state: RootState) => state.basket.basketItems
@@ -42,52 +35,57 @@ const Basket = (props: Basket) => {
     }
   };
 
-  useEffect(() => {
-    console.log(basketItems, updatedQuantity);
-  }, [basketItems, updatedQuantity, item]);
-
   return (
-    <Table>
-      <tbody>
-        {basketLocalItems.map((basketItem) => {
-          return (
-            <tr key={basketItem.id}>
-              <td>
-                <div>
-                  {basketItem.name}
-                  <div>
-                    {basketItem.modifierName} ({basketItem.quantity} *{" "}
-                    {basketItem.price}.00)
-                  </div>
-                  <IncrementAtBasket
-                    productId={basketItem.id}
-                    incNum={basketItem.quantity}
-                    onIncrement={(value: number) => {
-                      setupUpdatedQuantity((value * item.price) as any);
-                    }}
-                    onHandleUpdatedProductQta={handleUpdatedProductQta}
-                  />
-                </div>
-              </td>
-              <td>
-                <div>{basketItem.updatedPrice}.00</div>
-              </td>
-              <td>
-                <div>{basketItem.quantity}</div>
-              </td>
+    <>
+      <h4>Basket</h4>
+      {basket.total > 0 ? (
+        <Table>
+          <tbody>
+            {basketLocalItems.map((basketItem) => {
+              return (
+                <tr key={basketItem.id}>
+                  <td>
+                    <div>
+                      {basketItem.name}
+                      <div>
+                        {basketItem.modifierName} ({basketItem.quantity} *{" "}
+                        {basketItem.price}.00)
+                      </div>
+                      <IncrementAtBasket
+                        productId={basketItem.id}
+                        incNum={basketItem.quantity}
+                        onIncrement={(value: number) => {
+                          setupUpdatedQuantity(
+                            (value * basketItem.price) as any
+                          );
+                        }}
+                        onHandleUpdatedProductQta={handleUpdatedProductQta}
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <div>{basketItem.updatedPrice}.00</div>
+                  </td>
+                  <td>
+                    <div>{basketItem.quantity}</div>
+                  </td>
+                </tr>
+              );
+            })}
+            <tr>
+              <td>Subtotal</td>
+              <td>{basket.total},00</td>
             </tr>
-          );
-        })}
-        <tr>
-          <td>Subtotal</td>
-          <td>{basket.total},00</td>
-        </tr>
-        <tr>
-          <td>Total</td>
-          <td>{basket.total},00</td>
-        </tr>
-      </tbody>
-    </Table>
+            <tr>
+              <td>Total</td>
+              <td>{basket.total},00</td>
+            </tr>
+          </tbody>
+        </Table>
+      ) : (
+        <p>Your basket is empty</p>
+      )}
+    </>
   );
 };
 
