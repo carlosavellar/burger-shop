@@ -11,6 +11,7 @@ import "./style.scss";
 import Information from "./pages/Information";
 import FoodItem from "./pages/FoodItem";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/allergy-information",
     element: <Information />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "/foods/:id",

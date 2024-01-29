@@ -34,6 +34,11 @@ export default function App() {
   const [sectionToggle, setSectionToggle] = useState<string>("");
   const [sectionToggleDrink, setSectionToggleDrink] = useState<string>("");
 
+  const [screenSize, setScreenSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
   useEffect(() => {
     if (openBurger) {
       setSectionToggle((prevState) => (prevState = "1"));

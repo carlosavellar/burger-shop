@@ -20,7 +20,7 @@ export const fetchData = () => async (dispatch: AppDispatch) => {
       }
     );
     if (response.status === 429) {
-      alert(response.status);
+      console.log(response.status);
       return false;
     }
     const data = await response.json();

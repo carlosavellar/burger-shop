@@ -5,7 +5,9 @@
   background: $brown;
   color: $white;
   @include base-font;
-  min-height: 64px;
+  .container-fluid {
+    min-height: 64px;
+  }
 }
 
 .navbar-text,
@@ -21,4 +23,60 @@ svg {
 
 .title-app {
   margin-left: 37px;
+}
+
+.nav-pills .nav-link.active {
+  background-color: transparent;
+  border-radius: 0;
+  li {
+    a {
+      border-bottom: 2px solid white;
+      text-decoration: none !important;
+    }
+  }
+}
+
+.nav-pills {
+  li {
+    a {
+      padding: 0 40.25px;
+      text-decoration: none;
+      color: $white;
+      text-transform: uppercase;
+      display: block;
+      position: relative;
+      min-height: 64px;
+      vertical-align: middle;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  a:hover {
+    .bar {
+      border-bottom: 3px solid white;
+      height: 3px;
+      position: absolute;
+      left: 0px;
+      bottom: 0px;
+      width: 100%;
+    }
+  }
+}
+
+.navbar-collapse {
+  margin-top: 3px;
+  a {
+    text-align: center;
+    color: $white;
+    padding: 8px 0;
+    &:hover {
+      color: #9a9a9a;
+    }
+  }
+}
+
+.link-home {
+  color: $white;
+  text-transform: none;
 }
