@@ -51,9 +51,6 @@ function NavMenu(args: NavbarProps) {
       </NavbarToggler>
       <Collapse isOpen={isOpen} navbar>
         <NavbarText className="me-auto">
-          {/* <NavLink to={`/foods/${242403}`} className="nav-link">
-            Menu
-          </NavLink> */}
           <Link to="/login" className="nav-link">
             Entrar
             <span className="bar"></span>
@@ -67,7 +64,7 @@ function NavMenu(args: NavbarProps) {
   );
 
   const navBar: ReactElement = (
-    <Nav pills fluid centered className="m-auto">
+    <Nav pills centered className="m-auto">
       <NavItem>
         <NavLink to="/" className="mr-4">
           Menu
@@ -91,7 +88,9 @@ function NavMenu(args: NavbarProps) {
 
   return (
     <Navbar {...args} className="">
-      {windowWidth < 768 ? navbarCollapse : navBar}
+      {/* {navbarCollapse} */}
+      {windowWidth < 768 && navbarCollapse}
+      {windowWidth > 768 && navBar}
     </Navbar>
   );
 }

@@ -5,7 +5,7 @@ export type IItemBasket = {
   name: string;
   quantity: number;
   modifierName: string;
-  modifierQta: number;
+  modifierQta?: number;
   price: number;
   updatedPrice: number;
 };
@@ -83,6 +83,20 @@ const basketSlice = createSlice({
         state.basketItems[index] = updatedItem;
       }
     },
+    updateItem: (
+      state,
+      action: PayloadAction<{ id: number; count: number }>
+    ) => {
+      const { id, count } = action.payload;
+
+      const itemIndex = state.basketItems.findIndex((loadedItem) => {
+        return loadedItem.id === id;
+      });
+      if (itemIndex !== -1) {
+        state.basketItems[itemIndex].quantity = count;
+        console.log(state.basketItems[itemIndex].quantity, "----", count);
+      }
+    },
     addTotal: (state, action) => {
       state.loading = false;
       state.total = action.payload?.price;
@@ -104,6 +118,7 @@ export const {
   addToBasket,
   addTotal,
   updateBaskedProduct,
+  updateItem,
 } = basketSlice.actions;
 
 export default basketSlice.reducer;

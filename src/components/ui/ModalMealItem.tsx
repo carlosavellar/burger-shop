@@ -19,7 +19,7 @@ import {
 import { IBurger } from "@/interfaces/IBurger";
 import { IDessert } from "@/interfaces/IDessert";
 import { IDrink } from "@/interfaces/IDrink";
-import { IItemBasket } from "@/store/slices/basketSlice";
+import { IItemBasket, updateItem } from "@/store/slices/basketSlice";
 
 import "./ModalMealItem.scss";
 import Increment from "./Increment";
@@ -43,7 +43,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   const toggle = () => closeModal();
 
   const [modifierName, setModifierName] = useState<string>("");
-  const [modifierQta, setModifierQta] = useState<number>(1);
+  const [modifierQta, setModifierQta] = useState<number>(0);
 
   const [productState, setProductState] = useState<IItemBasket>({
     id: 0,
@@ -75,6 +75,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   }, [item, incrementNum]);
 
   const handlerAddItemProduct = () => {
+    setModifierQta((prevState) => prevState + 1);
     setProductState({
       id: item.id,
       name: item.name,
@@ -134,7 +135,11 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       return (
         <>
           {selectedModValue > 0 && (
-            <Increment onIncrement={handleIncrement} incNum={incrementNum} />
+            <Increment
+              onIncrement={handleIncrement}
+              incNum={incrementNum}
+              id={item.id}
+            />
           )}
           <Button
             className="btn-round button-buy"
@@ -152,13 +157,18 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     } else {
       return (
         <>
-          <Increment onIncrement={handleIncrement} incNum={incrementNum} />
+          <Increment
+            onIncrement={handleIncrement}
+            incNum={incrementNum}
+            id={item.id}
+          />
           <Button
             className="btn-round button-buy"
             disabled={!incrementNum}
             onClick={() => {
               onOpenCart();
               handleAddToCart();
+              dispatch(updateItem({ id: item.id, count: incrementNum }));
             }}
           >
             ✊Add to Order ● R$ {priceState && priceState},00

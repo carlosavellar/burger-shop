@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 
 import { IncrementProvider } from "@/context/IncrementContext";
 import Basket from "@/components/ui/Basket";
+import Footer from "@/components/ui/Footer";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,10 @@ export default function App() {
       setLoadedMenu(sections as any);
     }
   }, [sections]);
+
+  useEffect(() => {
+    console.log(basketItems);
+  }, [basketItems]);
 
   return (
     <Fragment>
@@ -123,13 +128,7 @@ export default function App() {
                         </Accordion>
                       </Col>
                     </Row>
-                    <Row className="info">
-                      <Col>
-                        <Link to="/allergy-information" className="nav-link">
-                          <Badge color="white">View allergy information</Badge>
-                        </Link>
-                      </Col>
-                    </Row>
+                    <Footer />
                   </Col>
                 </Row>
               </Container>

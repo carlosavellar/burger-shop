@@ -2,18 +2,12 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Badge,
-  Button,
   Card,
   CardBody,
   CardText,
   CardTitle,
   Col,
   Container,
-  Form,
-  FormGroup,
-  FormText,
-  Input,
-  Label,
   Row,
 } from "reactstrap";
 
@@ -30,6 +24,7 @@ import Header from "../components/ui/Header";
 import ProductImageList from "../components/ProductImageList";
 import SectionList from "../components/SectionList";
 import useToggle from "@/utils/toggleHook";
+import Footer from "@/components/ui/Footer";
 
 export default function Information() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
@@ -78,93 +73,35 @@ export default function Information() {
       <Header />
       <Container className="">
         <Row>
-          <Form>
-            <FormGroup>
-              <Label for="exampleEmail">Email</Label>
-              <Input
-                id="exampleEmail"
-                name="email"
-                placeholder="with a placeholder"
-                type="email"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="examplePassword">Password</Label>
-              <Input
-                id="examplePassword"
-                name="password"
-                placeholder="password placeholder"
-                type="password"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleSelect">Select</Label>
-              <Input id="exampleSelect" name="select" type="select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </Input>
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleSelectMulti">Select Multiple</Label>
-              <Input
-                id="exampleSelectMulti"
-                multiple
-                name="selectMulti"
-                type="select"
-              >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </Input>
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleText">Text Area</Label>
-              <Input id="exampleText" name="text" type="textarea" />
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleFile">File</Label>
-              <Input id="exampleFile" name="file" type="file" />
-              <FormText>
-                This is some placeholder block-level help text for the above
-                input. It‘s a bit lighter and easily wraps to a new line.
-              </FormText>
-            </FormGroup>
-            <FormGroup tag="fieldset">
-              <legend>Radio Buttons</legend>
-              <FormGroup check>
-                <Input name="radio1" type="radio" />{" "}
-                <Label check>
-                  Option one is this and that—be sure to include why it‘s great
-                </Label>
-              </FormGroup>
-              <FormGroup check>
-                <Input name="radio1" type="radio" />{" "}
-                <Label check>
-                  Option two can be something else and selecting it will
-                  deselect option one
-                </Label>
-              </FormGroup>
-              <FormGroup check disabled>
-                <Input disabled name="radio1" type="radio" />{" "}
-                <Label check>Option three is disabled</Label>
-              </FormGroup>
-            </FormGroup>
-            <FormGroup check>
-              <Input type="checkbox" /> <Label check>Check me out</Label>
-            </FormGroup>
-            <Button>Submit</Button>
-          </Form>
+          <Card>
+            <CardBody>
+              <CardTitle tag="h5">Your Title Here</CardTitle>
+              <CardText>
+                Nunc non mollis sapien. Cras molestie ipsum justo, vel feugiat
+                neque pharetra nec. Vivamus eleifend vitae tortor sed dictum.
+                Cras vel luctus lectus. Ut molestie, ipsum in venenatis rhoncus,
+                dui odio aliquam mi, vel ultricies metus turpis vel velit.
+                Aenean vel varius ex. Nulla vitae condimentum mi, a sodales ex.
+                Nulla vestibulum, tellus eu maximus varius, dui ante porta arcu,
+                nec condimentum ex enim sit amet nibh. Sed et orci nisi. Donec
+                quis lectus metus. Vestibulum nec libero mi. Ut libero metus,
+                rutrum sed placerat imperdiet, pretium ut est. Aliquam sodales
+                tincidunt dui, vel bibendum quam ornare sed.
+              </CardText>
+              <CardText>
+                Vivamus bibendum, sapien tempus mollis imperdiet, sem enim
+                eleifend neque, eget feugiat orci purus eget ex. Duis eget
+                gravida augue. Sed tempus consequat magna, in lacinia eros
+                fringilla vitae. In ultrices nunc vel lectus tempor
+                pellentesque. Praesent blandit laoreet nisi. Pellentesque eu
+                pellentesque tortor, vitae viverra tellus. In eu aliquet enim.
+                Curabitur luctus est porta tincidunt hendrerit. Aenean
+                ullamcorper dictum laoreet.{" "}
+              </CardText>
+            </CardBody>
+          </Card>
         </Row>
-        <Row className="info">
-          <Col fluid>
-            <Badge color="white">View allergy information</Badge>
-          </Col>
-        </Row>
+        <Footer />
       </Container>
     </Fragment>
   );

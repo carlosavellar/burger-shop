@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { AccordionBody, Card, CardBody, CardImg, CardTitle } from "reactstrap";
 import ModalMealItem from "./ui/ModalMealItem";
 import ModalCart from "./ui/ModalCart";
+import { ItemCountFlag } from "./ui/ItemCount";
 
 interface RenderSectionProps {
   sectionId: number;
@@ -49,18 +50,6 @@ const ProductImageList: React.FC<RenderSectionProps> = (
     setItemId(null);
   };
 
-  // const navigateFoodParam = (getItemId: number) => {
-  //   arrayList?.items
-  //     .map((item) => {
-  //       return item;
-  //     })
-  //     .find((item) => {
-  //       if (item.id === getItemId) {
-  //         navigate(`/foods/${item.id}`);
-  //       }
-  //     });
-  // };
-
   const arrayList = filterSection(props.sectionId);
   return arrayList?.items.map((item) => {
     return (
@@ -72,7 +61,10 @@ const ProductImageList: React.FC<RenderSectionProps> = (
                 handleSetId(item.id);
               }}
             >
-              <CardTitle tag="h6">{item.name}</CardTitle>
+              <CardTitle tag="h6">
+                <ItemCountFlag id={item.id} />
+                {item.name}
+              </CardTitle>
               <data className="amount" value={`{item.price},00`}>
                 R$ {item.price},00
               </data>

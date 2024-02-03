@@ -30,12 +30,12 @@ const SectionList: React.FC<RenderSectionsProps> = (
             }
           }}
         >
-          <div className="bg-white media-test d-flex align-items-center justify-content-center">
+          <div className="bg-white media-test d-flex align-items-center justify-content-center b1">
             <Avatar
               alt="Remy Sharp"
               src={section.images[0].image}
               style={{ width: "75px", height: "75px" }}
-              className="bg-white media-test d-flex align-items-center justify-content-center vh-50"
+              className="bg-white media-test d-flex align-items-center justify-content-center vh-50 b2"
             />
           </div>
           <div className="bg-white media-test d-flex align-items-center justify-content-center section-name">
