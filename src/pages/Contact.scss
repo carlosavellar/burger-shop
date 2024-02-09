@@ -1,0 +1,97 @@
+.card {
+  border: none;
+}
+.media-test {
+  background-color: aqua;
+}
+
+// Section Images
+.no-flex {
+  flex: none; /* Reset the flex property */
+}
+
+@import "./../styles/colors";
+
+#section-button {
+  font-size: 1rem;
+  .section-name {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 20px;
+    padding-bottom: 10px;
+  }
+  &:hover {
+    .section-name {
+      border-bottom: 2.5px solid $brown;
+    }
+  }
+}
+// Section Images
+
+// Burger List
+.drink-list,
+.burger-list {
+  font-size: 1.5rem;
+  h4,
+  p {
+    font-size: 1rem;
+    line-height: normal;
+    margin-bottom: 2px;
+  }
+  data {
+    font-size: 1rem;
+    line-height: 90%;
+    font-weight: 500;
+  }
+  .card {
+    border: none;
+    .card-body {
+      padding: 0;
+      h6 {
+        margin-bottom: 0px;
+      }
+      padding-right: 40px;
+    }
+    .card-img,
+    .card-img-bottom,
+    .card-img-top {
+      width: 128px;
+    }
+  }
+  .accordion {
+    padding: 0px;
+    button,
+    h2 {
+      padding: 0px;
+    }
+    .accordion-body {
+      padding-left: 0px;
+    }
+    .accordion-button:not(.collapsed) {
+      background-color: transparent;
+    }
+    --bs-border-width: 0px;
+  }
+}
+
+// End Burger List
+
+.accordion {
+  margin-top: 20px;
+}
+
+// Alergic Information
+.info {
+  background-color: $light-grey;
+  padding: 25px;
+  line-height: 80%;
+  .badge {
+    padding: 0px;
+    width: 100%;
+    text-align: center;
+    color: $brown;
+    font-size: 1rem;
+    text-decoration: underline;
+  }
+}
+// Alergic Information

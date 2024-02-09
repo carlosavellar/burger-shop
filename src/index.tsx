@@ -12,6 +12,7 @@ import Information from "./pages/Information";
 import FoodItem from "./pages/FoodItem";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Login from "./pages/Login";
+import Contact from "./pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
   },
   {
     path: "/foods/:id",

@@ -1,6 +1,7 @@
 import { RootState } from "@/store";
 import React from "react";
 import { useSelector } from "react-redux";
+import "./ItemCount.scss";
 
 interface IItemCountFlag {
   id: number;
@@ -21,5 +22,5 @@ export const ItemCountFlag = (props: IItemCountFlag) => {
     return <></>;
   }
 
-  return <div>{filteredProduct.quantity}</div>;
+  return <span className="qta-basket">{filteredProduct.quantity}</span>;
 };

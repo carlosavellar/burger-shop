@@ -78,7 +78,7 @@ function NavMenu(args: NavbarProps) {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to="/allergy-information">
+        <NavLink to="/contact">
           Contato
           <span className="bar"></span>
         </NavLink>
