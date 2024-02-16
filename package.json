@@ -4,8 +4,10 @@
   "description": "Plain React instalation",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack server --mode=development --open",
-    "build": "webpack"
+    "webpack": "webpack",
+    "webpack-dev-server": "webpack-dev-server",
+    "dev": "npm run webpack-dev-server -- --env mode=development",
+    "prod": "npm run webpack -- --env mode=production"
   },
   "author": "José Carlos",
   "license": "ISC",
@@ -24,7 +26,7 @@
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
     "reactstrap": "^9.2.1",
-    "sort-by": "^1.2.0",
+    "sort-by": "^0.0.2",
     "uniqid": "^5.4.0"
   },
   "devDependencies": {

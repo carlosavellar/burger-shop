@@ -10,9 +10,10 @@ import { Provider } from "react-redux";
 import "./style.scss";
 import Information from "./pages/Information";
 import FoodItem from "./pages/FoodItem";
-import ErrorBoundary from "./components/ErrorBoundary";
+// import ErrorBoundary from "./components/ErrorBoundary";
 import Login from "./pages/Login";
 import Contact from "./pages/Contact";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const router = createBrowserRouter([
   {
@@ -38,11 +39,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+  <Provider store={store}>
     <ErrorBoundary>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
+      <RouterProvider router={router} />
     </ErrorBoundary>
-  </React.StrictMode>
+  </Provider>
 );
