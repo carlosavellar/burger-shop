@@ -7,7 +7,8 @@
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
     "dev": "npm run webpack-dev-server -- --env mode=development",
-    "prod": "npm run webpack -- --env mode=production"
+    "prod": "npm run webpack -- --env mode=production",
+    "predeploy": "npm run build"
   },
   "author": "José Carlos",
   "license": "ISC",
@@ -49,6 +50,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.1",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.5.3",
     "prettier-eslint": "^15.0.1",
     "sass": "^1.69.6",
