@@ -8,8 +8,10 @@
     "webpack-dev-server": "webpack-dev-server",
     "dev": "npm run webpack-dev-server -- --env mode=development",
     "prod": "npm run webpack -- --env mode=production",
-    "predeploy": "npm run build"
+    "predeploy": "npm run prod",
+    "deploy": "gh-pages -d prod"
   },
+  "homepage": "https://carlosavellar.github.io/burger-shop",
   "author": "José Carlos",
   "license": "ISC",
   "dependencies": {
