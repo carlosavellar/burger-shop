@@ -1,0 +1,11 @@
+@import "./../../styles/_mixins.scss";
+@import "./../../styles/_colors.scss";
+.qta-basket {
+  background-color: $brown;
+  color: #fff;
+  border-radius: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 0.8rem;
+  margin-right: 3px;
+}
