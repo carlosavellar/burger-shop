@@ -14,29 +14,34 @@ import FoodItem from "./pages/FoodItem";
 import Login from "./pages/Login";
 import Contact from "./pages/Contact";
 import ErrorBoundary from "./components/ErrorBoundary";
+import ErrorPage from "./pages/ErrorPage";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/allergy-information",
-    element: <Information />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/foods/:id",
-    element: <FoodItem />,
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/allergy-information",
+      element: <Information />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/contact",
+      element: <Contact />,
+    },
+    {
+      path: "/foods/:id",
+      element: <FoodItem />,
+    },
+  ],
+  { basename: "/" }
+);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
