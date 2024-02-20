@@ -40,7 +40,7 @@ const router = createBrowserRouter(
       element: <FoodItem />,
     },
   ],
-  { basename: "/" }
+  { basename: "/burger-shop" }
 );
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
