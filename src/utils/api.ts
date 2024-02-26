@@ -6,8 +6,6 @@ import {
   fetchDataFailure,
 } from "./../store/slices/menuSlice";
 
-import fetch from "cross-fetch";
-
 export const fetchData = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(fetchDataStart());
