@@ -97,9 +97,9 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     dispatch(addToBasket(productState));
   };
 
-  useEffect(() => {
-    console.log(selectedModValue, "Mod Value");
-  }, [selectedModValue]);
+  // useEffect(() => {
+  //   console.log(selectedModValue, "Mod Value");
+  // }, [selectedModValue]);
 
   const HandlerModifiers = React.memo(() => {
     if (item && item.modifiers) {

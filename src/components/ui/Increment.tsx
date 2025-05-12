@@ -23,7 +23,7 @@ const Increment: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
   };
 
   const handleDecrement = () => {
-    // onIncrement(incNum > 0 ? incNum - 1 : 0);
+    onIncrement(incNum > 0 ? incNum - 1 : 0);
   };
 
   useEffect(() => {
