@@ -44,31 +44,36 @@ const Basket = () => {
             {basketLocalItems.map((basketItem) => {
               return (
                 <tr key={basketItem.id}>
-                  <td>
-                    <div>
-                      {basketItem.name}
+                  <td className="col-8">
+                    <div className={basketItem.name}>
                       <div>
-                        {basketItem.modifierName} ({basketItem.quantity} *{" "}
-                        {basketItem.price}.00)
+                        {basketItem.name}
+                        {basketItem.modifierName}
+                        {/* <span>
+                          ({basketItem.quantity} *{" "}
+                          {basketItem.price}.00)
+                        </span> */}
                       </div>
-                      <IncrementAtBasket
-                        productId={basketItem.id}
-                        incNum={basketItem.quantity}
-                        onIncrement={(value: number) => {
-                          setupUpdatedQuantity(
-                            (value * basketItem.price) as any
-                          );
-                        }}
-                        onHandleUpdatedProductQta={handleUpdatedProductQta}
-                      />
+
                     </div>
                   </td>
-                  <td>
-                    <div>{basketItem.updatedPrice}.00</div>
+                  <td><IncrementAtBasket
+                    style={{ border: "10px solid red" }}
+                    productId={basketItem.id}
+                    incNum={basketItem.quantity}
+                    onIncrement={(value: number) => {
+                      setupUpdatedQuantity(
+                        (value * basketItem.price) as any
+                      );
+                    }}
+                    onHandleUpdatedProductQta={handleUpdatedProductQta}
+                  /></td>
+                  <td className="text-end">
+                    <div className="text-end">{basketItem.updatedPrice}.00</div>
                   </td>
-                  <td>
+                  {/* <td>
                     <div>{basketItem.quantity}</div>
-                  </td>
+                  </td> */}
                 </tr>
               );
             })}

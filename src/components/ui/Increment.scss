@@ -38,3 +38,48 @@
     bottom: 3px;
   }
 }
+
+.inc-basket{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  
+  width: 100%;
+  height: auto;
+
+  button {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+
+    border: none;
+    color: $white;
+    span {
+      font-size: 1.2rem;
+      // // width: 1.3rem;
+      // height: auto;
+      display: inline-block;
+      align-items: baseline !important;
+      position: static !important;
+    }
+  }
+  button.dec {
+    span {
+      bottom: 11px;
+    }
+  }
+  button.inc {
+    span {
+      bottom: 6px;
+    }
+  }
+  .count-number {
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #121212;
+    margin: 0 15px;
+    position: relative;
+    top: 3px;
+  }
+}

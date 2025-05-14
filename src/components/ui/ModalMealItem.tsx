@@ -22,7 +22,7 @@ import { IDrink } from "@/interfaces/IDrink";
 import { IItemBasket, updateItem } from "@/store/slices/basketSlice";
 
 import "./ModalMealItem.scss";
-import Increment from "./Increment";
+import IncrementAtModal from "./IncrementAtModal";
 import { addToBasket, addTotal } from "@/store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import { ModifiersType } from "@/interfaces/ModifierType";
@@ -135,7 +135,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       return (
         <>
           {selectedModValue > 0 && (
-            <Increment
+            <IncrementAtModal
               onIncrement={handleIncrement}
               incNum={incrementNum}
               id={item.id}
@@ -162,7 +162,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     } else {
       return (
         <>
-          <Increment
+          <IncrementAtModal
             onIncrement={handleIncrement}
             incNum={incrementNum}
             id={item.id}
