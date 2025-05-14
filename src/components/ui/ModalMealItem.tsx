@@ -141,6 +141,11 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               id={item.id}
             />
           )}
+          {/* const handleIncrement = (numVal: number) => {
+             setIncrementNum(numVal);
+              handlerAddItemProduct();
+          }; */}
+
           <Button
             className="btn-round button-buy"
             disabled={!incrementNum}
