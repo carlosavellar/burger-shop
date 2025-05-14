@@ -34,9 +34,9 @@ function NavMenu(args: NavbarProps) {
   // Add event listener for window resize
   window.addEventListener("resize", updateWindowWidth);
 
-  useEffect(() => {
-    console.log(windowWidth);
-  }, [windowWidth]);
+  // useEffect(() => {
+  //   console.log(windowWidth);
+  // }, [windowWidth]);
 
   const navbarCollapse: ReactElement = (
     <>

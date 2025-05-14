@@ -17,15 +17,18 @@ import {
   Col,
 } from "reactstrap";
 import { IBurger } from "@/interfaces/IBurger";
+
+import { addToBasket, addTotal } from "@/store/slices/basketSlice";
+import { useDispatch } from "react-redux";
+import { ModifiersType } from "@/interfaces/ModifierType";
+
+
+import "./ModalMealItem.scss";
+import IncrementAtModal from "./IncrementAtModal";
 import { IDessert } from "@/interfaces/IDessert";
 import { IDrink } from "@/interfaces/IDrink";
 import { IItemBasket, updateItem } from "@/store/slices/basketSlice";
 
-import "./ModalMealItem.scss";
-import IncrementAtModal from "./IncrementAtModal";
-import { addToBasket, addTotal } from "@/store/slices/basketSlice";
-import { useDispatch } from "react-redux";
-import { ModifiersType } from "@/interfaces/ModifierType";
 
 type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { IItemBasket, updateBaskedProduct } from "@/store/slices/basketSlice";
+import { IItemBasket, updateBaskedProduct, addTotal } from "@/store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import IncrementAtBasket from "./IncrementAtBasket";
 import "./Basket.scss";
@@ -15,10 +15,14 @@ const Basket = () => {
   const basket = useSelector((state: RootState) => state.basket);
   const [updatedQuantity, setupUpdatedQuantity] = useState<number>(1);
   const [basketLocalItems, setBasketLocalItems] = useState<IItemBasket[]>([]);
+  const [totalBasket, setTotalBasket] = useState<number>(0);
+
+
 
   useEffect(() => {
+    console.log("Total:", basket.total)
     setBasketLocalItems(basketItems);
-  }, [basketItems]);
+  }, [basketItems, basketLocalItems]);
 
   const handleUpdatedProductQta = (id: number, incrementNum: number) => {
     const updatedItem = basketItems.find((basket) => {
@@ -34,6 +38,21 @@ const Basket = () => {
       dispatch(updateBaskedProduct(newP));
     }
   };
+
+  const updateTotal = (objArr: Array<IItemBasket>) => {
+    let total = 0;
+    for (let item of objArr) {
+      console.log(item)
+      let totalAcc = item.price * item.quantity
+      total += totalAcc
+    }
+    console.log(" ⭐", total)
+    setTotalBasket(total)
+  }
+
+  useEffect(() => {
+    updateTotal(basketItems)
+  }, [updateTotal]);
 
   return (
     <>
@@ -78,12 +97,8 @@ const Basket = () => {
               );
             })}
             <tr>
-              <td>Subtotal</td>
-              <td>{basket.total},00</td>
-            </tr>
-            <tr>
               <td>Total</td>
-              <td>{basket.total},00</td>
+              <td>{totalBasket},00</td>
             </tr>
           </tbody>
         </Table>

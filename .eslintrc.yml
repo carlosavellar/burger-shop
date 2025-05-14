@@ -22,7 +22,7 @@ plugins:
   - prettier
 rules:
   curly": error
-  no-console: 1
+  no-console: ["warn", { allow: ["warn", "error"] }]
   no-unused-vars:
     # Possible values: "off", "warn", "error"
     - error

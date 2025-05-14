@@ -21,9 +21,16 @@ import { IncrementProvider } from "@/context/IncrementContext";
 import Basket from "@/components/ui/Basket";
 import Footer from "@/components/ui/Footer";
 import { ThemeContext } from "@emotion/react";
+import { IBurger } from "@/interfaces/IBurger";
+import { IDrink } from "@/interfaces/IDrink";
+import { IDessert } from "@/interfaces/IDessert";
+import { IItemBasket } from "@/store/slices/basketSlice";
 
 export default function App() {
   const dispatch = useDispatch();
+
+  const [totalBasket, setTotalBasket] = useState<number>(0);
+
   const { sections, loading, error } = useSelector(
     (state: RootState) => state.menuItems
   );
@@ -67,15 +74,7 @@ export default function App() {
     }
   }, [sections]);
 
-  useEffect(() => {
-    console.log(basketItems);
-  }, [basketItems]);
 
-  const context = useContext(ThemeContext)
-
-  useEffect(() => {
-    console.log("Context:", context);
-  }, [context]);
 
   return (
     <Fragment>
