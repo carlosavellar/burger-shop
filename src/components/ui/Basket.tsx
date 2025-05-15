@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { IItemBasket, updateBaskedProduct, addTotal } from "@/store/slices/basketSlice";
+import {
+  IItemBasket,
+  updateBaskedProduct,
+  addTotal,
+} from "@/store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import IncrementAtBasket from "./IncrementAtBasket";
 import "./Basket.scss";
@@ -17,10 +21,8 @@ const Basket = () => {
   const [basketLocalItems, setBasketLocalItems] = useState<IItemBasket[]>([]);
   const [totalBasket, setTotalBasket] = useState<number>(0);
 
-
-
   useEffect(() => {
-    console.log("Total:", basket.total)
+    console.log("Total:", basket.total);
     setBasketLocalItems(basketItems);
   }, [basketItems, basketLocalItems]);
 
@@ -42,16 +44,15 @@ const Basket = () => {
   const updateTotal = (objArr: Array<IItemBasket>) => {
     let total = 0;
     for (let item of objArr) {
-      console.log(item)
-      let totalAcc = item.price * item.quantity
-      total += totalAcc
+      console.log(item);
+      let totalAcc = item.price * item.quantity;
+      total += totalAcc;
     }
-    console.log(" ⭐", total)
-    setTotalBasket(total)
-  }
+    setTotalBasket(total);
+  };
 
   useEffect(() => {
-    updateTotal(basketItems)
+    updateTotal(basketItems);
   }, [updateTotal]);
 
   return (
@@ -73,20 +74,19 @@ const Basket = () => {
                           {basketItem.price}.00)
                         </span> */}
                       </div>
-
                     </div>
                   </td>
-                  <td><IncrementAtBasket
-                    style={{ border: "10px solid red" }}
-                    productId={basketItem.id}
-                    incNum={basketItem.quantity}
-                    onIncrement={(value: number) => {
-                      setupUpdatedQuantity(
-                        (value * basketItem.price) as any
-                      );
-                    }}
-                    onHandleUpdatedProductQta={handleUpdatedProductQta}
-                  /></td>
+                  <td>
+                    <IncrementAtBasket
+                      style={{ border: "10px solid red" }}
+                      productId={basketItem.id}
+                      incNum={basketItem.quantity}
+                      onIncrement={(value: number) => {
+                        setupUpdatedQuantity((value * basketItem.price) as any);
+                      }}
+                      onHandleUpdatedProductQta={handleUpdatedProductQta}
+                    />
+                  </td>
                   <td className="text-end">
                     <div className="text-end">{basketItem.updatedPrice}.00</div>
                   </td>

@@ -64,7 +64,7 @@ function NavMenu(args: NavbarProps) {
   );
 
   const navBar: ReactElement = (
-    <Nav pills centered className="m-auto">
+    <Nav pills className="m-auto">
       <NavItem>
         <NavLink to="/" className="mr-4">
           Menu
