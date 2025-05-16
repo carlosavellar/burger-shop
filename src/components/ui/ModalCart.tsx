@@ -18,13 +18,13 @@ interface IModalMealItemProps {
 }
 
 const ModalCart: React.FC<IModalMealItemProps> = (
-  props: IModalMealItemProps
+  props: IModalMealItemProps,
 ) => {
   const { closeModal, isCart: cartIsOpen, prodDefaultValue, item } = props;
   const toggle = () => closeModal();
 
   const closeBtn = (
-    <button className="close" onClick={toggle} type="button">
+    <button className='close' onClick={toggle} type='button'>
       &times;
     </button>
   );
@@ -34,7 +34,7 @@ const ModalCart: React.FC<IModalMealItemProps> = (
       <ModalHeader
         onClick={closeModal}
         close={closeBtn}
-        className="header-close-button"
+        className='header-close-button'
       ></ModalHeader>
 
       {/* <ModalHeader toggle={toggle} close={closeBtn} className="header-title">
@@ -47,7 +47,7 @@ const ModalCart: React.FC<IModalMealItemProps> = (
       >
         <CardBody>
           <Basket />
-          <Button className="btn-round button-buy">Checkout now</Button>
+          <Button className='btn-round button-buy'>Checkout now</Button>
         </CardBody>
       </Card>
     </Modal>

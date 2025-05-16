@@ -1,5 +1,5 @@
-@import "./../../styles/_mixins.scss";
-@import "./../../styles/_colors.scss";
+@import './../../styles/_mixins.scss';
+@import './../../styles/_colors.scss';
 
 @media (max-width: 576px) {
   .modal-dialog {
@@ -71,6 +71,6 @@
   width: 100%;
 }
 
-input[type="radio"] {
+input[type='radio'] {
   border: 2px solid red; /* Hide the default radio button */
 }

@@ -14,12 +14,15 @@ import "./Basket.scss";
 const Basket = () => {
   const dispatch = useDispatch();
   const basketItems = useSelector(
-    (state: RootState) => state.basket.basketItems
+    (state: RootState) => state.basket.basketItems,
   );
   const basket = useSelector((state: RootState) => state.basket);
   const [updatedQuantity, setupUpdatedQuantity] = useState<number>(1);
   const [basketLocalItems, setBasketLocalItems] = useState<IItemBasket[]>([]);
   const [totalBasket, setTotalBasket] = useState<number>(0);
+
+  console.log("eee");
+  console;
 
   useEffect(() => {
     console.log("Total:", basket.total);
@@ -64,7 +67,7 @@ const Basket = () => {
             {basketLocalItems.map((basketItem) => {
               return (
                 <tr key={basketItem.id}>
-                  <td className="col-8">
+                  <td className='col-8'>
                     <div className={basketItem.name}>
                       <div>
                         {basketItem.name}
@@ -87,8 +90,8 @@ const Basket = () => {
                       onHandleUpdatedProductQta={handleUpdatedProductQta}
                     />
                   </td>
-                  <td className="text-end">
-                    <div className="text-end">{basketItem.updatedPrice}.00</div>
+                  <td className='text-end'>
+                    <div className='text-end'>{basketItem.updatedPrice}.00</div>
                   </td>
                   {/* <td>
                     <div>{basketItem.quantity}</div>

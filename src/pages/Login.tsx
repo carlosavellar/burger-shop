@@ -5,39 +5,30 @@ import {
   Button,
   Card,
   CardBody,
-  CardText,
   CardTitle,
   Col,
   Container,
   Form,
   FormGroup,
-  FormText,
   Input,
   Label,
   Row,
 } from "reactstrap";
 
-import { Accordion, AccordionHeader, AccordionItem } from "reactstrap";
-
 import { RootState } from "@/store";
 import { IMenuItems, initialState } from "@/store/slices/menuSlice";
 import { fetchData } from "@/utils/api";
 import NavMenu from "../components/ui/NavMenu";
-import SearchInput from "../components/ui/SearchInput";
 
 import "./Login.scss";
 import Header from "../components/ui/Header";
-import ProductImageList from "../components/ProductImageList";
-import SectionList from "../components/SectionList";
+
 import useToggle from "@/utils/toggleHook";
-import Footer from "@/components/ui/Footer";
 
 export default function Login() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
   const dispatch = useDispatch();
-  const { sections, loading, error } = useSelector(
-    (state: RootState) => state.menuItems
-  );
+  const { sections } = useSelector((state: RootState) => state.menuItems);
 
   const { open: openBurger, toggle: toggleBurger } = useToggle("");
   const { open: openDrinks, toggle: toggleDrinks } = useToggle("");
@@ -69,37 +60,33 @@ export default function Login() {
     }
   }, [sections]);
 
-  interface RenderSectionsProps {
-    menuItems: IMenuItems;
-  }
-
   return (
     <Fragment>
       <NavMenu />
       <Header />
-      <Container className="">
+      <Container className=''>
         <Row>
-          <Col sm={4} md={4} className="mx-auto">
+          <Col sm={4} md={4} className='mx-auto'>
             <Card>
               <CardBody>
-                <CardTitle tag="h5">Login</CardTitle>
+                <CardTitle tag='h5'>Login</CardTitle>
                 <Form>
                   <FormGroup>
-                    <Label for="exampleEmail">Email</Label>
+                    <Label for='exampleEmail'>Email</Label>
                     <Input
-                      id="exampleEmail"
-                      name="email"
-                      placeholder="@"
-                      type="email"
+                      id='exampleEmail'
+                      name='email'
+                      placeholder='@'
+                      type='email'
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="examplePassword">Password</Label>
+                    <Label for='examplePassword'>Password</Label>
                     <Input
-                      id="examplePassword"
-                      name="password"
-                      placeholder="..."
-                      type="password"
+                      id='examplePassword'
+                      name='password'
+                      placeholder='...'
+                      type='password'
                     />
                   </FormGroup>
 
@@ -109,9 +96,9 @@ export default function Login() {
             </Card>
           </Col>
         </Row>
-        <Row className="info">
+        <Row className='info'>
           <Col fluid>
-            <Badge color="white">View allergy information</Badge>
+            <Badge color='white'>View allergy information</Badge>
           </Col>
         </Row>
       </Container>

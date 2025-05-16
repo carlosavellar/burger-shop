@@ -6,7 +6,7 @@ interface IIncrement<T> {
   onHandleUpdatedProductQta: (id: number, num: number) => void;
   incNum: T;
   productId: number;
-  style: object
+  style: object;
 }
 
 const Increment: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
@@ -30,12 +30,12 @@ const Increment: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
   }, [countValue]);
 
   return (
-    <div className="increment-controller inc-basket">
-      <button onClick={handleDecrement} className="dec">
+    <div className='increment-controller inc-basket'>
+      <button onClick={handleDecrement} className='dec'>
         <span>-</span>
       </button>
-      <p className="count-number">{countValue}</p>
-      <button onClick={handleIncrement} className="inc">
+      <p className='count-number'>{countValue}</p>
+      <button onClick={handleIncrement} className='inc'>
         <span>+</span>
       </button>
     </div>

@@ -11,12 +11,12 @@ function SearchInput() {
     <Container>
       <Row>
         <Col>
-          <InputGroup className="mb-3 wrap-form">
-            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+          <InputGroup className='mb-3 wrap-form'>
+            <InputGroup.Text id='basic-addon1'>@</InputGroup.Text>
             <Form.Control
-              placeholder="Search menu items"
-              aria-label="Search menu items"
-              aria-describedby="basic-addon1"
+              placeholder='Search menu items'
+              aria-label='Search menu items'
+              aria-describedby='basic-addon1'
             />
           </InputGroup>
         </Col>

@@ -27,7 +27,7 @@ export const initialState: IBasket = {
 
 const findItemId = (itemState: any, actionItem: PayloadAction<IItemBasket>) => {
   const itemIndex = itemState.findIndex(
-    (item: any) => item.id === actionItem.payload.id
+    (item: any) => item.id === actionItem.payload.id,
   );
   if (itemIndex !== -1) {
     return itemIndex;
@@ -50,7 +50,7 @@ const basketSlice = createSlice({
     },
     addToBasket: (state, action: PayloadAction<IItemBasket>) => {
       const itemIndex = state.basketItems.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload.id,
       );
       if (itemIndex !== -1) {
         state.basketItems[itemIndex] = action.payload;
@@ -63,7 +63,7 @@ const basketSlice = createSlice({
           item.updatedPrice !== undefined &&
           typeof item.updatedPrice === "number"
         ) {
-          console.log("acc:", acc)
+          console.log("acc:", acc);
           return acc + item.price;
         } else {
           return acc;
@@ -87,7 +87,7 @@ const basketSlice = createSlice({
     },
     updateItem: (
       state,
-      action: PayloadAction<{ id: number; count: number }>
+      action: PayloadAction<{ id: number; count: number }>,
     ) => {
       const { id, count } = action.payload;
 

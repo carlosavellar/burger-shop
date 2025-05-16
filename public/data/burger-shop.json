@@ -141,7 +141,7 @@
           "id": 1004123,
           "name": "Red Label",
           "alcoholic": 0,
-          "price": 19.90,
+          "price": 19.9,
           "position": 1000,
           "availabilityType": "AVAILABLE_NOW",
           "sku": "I1004123",

@@ -1,37 +1,13 @@
 {
-  "workbench.colorTheme": "Dracula",
-  "tabnine.experimentalAutoImports": true,
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.sideBar.location": "left",
-  "editor.formatOnPaste": true,
-  "editor.fontFamily": "Fira Code",
-  "folders": [
-    {
-      "path": "../typescript-generic-sort"
-    }
-  ],
-  "extensions": {
-    "recommendations": ["mccarter.start-git-bash"]
-  },
-  "settings": {
-    "editor.formatOnType": true,
-    "html.format.indentInnerHtml": true,
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "editor.formatOnSave": true,
-  "editor.fontLigatures": true,
-  "editor.fontSize": 16,
-
-  "notebook.formatOnSave.enabled": true,
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.customGlyphs": false,
-  "git.openRepositoryInParentFolders": "never",
-  "[yaml]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-  }
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
 }

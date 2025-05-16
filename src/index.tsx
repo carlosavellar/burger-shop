@@ -43,5 +43,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <ErrorBoundary>
       <RouterProvider router={router} />
     </ErrorBoundary>
-  </Provider>
+  </Provider>,
 );

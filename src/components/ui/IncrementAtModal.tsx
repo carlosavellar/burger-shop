@@ -11,7 +11,9 @@ interface IIncrement<T> {
   id: number;
 }
 
-const IncrementAtModal: React.FC<IIncrement<number>> = (props: IIncrement<number>) => {
+const IncrementAtModal: React.FC<IIncrement<number>> = (
+  props: IIncrement<number>,
+) => {
   const dispatch = useDispatch();
   const { onIncrement, incNum, id } = props;
   const [countValue, setCountValue] = useState(0);
@@ -31,12 +33,12 @@ const IncrementAtModal: React.FC<IIncrement<number>> = (props: IIncrement<number
   }, [basketItems]);
 
   return (
-    <div className="increment-controller">
-      <button onClick={handleDecrement} className="dec">
+    <div className='increment-controller'>
+      <button onClick={handleDecrement} className='dec'>
         <span>_</span>
       </button>
-      <p className="count-number">{incNum}</p>
-      <button onClick={handleIncrement} className="inc">
+      <p className='count-number'>{incNum}</p>
+      <button onClick={handleIncrement} className='inc'>
         <span>+</span>+
       </button>
     </div>

@@ -5,10 +5,10 @@ import "./Footer.scss";
 
 function Footer() {
   return (
-    <Row className="info">
+    <Row className='info'>
       <Col>
-        <Link to="/allergy-information" className="nav-link">
-          <Badge color="white">View allergy information - </Badge>
+        <Link to='/allergy-information' className='nav-link'>
+          <Badge color='white'>View allergy information - </Badge>
         </Link>
       </Col>
     </Row>
