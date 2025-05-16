@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React from "react";
 import { Button, Modal, ModalHeader, CardBody, Card } from "reactstrap";
 import { IBurger } from "@/interfaces/IBurger";
 import { IDessert } from "@/interfaces/IDessert";
@@ -6,8 +6,6 @@ import { IDrink } from "@/interfaces/IDrink";
 
 import "./ModalMealItem.scss";
 import Basket from "./Basket";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/store";
 
 type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {
@@ -20,7 +18,7 @@ interface IModalMealItemProps {
 const ModalCart: React.FC<IModalMealItemProps> = (
   props: IModalMealItemProps,
 ) => {
-  const { closeModal, isCart: cartIsOpen, prodDefaultValue, item } = props;
+  const { closeModal, isCart: cartIsOpen } = props;
   const toggle = () => closeModal();
 
   const closeBtn = (

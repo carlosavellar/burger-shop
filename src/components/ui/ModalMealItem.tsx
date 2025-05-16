@@ -98,11 +98,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     dispatch(addToBasket(productState));
   };
 
-  // useEffect(() => {
-  //   console.log(selectedModValue, "Mod Value");
-  // }, [selectedModValue]);
-
-  const HandlerModifiers = React.memo(() => {
+  const handlerModifiers = (item: MealTypes) => {
     if (item && item.modifiers) {
       const modifiersArr: Array<object[]> = [];
       for (const mod of item.modifiers) modifiersArr.push(mod.items as any);
@@ -129,7 +125,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
         );
       });
     }
-  });
+  };
 
   const handleAddToCardButton = (modifier: ModifiersType | undefined) => {
     if (modifier) {
@@ -142,11 +138,6 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               id={item.id}
             />
           )}
-          {/* const handleIncrement = (numVal: number) => {
-             setIncrementNum(numVal);
-              handlerAddItemProduct();
-          }; */}
-
           <Button
             className='btn-round button-buy'
             disabled={!incrementNum}
@@ -212,7 +203,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
         <CardBody>
           <CardText>{item.description}</CardText>
 
-          {item.hasOwnProperty("modifiers") && (
+          {Object.prototype.hasOwnProperty.call(item, "modifiers") && (
             <>
               <CardSubtitle className='cardSubTitle'>
                 Choose your size
@@ -221,9 +212,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               <Container fluid>
                 <Row>
                   <Col md='12 p-0'>
-                    <Form className='mod-form'>
-                      <HandlerModifiers />
-                    </Form>
+                    <Form className='mod-form'>{handlerModifiers(item)}</Form>
                   </Col>
                 </Row>
               </Container>
