@@ -92,17 +92,14 @@ const basketSlice = createSlice({
       action: PayloadAction<{ id: number; count: number }>,
     ) => {
       const { id, count } = action.payload;
-
       const itemIndex = state.basketItems.findIndex((loadedItem) => {
         return loadedItem.id === id;
       });
       if (itemIndex !== -1) {
         state.basketItems[itemIndex].quantity = count;
-        console.log(state.basketItems[itemIndex].quantity, "----", count);
       }
     },
     addTotal: (state, action) => {
-      debugger;
       state.loading = false;
       state.total = action.payload?.price;
       state.id = "11aas";
