@@ -57,20 +57,22 @@ const basketSlice = createSlice({
       } else {
         state.basketItems.push(action.payload);
       }
-      const totalSum = state.basketItems.reduce((acc, item, arr) => {
-        console.log("____", arr, "____-");
+      const totalSum = state.basketItems.reduce((acc = 1, item) => {
         if (
           item.updatedPrice !== undefined &&
           typeof item.updatedPrice === "number"
         ) {
-          console.log("acc:", acc);
-          return acc + item.price;
+          let total = 0;
+          for (const item of state.basketItems) {
+            const totalAcc = item.price * item.quantity;
+            total += totalAcc;
+          }
+          return total;
         } else {
           return acc;
         }
       }, 0);
       state.total = totalSum;
-      state.id = "11aas";
     },
     updateBaskedProduct: (state, action: PayloadAction<IItemBasket>) => {
       const updatedItem = action.payload;

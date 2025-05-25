@@ -29,7 +29,7 @@ const IncrementAtModal: React.FC<IIncrement<number>> = (
   };
 
   useEffect(() => {
-    console.log(basketItems);
+    // console.log(basketItems);
   }, [basketItems]);
 
   return (

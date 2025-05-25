@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
-import {
-  IItemBasket,
-  updateBaskedProduct,
-  addTotal,
-} from "@/store/slices/basketSlice";
+import { IItemBasket, updateBaskedProduct } from "@/store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import IncrementAtBasket from "./IncrementAtBasket";
 import "./Basket.scss";
@@ -19,23 +15,20 @@ const Basket = () => {
   const basket = useSelector((state: RootState) => state.basket);
   const [updatedQuantity, setupUpdatedQuantity] = useState<number>(1);
   const [basketLocalItems, setBasketLocalItems] = useState<IItemBasket[]>([]);
-  const [totalBasket, setTotalBasket] = useState<number>(0);
-
-  console.log("eee");
-  console;
 
   useEffect(() => {
-    console.log("Total:", basket.total);
+    console.log(updatedQuantity);
     setBasketLocalItems(basketItems);
-  }, [basketItems, basketLocalItems]);
+  }, [basketItems, basketLocalItems, updatedQuantity]);
 
   const handleUpdatedProductQta = (id: number, incrementNum: number) => {
+    // console.log(basket.total, "Total from Slice Basket");
     const updatedItem = basketItems.find((basket) => {
       return basket.id === id;
     });
-    setupUpdatedQuantity(incrementNum);
+    // setupUpdatedQuantity(incrementNum);
     if (updatedItem) {
-      let newP = {
+      const newP = {
         ...updatedItem,
         updatedPrice: incrementNum * updatedItem.price,
         quantity: incrementNum,
@@ -44,19 +37,19 @@ const Basket = () => {
     }
   };
 
-  const updateTotal = (objArr: Array<IItemBasket>) => {
-    let total = 0;
-    for (let item of objArr) {
-      console.log(item);
-      let totalAcc = item.price * item.quantity;
-      total += totalAcc;
-    }
-    setTotalBasket(total);
-  };
+  // const updateTotal = (objArr: Array<IItemBasket>) => {
+  //   let total = 0;
+  //   for (const item of objArr) {
+  //     // console.log(item);
+  //     const totalAcc = item.price * item.quantity;
+  //     total += totalAcc;
+  //   }
+  //   setTotalBasket(total);
+  // };
 
-  useEffect(() => {
-    updateTotal(basketItems);
-  }, [updateTotal]);
+  // useEffect(() => {
+  //   updateTotal(basketItems);
+  // }, [updateTotal]);
 
   return (
     <>
@@ -101,7 +94,7 @@ const Basket = () => {
             })}
             <tr>
               <td>Total</td>
-              <td>{totalBasket},00</td>
+              <td>{basket.total},00</td>
             </tr>
           </tbody>
         </Table>
