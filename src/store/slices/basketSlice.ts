@@ -25,15 +25,39 @@ export const initialState: IBasket = {
   error: null,
 };
 
-const findItemId = (itemState: any, actionItem: PayloadAction<IItemBasket>) => {
-  const itemIndex = itemState.findIndex(
-    (item: any) => item.id === actionItem.payload.id,
-  );
-  if (itemIndex !== -1) {
-    return itemIndex;
-  } else {
-    return "No such item";
-  }
+// const findItemId = (itemState: any, actionItem: PayloadAction<IItemBasket>) => {
+//   const itemIndex = itemState.findIndex(
+//     (item: any) => item.id === actionItem.payload.id,
+//   );
+//   if (itemIndex !== -1) {
+//     return itemIndex;
+//   } else {
+//     return "No such item";
+//   }
+// };
+
+const getTotalFromBasket = (data: any) => {
+  const totalSum = data.reduce((acc = 1, item: any) => {
+    if ("updatedPrice" in item) {
+      if (
+        item.updatedPrice !== undefined &&
+        typeof item.updatedPrice === "number"
+      ) {
+        let total = 0;
+        if ("basketItems" in data) {
+          return false;
+        }
+        for (const item of data.basketItems) {
+          const totalAcc = item.price * item.quantity;
+          total += totalAcc;
+        }
+        return total;
+      } else {
+        return acc;
+      }
+    }
+  }, 0);
+  return totalSum;
 };
 
 const basketSlice = createSlice({
@@ -72,6 +96,7 @@ const basketSlice = createSlice({
           return acc;
         }
       }, 0);
+      state.total = getTotalFromBasket(state);
       state.total = totalSum;
     },
     updateBaskedProduct: (state, action: PayloadAction<IItemBasket>) => {
@@ -99,11 +124,6 @@ const basketSlice = createSlice({
         state.basketItems[itemIndex].quantity = count;
       }
     },
-    addTotal: (state, action) => {
-      state.loading = false;
-      state.total = action.payload?.price;
-      state.id = "11aas";
-    },
     fetchDataFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
@@ -118,7 +138,6 @@ export const {
   fetchBasketSuccess,
   fetchDataFailure,
   addToBasket,
-  addTotal,
   updateBaskedProduct,
   updateItem,
 } = basketSlice.actions;
