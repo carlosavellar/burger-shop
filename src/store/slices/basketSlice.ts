@@ -36,29 +36,29 @@ export const initialState: IBasket = {
 //   }
 // };
 
-const getTotalFromBasket = (data: any) => {
-  const totalSum = data.reduce((acc = 1, item: any) => {
-    if ("updatedPrice" in item) {
-      if (
-        item.updatedPrice !== undefined &&
-        typeof item.updatedPrice === "number"
-      ) {
-        let total = 0;
-        if ("basketItems" in data) {
-          return false;
-        }
-        for (const item of data.basketItems) {
-          const totalAcc = item.price * item.quantity;
-          total += totalAcc;
-        }
-        return total;
-      } else {
-        return acc;
-      }
-    }
-  }, 0);
-  return totalSum;
-};
+// const getTotalFromBasket = (data: any) => {
+//   const totalSum = data.reduce((acc = 1, item: any) => {
+//     if ("updatedPrice" in item) {
+//       if (
+//         item.updatedPrice !== undefined &&
+//         typeof item.updatedPrice === "number"
+//       ) {
+//         let total = 0;
+//         if ("basketItems" in data) {
+//           return false;
+//         }
+//         for (const item of data.basketItems) {
+//           const totalAcc = item.price * item.quantity;
+//           total += totalAcc;
+//         }
+//         return total;
+//       } else {
+//         return acc;
+//       }
+//     }
+//   }, 0);
+//   return totalSum;
+// };
 
 const basketSlice = createSlice({
   name: "basket",
@@ -96,7 +96,7 @@ const basketSlice = createSlice({
           return acc;
         }
       }, 0);
-      state.total = getTotalFromBasket(state);
+
       state.total = totalSum;
     },
     updateBaskedProduct: (state, action: PayloadAction<IItemBasket>) => {
