@@ -18,7 +18,7 @@ import {
 } from "reactstrap";
 import { IBurger } from "@/interfaces/IBurger";
 
-import { addToBasket, addTotal } from "@/store/slices/basketSlice";
+import { addToBasket } from "@/store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import { ModifiersType } from "@/interfaces/ModifierType";
 
