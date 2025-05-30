@@ -5,7 +5,7 @@ interface IncrementContextProps {
   handleDecrement: (numVal: number) => void;
 }
 const IncrementContext = createContext<IncrementContextProps | undefined>(
-  undefined
+  undefined,
 );
 
 interface IncrementProviderProps {

@@ -13,31 +13,27 @@ import { useParams } from "react-router-dom";
 
 import { RootState } from "@/store";
 import { IMenuItems, initialState } from "@/store/slices/menuSlice";
-import { fetchData } from "@/utils/api";
 import NavMenu from "../components/ui/NavMenu";
-import SearchInput from "../components/ui/SearchInput";
 
 import "./Information.scss";
 import Header from "../components/ui/Header";
-import useToggle from "@/utils/toggleHook";
 import { useSelector } from "react-redux";
-interface FoodItemProps {
-  sectionId: number;
-  menuItems: IMenuItems;
-  isSectionImage?: boolean;
-}
 
 export default function FoodItem() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
-  const [foodItem, setFodItem] = useState<{}>({});
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [foodItem, setFodItem] = useState<object>({});
 
   const { id } = useParams();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { sections, loading, error } = useSelector(
-    (state: RootState) => state.menuItems
+    (state: RootState) => state.menuItems,
   );
 
   useEffect(() => {
     if (!sections || sections === null) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setLoadedMenu(sections as any);
     }
   }, [sections]);
@@ -56,18 +52,18 @@ export default function FoodItem() {
     <Fragment>
       <NavMenu />
       <Header />
-      <Container className="">
+      <Container className=''>
         <Row>
           <Card>
             <CardBody>
-              <CardTitle tag="h5">{id}Your Title Here</CardTitle>
+              <CardTitle tag='h5'>{id}Your Title Here</CardTitle>
               <CardText></CardText>
             </CardBody>
           </Card>
         </Row>
-        <Row className="info">
+        <Row className='info'>
           <Col fluid>
-            <Badge color="white">View allergy information</Badge>
+            <Badge color='white'>View allergy information</Badge>
           </Col>
         </Row>
       </Container>

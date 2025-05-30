@@ -18,17 +18,15 @@ import {
 } from "reactstrap";
 import { IBurger } from "@/interfaces/IBurger";
 
-import { addToBasket, addTotal } from "@/store/slices/basketSlice";
+import { addToBasket } from "@/store/slices/basketSlice";
 import { useDispatch } from "react-redux";
 import { ModifiersType } from "@/interfaces/ModifierType";
-
 
 import "./ModalMealItem.scss";
 import IncrementAtModal from "./IncrementAtModal";
 import { IDessert } from "@/interfaces/IDessert";
 import { IDrink } from "@/interfaces/IDrink";
 import { IItemBasket, updateItem } from "@/store/slices/basketSlice";
-
 
 type MealTypes = IBurger | IDrink | IDessert;
 interface IModalMealItemProps {
@@ -39,7 +37,7 @@ interface IModalMealItemProps {
 }
 
 const ModalMealItem: React.FC<IModalMealItemProps> = (
-  props: IModalMealItemProps
+  props: IModalMealItemProps,
 ) => {
   const dispatch = useDispatch();
   const { item, itemId, closeModal, onOpenCart } = props;
@@ -63,7 +61,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
   const [selectedModValue, setSelectedModValue] = useState<number>(0);
 
   const closeBtn = (
-    <button className="close" onClick={toggle} type="button">
+    <button className='close' onClick={toggle} type='button'>
       &times;
     </button>
   );
@@ -100,27 +98,23 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
     dispatch(addToBasket(productState));
   };
 
-  // useEffect(() => {
-  //   console.log(selectedModValue, "Mod Value");
-  // }, [selectedModValue]);
-
-  const HandlerModifiers = React.memo(() => {
+  const handlerModifiers = (item: MealTypes) => {
     if (item && item.modifiers) {
       const modifiersArr: Array<object[]> = [];
-      for (let mod of item.modifiers) modifiersArr.push(mod.items as any);
+      for (const mod of item.modifiers) modifiersArr.push(mod.items as any);
       let mod2Item: any = [];
-      for (let modItem of modifiersArr) mod2Item = modItem;
+      for (const modItem of modifiersArr) mod2Item = modItem;
       return mod2Item.map((mod: any) => {
         return (
-          <FormGroup className="container-flex radio-form" key={mod.id}>
-            <label className="label-modifier" htmlFor={mod.id}>
+          <FormGroup className='container-flex radio-form' key={mod.id}>
+            <label className='label-modifier' htmlFor={mod.id}>
               {mod.name}
               <span>R$ {mod.price.toFixed(2)}</span>
             </label>
             <input
-              type="radio"
+              type='radio'
               id={mod.id}
-              name="modifier"
+              name='modifier'
               value={mod.price}
               onChange={(e) => {
                 setSelectedModValue(e.target.value as any);
@@ -131,7 +125,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
         );
       });
     }
-  });
+  };
 
   const handleAddToCardButton = (modifier: ModifiersType | undefined) => {
     if (modifier) {
@@ -144,13 +138,8 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
               id={item.id}
             />
           )}
-          {/* const handleIncrement = (numVal: number) => {
-             setIncrementNum(numVal);
-              handlerAddItemProduct();
-          }; */}
-
           <Button
-            className="btn-round button-buy"
+            className='btn-round button-buy'
             disabled={!incrementNum}
             onClick={() => {
               onOpenCart();
@@ -171,7 +160,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
             id={item.id}
           />
           <Button
-            className="btn-round button-buy"
+            className='btn-round button-buy'
             disabled={!incrementNum}
             onClick={() => {
               onOpenCart();
@@ -194,7 +183,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
       <ModalHeader
         onClick={closeModal}
         close={closeBtn}
-        className="header-close-button"
+        className='header-close-button'
       ></ModalHeader>
       {item?.images && (
         <img
@@ -203,7 +192,7 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
         />
       )}
 
-      <ModalHeader toggle={toggle} close={closeBtn} className="header-title">
+      <ModalHeader toggle={toggle} close={closeBtn} className='header-title'>
         {item.name}
       </ModalHeader>
       <Card
@@ -214,18 +203,16 @@ const ModalMealItem: React.FC<IModalMealItemProps> = (
         <CardBody>
           <CardText>{item.description}</CardText>
 
-          {item.hasOwnProperty("modifiers") && (
+          {Object.prototype.hasOwnProperty.call(item, "modifiers") && (
             <>
-              <CardSubtitle className="cardSubTitle">
+              <CardSubtitle className='cardSubTitle'>
                 Choose your size
               </CardSubtitle>
               <CardSubtitle> Select 1 option</CardSubtitle>
               <Container fluid>
                 <Row>
-                  <Col md="12 p-0">
-                    <Form className="mod-form">
-                      <HandlerModifiers />
-                    </Form>
+                  <Col md='12 p-0'>
+                    <Form className='mod-form'>{handlerModifiers(item)}</Form>
                   </Col>
                 </Row>
               </Container>

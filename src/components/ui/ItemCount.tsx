@@ -10,7 +10,7 @@ interface IItemCountFlag {
 export const ItemCountFlag = (props: IItemCountFlag) => {
   const { id } = props;
   const basketItems = useSelector(
-    (state: RootState) => state.basket.basketItems
+    (state: RootState) => state.basket.basketItems,
   );
   // console.log(id, "itemCount");
 
@@ -22,5 +22,5 @@ export const ItemCountFlag = (props: IItemCountFlag) => {
     return <></>;
   }
 
-  return <span className="qta-basket">{filteredProduct.quantity}</span>;
+  return <span className='qta-basket'>{filteredProduct.quantity}</span>;
 };

@@ -1,6 +1,6 @@
-$font-family: "Roboto";
+$font-family: 'Roboto';
 $font-size: 1rem;
-$font-style-normal: "normal";
+$font-style-normal: 'normal';
 
 @mixin base-font {
   font-family: $font-family, sans-serif;

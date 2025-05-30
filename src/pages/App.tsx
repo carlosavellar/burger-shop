@@ -1,7 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Badge, Card, Col, Container, Row } from "reactstrap";
-
+import { Card, Col, Container, Row } from "reactstrap";
 import { Accordion, AccordionHeader, AccordionItem } from "reactstrap";
 
 import { RootState } from "@/store";
@@ -15,27 +14,43 @@ import Header from "../components/ui/Header";
 import ProductImageList from "../components/ProductImageList";
 import SectionList from "../components/SectionList";
 import useToggle from "@/utils/toggleHook";
-import { Link } from "react-router-dom";
 
 import { IncrementProvider } from "@/context/IncrementContext";
 import Basket from "@/components/ui/Basket";
 import Footer from "@/components/ui/Footer";
-import { ThemeContext } from "@emotion/react";
-import { IBurger } from "@/interfaces/IBurger";
-import { IDrink } from "@/interfaces/IDrink";
-import { IDessert } from "@/interfaces/IDessert";
-import { IItemBasket } from "@/store/slices/basketSlice";
+
+// interface Pet {
+//   name: string;
+//   owner: string;
+// }
+
+// interface Pet {
+//   readonly race: string;
+//   showPet(discount: number): number;
+// }
+
+// const heili: Pet = {
+//   race: "Lulu da Piumerang",
+//   name: "Heili",
+//   age: 3,
+//   owner: "Isabeli",
+//   showPet:() {
+//     return 2;
+//   },
+// };
+
+// interface Pet {
+//   age: number;
+// }
 
 export default function App() {
   const dispatch = useDispatch();
 
-  const [totalBasket, setTotalBasket] = useState<number>(0);
-
   const { sections, loading, error } = useSelector(
-    (state: RootState) => state.menuItems
+    (state: RootState) => state.menuItems,
   );
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
-  const { basketItems } = useSelector((state: RootState) => state.basket);
+  // const { basketItems } = useSelector((state: RootState) => state.basket);
 
   const { open: openBurger, toggle: toggleBurger } = useToggle("");
   const { open: openDrinks, toggle: toggleDrinks } = useToggle("");
@@ -43,10 +58,10 @@ export default function App() {
   const [sectionToggle, setSectionToggle] = useState<string>("");
   const [sectionToggleDrink, setSectionToggleDrink] = useState<string>("");
 
-  const [screenSize, setScreenSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
+  // const [screenSize, setScreenSize] = useState({
+  //   width: window.innerWidth,
+  //   height: window.innerHeight
+  // });
 
   useEffect(() => {
     if (openBurger) {
@@ -74,8 +89,6 @@ export default function App() {
     }
   }, [sections]);
 
-
-
   return (
     <Fragment>
       <IncrementProvider>
@@ -84,8 +97,8 @@ export default function App() {
         <SearchInput />
         <Container>
           <Row>
-            <Col className="" md={8} lg={8} xl={8}>
-              <Card className="shadow p-4">
+            <Col md={8} lg={8} xl={8}>
+              <Card className='shadow p-4'>
                 <Container>
                   <Row>
                     <Col>
@@ -96,7 +109,7 @@ export default function App() {
                           onToggleDrinks={toggleDrinks}
                         />
                       </Row>
-                      <Row className="burger-list">
+                      <Row className='burger-list'>
                         <Col>
                           <Accordion
                             flush
@@ -104,7 +117,7 @@ export default function App() {
                             toggle={toggleBurger}
                           >
                             <AccordionItem key={1}>
-                              <AccordionHeader targetId="1">
+                              <AccordionHeader targetId='1'>
                                 <h3>Burgers</h3>
                               </AccordionHeader>
                               <ProductImageList
@@ -116,7 +129,7 @@ export default function App() {
                           </Accordion>
                         </Col>
                       </Row>
-                      <Row className="drink-list">
+                      <Row className='drink-list'>
                         <Col>
                           <Accordion
                             flush
@@ -124,7 +137,7 @@ export default function App() {
                             toggle={toggleDrinks}
                           >
                             <AccordionItem key={1}>
-                              <AccordionHeader targetId="1">
+                              <AccordionHeader targetId='1'>
                                 <h3>Drinks</h3>
                               </AccordionHeader>
                               <ProductImageList
@@ -141,14 +154,14 @@ export default function App() {
                 </Container>
               </Card>
             </Col>
-            <Col className="p-10" md={4} lg={4}>
-              <Card className="shadow p-4">
+            <Col className='p-10' md={4} lg={4}>
+              <Card className='shadow p-4'>
                 <Basket />
               </Card>
             </Col>
           </Row>
         </Container>
-      </IncrementProvider >
+      </IncrementProvider>
     </Fragment>
   );
 }

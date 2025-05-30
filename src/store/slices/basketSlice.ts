@@ -25,16 +25,40 @@ export const initialState: IBasket = {
   error: null,
 };
 
-const findItemId = (itemState: any, actionItem: PayloadAction<IItemBasket>) => {
-  const itemIndex = itemState.findIndex(
-    (item: any) => item.id === actionItem.payload.id
-  );
-  if (itemIndex !== -1) {
-    return itemIndex;
-  } else {
-    return "No such item";
-  }
-};
+// const findItemId = (itemState: any, actionItem: PayloadAction<IItemBasket>) => {
+//   const itemIndex = itemState.findIndex(
+//     (item: any) => item.id === actionItem.payload.id,
+//   );
+//   if (itemIndex !== -1) {
+//     return itemIndex;
+//   } else {
+//     return "No such item";
+//   }
+// };
+
+// const getTotalFromBasket = (data: any) => {
+//   const totalSum = data.reduce((acc = 1, item: any) => {
+//     if ("updatedPrice" in item) {
+//       if (
+//         item.updatedPrice !== undefined &&
+//         typeof item.updatedPrice === "number"
+//       ) {
+//         let total = 0;
+//         if ("basketItems" in data) {
+//           return false;
+//         }
+//         for (const item of data.basketItems) {
+//           const totalAcc = item.price * item.quantity;
+//           total += totalAcc;
+//         }
+//         return total;
+//       } else {
+//         return acc;
+//       }
+//     }
+//   }, 0);
+//   return totalSum;
+// };
 
 const basketSlice = createSlice({
   name: "basket",
@@ -50,27 +74,30 @@ const basketSlice = createSlice({
     },
     addToBasket: (state, action: PayloadAction<IItemBasket>) => {
       const itemIndex = state.basketItems.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload.id,
       );
       if (itemIndex !== -1) {
         state.basketItems[itemIndex] = action.payload;
       } else {
         state.basketItems.push(action.payload);
       }
-      const totalSum = state.basketItems.reduce((acc, item, arr) => {
-        console.log("____", arr, "____-");
+      const totalSum = state.basketItems.reduce((acc = 1, item) => {
         if (
           item.updatedPrice !== undefined &&
           typeof item.updatedPrice === "number"
         ) {
-          console.log("acc:", acc)
-          return acc + item.price;
+          let total = 0;
+          for (const item of state.basketItems) {
+            const totalAcc = item.price * item.quantity;
+            total += totalAcc;
+          }
+          return total;
         } else {
           return acc;
         }
       }, 0);
+
       state.total = totalSum;
-      state.id = "11aas";
     },
     updateBaskedProduct: (state, action: PayloadAction<IItemBasket>) => {
       const updatedItem = action.payload;
@@ -87,23 +114,15 @@ const basketSlice = createSlice({
     },
     updateItem: (
       state,
-      action: PayloadAction<{ id: number; count: number }>
+      action: PayloadAction<{ id: number; count: number }>,
     ) => {
       const { id, count } = action.payload;
-
       const itemIndex = state.basketItems.findIndex((loadedItem) => {
         return loadedItem.id === id;
       });
       if (itemIndex !== -1) {
         state.basketItems[itemIndex].quantity = count;
-        console.log(state.basketItems[itemIndex].quantity, "----", count);
       }
-    },
-    addTotal: (state, action) => {
-      debugger;
-      state.loading = false;
-      state.total = action.payload?.price;
-      state.id = "11aas";
     },
     fetchDataFailure: (state, action) => {
       state.loading = false;
@@ -119,7 +138,6 @@ export const {
   fetchBasketSuccess,
   fetchDataFailure,
   addToBasket,
-  addTotal,
   updateBaskedProduct,
   updateItem,
 } = basketSlice.actions;

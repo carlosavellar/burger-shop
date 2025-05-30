@@ -31,7 +31,7 @@ export default function Information() {
   const [loadedMenu, setLoadedMenu] = useState<IMenuItems>(initialState);
   const dispatch = useDispatch();
   const { sections, loading, error } = useSelector(
-    (state: RootState) => state.menuItems
+    (state: RootState) => state.menuItems,
   );
 
   const { open: openBurger, toggle: toggleBurger } = useToggle("");
@@ -72,25 +72,25 @@ export default function Information() {
     <Fragment>
       <NavMenu />
       <Header />
-      <Container className="">
+      <Container className=''>
         <Row>
           <Card>
             <CardBody>
-              <CardTitle tag="h5">Contact</CardTitle>
+              <CardTitle tag='h5'>Contact</CardTitle>
               <Form>
                 <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
+                  className='mb-3'
+                  controlId='exampleForm.ControlInput1'
                 >
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="name@example.com" />
+                  <Form.Control type='email' placeholder='name@example.com' />
                 </Form.Group>
                 <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlTextarea1"
+                  className='mb-3'
+                  controlId='exampleForm.ControlTextarea1'
                 >
                   <Form.Label>Example textarea</Form.Label>
-                  <Form.Control as="textarea" rows={3} />
+                  <Form.Control as='textarea' rows={3} />
                 </Form.Group>
               </Form>
             </CardBody>

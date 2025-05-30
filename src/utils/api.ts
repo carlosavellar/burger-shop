@@ -6,7 +6,6 @@ import {
   fetchDataFailure,
 } from "./../store/slices/menuSlice";
 
-
 export const fetchData = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(fetchDataStart());
@@ -19,7 +18,7 @@ export const fetchData = () => async (dispatch: AppDispatch) => {
           "Content-Type": "application/json",
           Origin: "https://portal.zuplo.com",
         },
-      }
+      },
     );
     if (response.status === 429) {
       console.log(response.status);

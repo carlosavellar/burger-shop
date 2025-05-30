@@ -1,4 +1,4 @@
-@import "./../../styles/colors";
+@import './../../styles/colors';
 .increment-controller {
   display: flex;
   justify-content: center;
@@ -29,7 +29,7 @@
     }
   }
   .count-number {
-    font-family: "SF Pro Display", sans-serif;
+    font-family: 'SF Pro Display', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
     color: #121212;
@@ -39,17 +39,17 @@
   }
 }
 
-.inc-basket{
+.inc-basket {
   display: flex;
   justify-content: center;
   margin-bottom: 15px;
-  
+
   width: 100%;
   height: auto;
 
   button {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 
     border: none;
@@ -74,7 +74,7 @@
     }
   }
   .count-number {
-    font-family: "SF Pro Display", sans-serif;
+    font-family: 'SF Pro Display', sans-serif;
     font-weight: 700;
     font-size: 1.1rem;
     color: #121212;

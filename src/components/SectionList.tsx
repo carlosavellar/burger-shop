@@ -12,15 +12,15 @@ interface RenderSectionsProps {
 }
 
 const SectionList: React.FC<RenderSectionsProps> = (
-  props: RenderSectionsProps
+  props: RenderSectionsProps,
 ) => {
   const { menuItems, onToggleBurger, onToggleDrinks } = props;
   return menuItems.sections?.map((section) => {
     return (
       <React.Fragment key={section.id}>
         <Col
-          id="section-button"
-          className="bg-white media-test  align-items-center justify-content-center vh-50"
+          id='section-button'
+          className='bg-white media-test  align-items-center justify-content-center vh-50'
           key={section.id}
           onClick={() => {
             if (section.id === 242403) {
@@ -30,15 +30,15 @@ const SectionList: React.FC<RenderSectionsProps> = (
             }
           }}
         >
-          <div className="bg-white media-test d-flex align-items-center justify-content-center b1">
+          <div className='bg-white media-test d-flex align-items-center justify-content-center b1'>
             <Avatar
-              alt="Remy Sharp"
+              alt='Remy Sharp'
               src={section.images[0].image}
               style={{ width: "75px", height: "75px" }}
-              className="bg-white media-test d-flex align-items-center justify-content-center vh-50 b2"
+              className='bg-white media-test d-flex align-items-center justify-content-center vh-50 b2'
             />
           </div>
-          <div className="bg-white media-test d-flex align-items-center justify-content-center section-name">
+          <div className='bg-white media-test d-flex align-items-center justify-content-center section-name'>
             {section.name}
           </div>
         </Col>

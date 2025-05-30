@@ -41,21 +41,21 @@ function NavMenu(args: NavbarProps) {
   const navbarCollapse: ReactElement = (
     <>
       <span></span>
-      <div className="title-app">
-        <Link to="/" className="link-home">
+      <div className='title-app'>
+        <Link to='/' className='link-home'>
           Menu
         </Link>
       </div>
-      <NavbarToggler onClick={toggle} className="custom-toggler">
+      <NavbarToggler onClick={toggle} className='custom-toggler'>
         <RiMenuLine />
       </NavbarToggler>
       <Collapse isOpen={isOpen} navbar>
-        <NavbarText className="me-auto">
-          <Link to="/login" className="nav-link">
+        <NavbarText className='me-auto'>
+          <Link to='/login' className='nav-link'>
             Entrar
-            <span className="bar"></span>
+            <span className='bar'></span>
           </Link>
-          <Link to="/allergy-information" className="nav-link">
+          <Link to='/allergy-information' className='nav-link'>
             Contato
           </Link>
         </NavbarText>
@@ -64,30 +64,30 @@ function NavMenu(args: NavbarProps) {
   );
 
   const navBar: ReactElement = (
-    <Nav pills className="m-auto">
+    <Nav pills className='m-auto'>
       <NavItem>
-        <NavLink to="/" className="mr-4">
+        <NavLink to='/' className='mr-4'>
           Menu
-          <span className="bar"></span>
+          <span className='bar'></span>
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to="/login" className="mr-4">
+        <NavLink to='/login' className='mr-4'>
           Entrar
-          <span className="bar"></span>
+          <span className='bar'></span>
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to="/contact">
+        <NavLink to='/contact'>
           Contato
-          <span className="bar"></span>
+          <span className='bar'></span>
         </NavLink>
       </NavItem>
     </Nav>
   );
 
   return (
-    <Navbar {...args} className="">
+    <Navbar {...args} className=''>
       {/* {navbarCollapse} */}
       {windowWidth < 768 && navbarCollapse}
       {windowWidth > 768 && navBar}

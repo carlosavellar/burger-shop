@@ -12,7 +12,7 @@ interface RenderSectionProps {
   isSectionImage?: boolean;
 }
 const ProductImageList: React.FC<RenderSectionProps> = (
-  props: RenderSectionProps
+  props: RenderSectionProps,
 ) => {
   const { menuItems, isSectionImage } = props;
   // const navigate = useNavigate();
@@ -36,7 +36,7 @@ const ProductImageList: React.FC<RenderSectionProps> = (
 
   const filterSection = (sectionId: number) => {
     for (let key = 0; key < menuItems.sections?.length; key++) {
-      let sectionItem = menuItems.sections[key];
+      const sectionItem = menuItems.sections[key];
       if (sectionItem.id === sectionId) {
         return sectionItem;
       }
@@ -54,18 +54,18 @@ const ProductImageList: React.FC<RenderSectionProps> = (
   return arrayList?.items.map((item) => {
     return (
       <React.Fragment key={item.id}>
-        <AccordionBody accordionId="1">
-          <Card className="d-flex flex-row">
+        <AccordionBody accordionId='1'>
+          <Card className='d-flex flex-row'>
             <CardBody
               onClick={() => {
                 handleSetId(item.id);
               }}
             >
-              <CardTitle tag="h6">
+              <CardTitle tag='h6'>
                 <ItemCountFlag id={item.id} />
                 {item.name}
               </CardTitle>
-              <data className="amount" value={`{item.price},00`}>
+              <data className='amount' value={`{item.price},00`}>
                 R$ {item.price},00
               </data>
             </CardBody>
@@ -75,9 +75,9 @@ const ProductImageList: React.FC<RenderSectionProps> = (
                   handleSetId(item.id);
                 }}
                 top
-                width="100px"
+                width='100px'
                 src={item.images[0].image}
-                alt="Card image cap"
+                alt='Card image cap'
               />
             )}
           </Card>
