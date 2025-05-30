@@ -19,29 +19,29 @@ import { IncrementProvider } from "@/context/IncrementContext";
 import Basket from "@/components/ui/Basket";
 import Footer from "@/components/ui/Footer";
 
-interface Pet {
-  name: string;
-  owner: string;
-}
+// interface Pet {
+//   name: string;
+//   owner: string;
+// }
 
-interface Pet {
-  readonly race: string;
-  showPet(discount: number): number;
-}
+// interface Pet {
+//   readonly race: string;
+//   showPet(discount: number): number;
+// }
 
-const heili: Pet = {
-  race: "Lulu da Piumerang",
-  name: "Heili",
-  age: 3,
-  owner: "Isabeli",
-  showPet:() {
-    return 2;
-  },
-};
+// const heili: Pet = {
+//   race: "Lulu da Piumerang",
+//   name: "Heili",
+//   age: 3,
+//   owner: "Isabeli",
+//   showPet:() {
+//     return 2;
+//   },
+// };
 
-interface Pet {
-  age: number;
-}
+// interface Pet {
+//   age: number;
+// }
 
 export default function App() {
   const dispatch = useDispatch();
